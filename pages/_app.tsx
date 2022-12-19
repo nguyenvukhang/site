@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import { Header } from '../components/Header'
 import '../styles/global.css'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -14,5 +15,10 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
     )
   }
-  return <Component {...pageProps} />
+  return (
+    <div>
+      <Header router={router} />
+      <Component {...pageProps} />
+    </div>
+  )
 }
