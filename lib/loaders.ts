@@ -24,16 +24,24 @@ export function getDate(d: Date) {
   })
 }
 
+function dateComp(d1: Date, d2: Date) {
+  const [t1, t2] = [d1.getTime(), d2.getTime()]
+  if (t1 === t2) return 0
+  return t1 < t2 ? -1 : 1
+}
+
 /**
  * Gets the most recent `limit` posts and their metadata.
  */
 export function getPosts(path: string, limit: number): PostProps[] {
   return getFiles(path)
     .filter((f) => f.endsWith('.mdx'))
-    .map((filename) => {
-      const { date, file } = parseDatedFile(filename)
-      const frontmatter = matter(readFileSync(filename, 'utf8'))
-        .data as PostProps
+    .map((f) => ({
+      frontmatter: matter(readFileSync(f, 'utf8')).data as PostProps,
+      ...parseDatedFile(f),
+    }))
+    .sort((a, b) => dateComp(b.date, a.date))
+    .map(({ date, file, frontmatter }) => {
       const result = {
         ...frontmatter,
         filename: file,
@@ -41,7 +49,6 @@ export function getPosts(path: string, limit: number): PostProps[] {
       }
       return result
     })
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
     .slice(0, limit)
 }
 
