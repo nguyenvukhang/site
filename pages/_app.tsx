@@ -1,6 +1,18 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
+import '../styles/global.css'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+
+  console.log(router.route)
+
+  if (router.route === '/meme') {
+    return (
+      <div style={{ backgroundColor: 'red', margin: '100px' }}>
+        <Component {...pageProps} />
+      </div>
+    )
+  }
   return <Component {...pageProps} />
 }
