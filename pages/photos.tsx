@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import { resolve } from 'path'
+import { resolve, } from 'path'
 import Image from 'next/image'
 import { getPhotos } from 'lib/loaders'
 import { PhotoProps } from 'lib/types'
@@ -37,7 +37,7 @@ const Photo = (props: { filename: string; caption?: string }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = () => {
+export const getStaticProps: GetStaticProps = async () => {
   const dir = resolve(process.cwd(), 'public/photos')
   return { props: { photos: getPhotos(dir, 100) } }
 }

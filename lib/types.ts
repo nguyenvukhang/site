@@ -10,3 +10,8 @@ export type PhotoProps = {
   filename: string
   caption: string
 }
+
+export type DatedFile = {
+  date: Date
+  file: string
+}
