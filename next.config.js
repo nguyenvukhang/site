@@ -1,10 +1,39 @@
 const matter = require('gray-matter')
 const { Parser } = require('acorn')
 const jsx = require('acorn-jsx')
-const jsxParser = Parser.extend(jsx())
+const parser = Parser.extend(jsx())
+const node = (js) => ({
+  type: 'mdxjsEsm',
+  data: {
+    estree: parser.parse(js, { sourceType: 'module', ecmaVersion: 2020 }),
+  },
+})
+
+/**
+ * a simple plugin to parse frontmatter from .mdx files
+ */
+const parseFrontmatter = () => (tree, file) => {
+  // extract frontmatter
+  const { data: frontmatter } = matter(file.value)
+  // remove frontmatter from the .mdx file so it doesn't show up
+  if (tree.children[0].type === 'thematicBreak') {
+    const i = tree.children.findIndex((t) => t.type !== 'thematicBreak')
+    if (i !== -1) tree.children.splice(0, i + 1)
+  }
+  // import the layout
+  tree.children.unshift(
+    node('import { BlogPostLayout as L } from "@components/Layouts"')
+  )
+  // insert the frontmatter as JSX into the mdx file
+  tree.children.push(node(`const frontmatter = ${JSON.stringify(frontmatter)}`))
+  // re-read the JSX and send it to the layout component
+  tree.children.push(
+    node('export default ({children}) => <L {...frontmatter}>{children}</L>')
+  )
+}
 
 const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
+  extension: /\.mdx$/,
   options: { remarkPlugins: [parseFrontmatter] },
 })
 
@@ -12,45 +41,3 @@ module.exports = withMDX({
   reactStrictMode: true,
   pageExtensions: ['tsx', 'mdx'],
 })
-
-/**
- * a simple plugin to parse frontmatter from .mdx files
- */
-function parseFrontmatter() {
-  return (tree, file) => {
-    // import the layout
-    tree.children.unshift({
-      type: 'mdxjsEsm',
-      data: {
-        estree: jsxParser.parse(
-          'import { BlogPostLayout } from "../components/Layouts"',
-          {
-            sourceType: 'module',
-            ecmaVersion: 2020,
-          }
-        ),
-      },
-    })
-    // insert the frontmatter as JSX into the mdx file
-    const { data: frontmatter } = matter(file.value)
-    tree.children.push({
-      type: 'mdxjsEsm',
-      data: {
-        estree: jsxParser.parse(
-          `const frontmatter = ${JSON.stringify(frontmatter)}`,
-          { sourceType: 'module', ecmaVersion: 2020 }
-        ),
-      },
-    })
-    // re-read the JSX and send it to the layout component
-    tree.children.push({
-      type: 'mdxjsEsm',
-      data: {
-        estree: jsxParser.parse(
-          'export default ({children}) => <BlogPostLayout {...frontmatter}>{children}</BlogPostLayout>',
-          { sourceType: 'module', ecmaVersion: 2020 }
-        ),
-      },
-    })
-  }
-}

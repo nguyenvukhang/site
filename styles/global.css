@@ -13,3 +13,11 @@ pre {
 pre > * {
   @apply mx-2 my-1 inline-block;
 }
+
+/**
+ * links:
+ * get them on classic blue and clickable
+ */
+a {
+  @apply text-blue-500 hover:underline cursor-pointer;
+}
