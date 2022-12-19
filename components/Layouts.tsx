@@ -19,7 +19,7 @@ type BlogProps = JSX.IntrinsicElements['div'] & PostProps
  * Responseive horizontal padding is handled here.
  */
 const VerticalContent = (props: JSX.IntrinsicElements['div']) => (
-  <div className="flex flex-col w-full max-w-full sm:max-w-2xl px-2 sm:px-5 md:px-10">
+  <div className="flex flex-col w-full max-w-full sm:max-w-2xl px-3 sm:px-5 md:px-10">
     {props.children}
   </div>
 )

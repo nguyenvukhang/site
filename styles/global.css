@@ -7,11 +7,19 @@
  * pre {} formats the parent code block and gives it a bg/border
  * pre > * {} formats its children and gives them proper padding
  */
+pre,
+code {
+  font-size: 0.9em;
+}
 pre {
   @apply overflow-x-auto bg-gray-100 border rounded-md;
 }
 pre > * {
   @apply mx-2 my-1 inline-block;
+}
+/* code in a paragraph */
+p > code {
+  @apply bg-gray-100 px-0.5 rounded-sm outline outline-1 outline-gray-200;
 }
 
 /**
@@ -20,4 +28,38 @@ pre > * {
  */
 a {
   @apply text-blue-500 hover:underline cursor-pointer;
+}
+
+/**
+ * Lists:
+ * get them to work as expected
+ */
+ul,
+ol {
+  @apply list-inside ml-1;
+}
+ul {
+  @apply list-disc;
+}
+ol {
+  @apply list-decimal;
+}
+
+/**
+ * Paragraphs
+ */
+p,
+summary {
+  @apply my-4;
+}
+
+/**
+ * Headers
+ */
+h1 {
+  @apply text-lg font-medium mt-4 mb-2;
+}
+h2,
+h3 {
+  @apply text-lg font-medium mt-4 mb-2;
 }
