@@ -3,17 +3,17 @@ import { NextRouter } from 'next/router'
 import { BackButton } from './BackButton'
 
 const Name = (p: { className?: string }) => (
-  <span className={`font-readex text-[1.125em] text-gray-500 ${p.className}`}>
+  <span className={`text-[1.125em] text-gray-500 ${p.className}`}>
     Nguyễn Vũ Khang
   </span>
 )
 
-const Container = (p: JSX.IntrinsicElements['div']) => (
-  <div className="w-full flex items-center">{p.children}</div>
-)
-
-export const Header = (p: { router: NextRouter }) => {
-  const { router } = p
+/**
+ * Header component for every page. Displays the home version for the
+ * root route, and a version with a back button for every other route
+ */
+export const Header = (props: { router: NextRouter }) => {
+  const { router } = props
   // root page header
   const RootHeader = () => (
     <div className="flex flex-col mt-12 mb-10">
@@ -30,9 +30,5 @@ export const Header = (p: { router: NextRouter }) => {
       <Name />
     </div>
   )
-  return (
-    <Container>
-      {router.route === '/' ? <RootHeader /> : <NonRootHeader />}
-    </Container>
-  )
+  return router.route === '/' ? <RootHeader /> : <NonRootHeader />
 }
