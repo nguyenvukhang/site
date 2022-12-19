@@ -6,13 +6,13 @@ import { Title, PublishedAt, Summary, Tags } from '@components/BlogComponents'
  * classic <div> tag props + a NextRouter
  */
 type LayoutProps = JSX.IntrinsicElements['div'] & { router: NextRouter }
-type Frontmatter = {
+type PostProps = {
   title: string
   publishedAt: string
   summary: string
   tags: string[]
 }
-type BlogProps = JSX.IntrinsicElements['div'] & Frontmatter
+type BlogProps = JSX.IntrinsicElements['div'] & PostProps
 
 /**
  * Container for vertical content. Content divs are stacked vertically.

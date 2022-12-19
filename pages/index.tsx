@@ -2,9 +2,9 @@ import { SquareIcon } from '@primer/octicons-react'
 import type { GetStaticProps } from 'next'
 import { getFiles } from 'lib/get-files'
 import { resolve, parse } from 'path'
-import { getPostMetadata } from 'lib/posts'
+import { getPosts } from 'lib/loaders'
 import type { NextRouter } from 'next/router'
-import type { Frontmatter } from 'lib/types'
+import type { PostProps } from 'lib/types'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -12,22 +12,20 @@ import { useEffect, useState } from 'react'
 /**
  * Fetch posts, post metadata, and photos
  */
-export const getStaticProps: GetStaticProps = async (): Promise<{
-  props: { posts: Frontmatter[]; photos: string[] }
-}> => ({
+export const getStaticProps: GetStaticProps = () => ({
   props: {
-    posts: getPostMetadata(resolve(process.cwd(), 'posts'), 5),
+    posts: getPosts(resolve(process.cwd(), 'posts'), 5),
     photos: getFiles(resolve(process.cwd(), 'public/photos'))
       .filter((x) => !x.endsWith('.json'))
       .map((x) => parse(x).base)
-      .reverse(),
+      .sort((a, b) => b.localeCompare(a)),
   },
 })
 
 /**
  * One blog post entry displayed on the home page.
  */
-const Post = (props: { router: NextRouter; metadata: Frontmatter }) => {
+const Post = (props: { router: NextRouter; metadata: PostProps }) => {
   return (
     <div
       className="cursor-pointer py-1.5 group"
@@ -50,7 +48,7 @@ const Post = (props: { router: NextRouter; metadata: Frontmatter }) => {
 /**
  * List of blog post entries
  */
-const Posts = (props: { router: NextRouter; posts: Frontmatter[] }) => {
+const Posts = (props: { router: NextRouter; posts: PostProps[] }) => {
   return (
     <div className="flex flex-col">
       {props.posts.map((post, i) => (
@@ -133,10 +131,7 @@ const About = () => {
   )
 }
 
-export default function Home(props: {
-  photos: string[]
-  posts: Frontmatter[]
-}) {
+export default function Home(props: { photos: string[]; posts: PostProps[] }) {
   const router = useRouter()
   const H1 = (p: { children: string }) => (
     <div className="mb-2 text-lg font-medium text-gray-700">{p.children}</div>
