@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import { Header } from '../components/Header'
+import { HomeLayout, BlogPostLayout } from '../components/Layouts'
 import '../styles/global.css'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -8,17 +8,16 @@ export default function App({ Component, pageProps }: AppProps) {
 
   console.log(router.route)
 
-  if (router.route === '/meme') {
+  if (router.route.startsWith('/posts/')) {
     return (
-      <div style={{ backgroundColor: 'red', margin: '100px' }}>
+      <BlogPostLayout router={router}>
         <Component {...pageProps} />
-      </div>
+      </BlogPostLayout>
     )
   }
   return (
-    <div>
-      <Header router={router} />
+    <HomeLayout router={router}>
       <Component {...pageProps} />
-    </div>
+    </HomeLayout>
   )
 }
