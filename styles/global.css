@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/**
+ * code blocks:
+ * pre {} formats the parent code block and gives it a bg/border
+ * pre > * {} formats its children and gives them proper padding
+ */
+pre {
+  @apply overflow-x-auto bg-gray-100 border rounded-md;
+}
+pre > * {
+  @apply mx-2 my-1 inline-block;
+}
