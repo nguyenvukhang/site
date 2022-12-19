@@ -7,6 +7,7 @@ import type { NextRouter } from 'next/router'
 import type { Frontmatter } from 'lib/types'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 /**
  * Fetch posts, post metadata, and photos
@@ -100,21 +101,36 @@ const Separator = () => (
   </div>
 )
 
-/**
- * List of sections in the home page. Turns a list of Elements into
- * `<Separator/>`-separated elements.
- */
-const Sections = (props: { children: JSX.Element[] }) => {
-  const result: JSX.Element[] = []
-  props.children.forEach((c, i) => {
-    result.push({ ...c, key: i })
-    // is not the last
-    if (i < props.children.length - 1) {
-      result.push(<Separator />)
-    }
+const About = () => {
+  const [date, setDate] = useState(new Date())
+  useEffect(() => {
+    const t = setTimeout(() => setDate(new Date()), 1000)
+    return () => clearTimeout(t)
   })
-  result.push()
-  return <>{result}</>
+  const github = () => <a href="https://github.com/nguyenvukhang">GitHub</a>
+  const instagram = () => (
+    <a href="https://www.instagram.com/nguyenvukhang_">Instagram</a>
+  )
+  const cv = () => <a href="https://read.cv/nguyenvukhang">CV</a>
+  const time = (d: Date) =>
+    d.toLocaleTimeString('en-sg', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    })
+
+  return (
+    <>
+      <p>An efficiency junkie who also happens to write code and do sports.</p>
+      <p>
+        Currently piecing together a degree at National University of Singapore,
+        where it's {time(date)}.
+      </p>
+      <p>
+        I also hang out on {instagram()} and {github()}. Here's my {cv()}.
+      </p>
+    </>
+  )
 }
 
 export default function Home(props: {
@@ -125,22 +141,23 @@ export default function Home(props: {
   const H1 = (p: { children: string }) => (
     <div className="mb-2 text-lg font-medium text-gray-700">{p.children}</div>
   )
+
   return (
-    <Sections>
-      <>
-        <div className="flex flex-row items-baseline space-x-4">
-          <H1>Photos</H1>
-          <a className="text-sm" onClick={() => router.push('/photos')}>
-            All photos
-          </a>
-        </div>
-        <Photos router={router} photos={props.photos} />
-      </>
-      <>
-        <H1>Posts</H1>
-        <Posts router={router} posts={props.posts} />
-      </>
-      <div className="text-gray-700">Nguyễn Vũ Khang</div>
-    </Sections>
+    <>
+      <About />
+      <Separator />
+      <div className="flex flex-row items-baseline space-x-4">
+        <H1>Photos</H1>
+        <a className="text-sm" onClick={() => router.push('/photos')}>
+          All photos
+        </a>
+      </div>
+      <Photos router={router} photos={props.photos} />
+      <Separator />
+      <H1>Posts</H1>
+      <Posts router={router} posts={props.posts} />
+      <Separator />
+      <div className="text-gray-700 mb-24">Nguyễn Vũ Khang</div>
+    </>
   )
 }
