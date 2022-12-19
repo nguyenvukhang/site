@@ -2,7 +2,9 @@ import type { NextRouter } from 'next/router'
 import { Header } from '../components/Header'
 
 const VerticalContent = (props: JSX.IntrinsicElements['div']) => (
-  <div className="flex flex-col max-w-full sm:max-w-2xl px-2 sm:px-5 md:px-10">{props.children}</div>
+  <div className="flex flex-col max-w-full sm:max-w-2xl px-2 sm:px-5 md:px-10">
+    {props.children}
+  </div>
 )
 
 const HorizontalMiddle = (props: JSX.IntrinsicElements['div']) => (
@@ -16,11 +18,10 @@ const HorizontalMiddle = (props: JSX.IntrinsicElements['div']) => (
  */
 type LayoutProps = JSX.IntrinsicElements['div'] & { router: NextRouter }
 
-export const BlogPostLayout = (props: LayoutProps) => {
+export const BlogPostLayout = (props: any) => {
   return (
     <>
       <HorizontalMiddle>
-        <Header router={props.router} />
         <div className="overflow-x-hidden">{props.children}</div>
       </HorizontalMiddle>
     </>
