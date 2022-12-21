@@ -34,14 +34,14 @@ export const TagFilterList = (props: {
   return (
     <div className="mb-2">
       {Object.keys(props.tags).map((tag, i) => (
-        <span className="mr-2">
-          <Tag key={i} onClick={props.toggle} active={props.tags[tag]}>
+        <span key={i} className="mr-2">
+          <Tag onClick={props.toggle} active={props.tags[tag]}>
             {tag}
           </Tag>
         </span>
       ))}
-      <span className="mr-2">
-        <Tag key={-1} onClick={props.reset} active={true}>
+      <span key={-1} className="mr-2">
+        <Tag onClick={props.reset} active={true}>
           clear
         </Tag>
       </span>

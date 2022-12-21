@@ -17,7 +17,7 @@ code {
   font-size: 0.9em;
 }
 pre {
-  @apply overflow-x-auto bg-gray-100 border rounded-md;
+  @apply overflow-x-auto bg-gray-100 border rounded-md my-4;
 }
 pre > * {
   @apply mx-2 my-1 inline-block;
@@ -32,7 +32,7 @@ p > code {
  * get them on classic blue and clickable
  */
 a {
-  @apply text-blue-500 hover:underline cursor-pointer;
+  @apply text-accent-500 hover:underline cursor-pointer;
 }
 
 /**
@@ -41,13 +41,20 @@ a {
  */
 ul,
 ol {
-  @apply list-inside ml-1;
+  @apply list-inside marker:text-gray-300 ml-[-0.625rem];
 }
 ul {
   @apply list-disc;
 }
 ol {
   @apply list-decimal;
+}
+li:before {
+  @apply inline-block w-2;
+  content: '';
+}
+li {
+  @apply ml-8;
 }
 
 /**
@@ -59,18 +66,29 @@ summary {
 }
 
 /**
- * Headers
+ * Summary (disclosure blocks)
  */
-h1 {
-  @apply text-lg font-medium mt-4 mb-2;
-}
-h2,
-h3 {
-  @apply text-lg font-medium mt-4 mb-2;
+summary {
+  @apply cursor-pointer;
 }
 
-.searchbar {
-  @apply focus:outline-offset-0 focus:outline-none focus:outline-accent-400 
-  bg-gray-50
-  border border-gray-300 rounded-md px-2.5 py-1 w-full;
+/**
+ * Headers
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-medium;
+}
+h1 {
+  @apply text-xl mt-8 mb-2;
+}
+h2 {
+  @apply text-lg mt-6 mb-2;
+}
+h3 {
+  @apply mt-4 mb-2;
 }
