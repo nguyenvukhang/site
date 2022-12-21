@@ -7,7 +7,8 @@ import type { PostProps } from 'lib/types'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { EndFlair, Separator } from '@components/Separator'
+import { EndFlair, Separator } from 'components/Separator'
+import { Post } from 'components/Posts'
 
 /**
  * Fetch posts, post metadata, and photos
@@ -21,29 +22,6 @@ export const getStaticProps: GetStaticProps = () => ({
       .sort((a, b) => b.localeCompare(a)),
   },
 })
-
-/**
- * One blog post entry displayed on the home page.
- */
-const Post = (props: { router: NextRouter; metadata: PostProps }) => {
-  return (
-    <div
-      className="cursor-pointer py-1.5 group"
-      onClick={() =>
-        props.router.push('/posts/' + parse(props.metadata.filename).name)
-      }
-    >
-      <div className="group-hover:underline truncate">
-        {props.metadata.title}
-      </div>
-      <div className="text-sm text-gray-500 truncate">
-        <span className="tabular-nums">{props.metadata.publishedAt}</span>
-        <span className="text-gray-300 mx-2">|</span>
-        <span>{props.metadata.summary}</span>
-      </div>
-    </div>
-  )
-}
 
 /**
  * List of blog post entries
@@ -90,34 +68,47 @@ const Photos = (props: { router: NextRouter; photos: string[] }) => {
   )
 }
 
-const About = () => {
+/**
+ * Live-updating time.
+ */
+const Time = () => {
   const [date, setDate] = useState(new Date())
   useEffect(() => {
     const t = setTimeout(() => setDate(new Date()), 1000)
     return () => clearTimeout(t)
   })
+  return (
+    <span className="tabular-nums">
+      {date.toLocaleTimeString('en-sg', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })}
+    </span>
+  )
+}
+
+const About = () => {
   const github = () => <a href="https://github.com/nguyenvukhang">GitHub</a>
   const instagram = () => (
     <a href="https://www.instagram.com/nguyenvukhang_">Instagram</a>
   )
-  const cv = () => <a href="https://read.cv/nguyenvukhang">CV</a>
-  const time = (d: Date) =>
-    d.toLocaleTimeString('en-sg', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    })
+  // TODO: update cv and display this
+  // const cv = () => <a href="https://read.cv/nguyenvukhang">CV</a>
+  const P = (props: JSX.IntrinsicElements['p']) => (
+    <p className="my-1">{props.children}</p>
+  )
 
   return (
     <>
-      <p>An efficiency junkie who also happens to write code and do sports.</p>
-      <p>
+      <P>An efficiency junkie who also happens to write code and do sports.</P>
+      <P>
         Currently piecing together a degree at National University of Singapore,
-        where it's {time(date)}.
-      </p>
-      <p>
-        I also hang out on {instagram()} and {github()}. Here's my {cv()}.
-      </p>
+        where it's <Time />.
+      </P>
+      <P>
+        I also hang out on {instagram()} and {github()}.
+      </P>
     </>
   )
 }
@@ -125,7 +116,7 @@ const About = () => {
 export default function Home(props: { photos: string[]; posts: PostProps[] }) {
   const router = useRouter()
   const H1 = (p: { children: string }) => (
-    <div className="mb-2 text-lg font-medium text-gray-700">{p.children}</div>
+    <div className="mb-2 text-xl font-round text-gray-700">{p.children}</div>
   )
 
   return (
@@ -140,7 +131,12 @@ export default function Home(props: { photos: string[]; posts: PostProps[] }) {
       </div>
       <Photos router={router} photos={props.photos} />
       <Separator />
-      <H1>Posts</H1>
+      <div className="flex flex-row items-baseline space-x-4">
+        <H1>Posts</H1>
+        <a className="text-sm" onClick={() => router.push('/posts')}>
+          All posts
+        </a>
+      </div>
       <Posts router={router} posts={props.posts} />
       <EndFlair />
     </>

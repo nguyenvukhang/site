@@ -1,6 +1,6 @@
-import type { NextRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 import { Header } from './Header'
-import { Title, PublishedAt, Summary, Tags } from '@components/BlogComponents'
+import { Title, PublishedAt, Summary, Tags } from 'components/BlogComponents'
 import { EndFlair } from './Separator'
 
 /**
@@ -38,12 +38,13 @@ const HorizontalMiddle = (props: JSX.IntrinsicElements['div']) => (
  * Unified blog post layout. Used in `next.config.js` to handle frontmatter
  */
 export const BlogPostLayout = (props: BlogProps) => {
+  const router = useRouter()
   return (
     <>
       <Title>{props.title}</Title>
       <PublishedAt>{props.publishedAt}</PublishedAt>
       <Summary>{props.summary}</Summary>
-      <Tags>{props.tags}</Tags>
+      <Tags router={router}>{props.tags}</Tags>
       <div className="overflow-x-hidden mt-4">{props.children}</div>
       <EndFlair />
     </>

@@ -49,7 +49,7 @@ export function getPosts(path: string, limit: number): PostProps[] {
       }
       return result
     })
-    .slice(0, limit)
+    .slice(0, limit > 0 ? limit : undefined)
 }
 
 /**

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Readex';
+  src: url('../public/fonts/ReadexPro-Regular.woff2');
+}
+
 /**
  * code blocks:
  * pre {} formats the parent code block and gives it a bg/border
@@ -62,4 +67,10 @@ h1 {
 h2,
 h3 {
   @apply text-lg font-medium mt-4 mb-2;
+}
+
+.searchbar {
+  @apply focus:outline-offset-0 focus:outline-none focus:outline-accent-400 
+  bg-gray-50
+  border border-gray-300 rounded-md px-2.5 py-1 w-full;
 }
