@@ -1,4 +1,3 @@
-import { SquareIcon } from '@primer/octicons-react'
 import type { GetStaticProps } from 'next'
 import { getFiles } from 'lib/get-files'
 import { resolve, parse } from 'path'
@@ -8,6 +7,7 @@ import type { PostProps } from 'lib/types'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { EndFlair, Separator } from '@components/Separator'
 
 /**
  * Fetch posts, post metadata, and photos
@@ -90,15 +90,6 @@ const Photos = (props: { router: NextRouter; photos: string[] }) => {
   )
 }
 
-/**
- * A simple separator for `Sections` on the home page
- */
-const Separator = () => (
-  <div className="flex justify-center my-8">
-    <SquareIcon className="fill-gray-400" />
-  </div>
-)
-
 const About = () => {
   const [date, setDate] = useState(new Date())
   useEffect(() => {
@@ -151,8 +142,7 @@ export default function Home(props: { photos: string[]; posts: PostProps[] }) {
       <Separator />
       <H1>Posts</H1>
       <Posts router={router} posts={props.posts} />
-      <Separator />
-      <div className="text-gray-700 mb-24">Nguyễn Vũ Khang</div>
+      <EndFlair />
     </>
   )
 }

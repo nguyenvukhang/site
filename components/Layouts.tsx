@@ -1,6 +1,7 @@
 import type { NextRouter } from 'next/router'
 import { Header } from './Header'
 import { Title, PublishedAt, Summary, Tags } from '@components/BlogComponents'
+import { EndFlair } from './Separator'
 
 /**
  * classic <div> tag props + a NextRouter
@@ -19,7 +20,7 @@ type BlogProps = JSX.IntrinsicElements['div'] & PostProps
  * Responseive horizontal padding is handled here.
  */
 const VerticalContent = (props: JSX.IntrinsicElements['div']) => (
-  <div className="flex flex-col w-full max-w-full sm:max-w-2xl px-3 sm:px-5 md:px-10">
+  <div className="flex flex-col w-full max-w-full sm:max-w-2xl px-8 sm:px-12 md:px-14">
     {props.children}
   </div>
 )
@@ -38,13 +39,14 @@ const HorizontalMiddle = (props: JSX.IntrinsicElements['div']) => (
  */
 export const BlogPostLayout = (props: BlogProps) => {
   return (
-    <HorizontalMiddle>
+    <>
       <Title>{props.title}</Title>
       <PublishedAt>{props.publishedAt}</PublishedAt>
       <Summary>{props.summary}</Summary>
       <Tags>{props.tags}</Tags>
-      <div className="overflow-x-hidden my-4">{props.children}</div>
-    </HorizontalMiddle>
+      <div className="overflow-x-hidden mt-4">{props.children}</div>
+      <EndFlair />
+    </>
   )
 }
 
