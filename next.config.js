@@ -1,18 +1,28 @@
-const parseFrontmatter = require('./lib/scripts/frontmatter')
-const autolinkHeadings = require('./lib/scripts/autolink-headings')
-const linkPosts = require('./lib/scripts/link-posts')
+import { linkPosts } from './lib/scripts/link-posts.js'
+import { autolinkHeadings } from './lib/scripts/autolink-headings.js'
+import { parseFrontmatter } from './lib/scripts/frontmatter.js'
+import remarkGfm from 'remark-gfm'
 
 linkPosts(process.cwd())
 
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx$/,
-  options: {
-    remarkPlugins: [parseFrontmatter],
-    rehypePlugins: [autolinkHeadings],
+export default {
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.mdx$/,
+      use: [
+        options.defaultLoaders.babel,
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            providerImportSource: '@mdx-js/react',
+            remarkPlugins: [parseFrontmatter, remarkGfm],
+            rehypePlugins: [autolinkHeadings],
+          },
+        },
+      ].filter(Boolean),
+    })
+    return config
   },
-})
-
-module.exports = withMDX({
   reactStrictMode: true,
   pageExtensions: ['tsx', 'mdx'],
-})
+}

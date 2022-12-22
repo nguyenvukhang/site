@@ -32,7 +32,7 @@ export const TagFilterList = (props: {
   tags: Record<string, boolean>
 }) => {
   return (
-    <div className="mb-2">
+    <div className="mb-4">
       {Object.keys(props.tags).map((tag, i) => (
         <span key={i} className="mr-2">
           <Tag onClick={props.toggle} active={props.tags[tag]}>

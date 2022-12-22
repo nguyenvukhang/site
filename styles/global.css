@@ -62,7 +62,7 @@ li {
  */
 p,
 summary {
-  @apply my-4;
+  @apply mb-4;
 }
 
 /**
@@ -81,14 +81,46 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-medium;
+  @apply font-round font-medium text-gray-800;
+}
+h4,
+h5,
+h6 {
+  @apply text-pink-500; /** don't use these in writing */
 }
 h1 {
-  @apply text-xl mt-8 mb-2;
+  @apply text-xl mt-6 mb-3;
 }
 h2 {
-  @apply text-lg mt-6 mb-2;
+  @apply text-lg mt-5 mb-2;
 }
 h3 {
   @apply mt-4 mb-2;
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  @apply mb-4 border-l-4 border-l-gray-200 pl-5;
+}
+
+/**
+ * Tables
+ */
+table td,
+table th {
+  @apply px-3.5 py-1.5 border border-gray-300;
+}
+
+th {
+  @apply text-gray-800 font-semibold;
+}
+
+table tr {
+  @apply border-t border-red-300;
+}
+
+table tr:nth-child(2n) {
+  @apply bg-gray-100;
 }

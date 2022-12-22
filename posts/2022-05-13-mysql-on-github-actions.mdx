@@ -4,7 +4,9 @@ summary: 'Using CI with database functions testing'
 tags: [mysql, github, continuous integration]
 ---
 
-I'm currently working on a project that relies heavily on a relational
+$hello$
+
+I'm $hello$ currently working on a project that relies heavily on a relational
 database, and so I've found myself having to pick up MySQL in a short
 span of time.
 
@@ -15,26 +17,28 @@ was the obvious thing to write together with those base functions.
 Local tests were easy enough; most things I could solve in a
 once-and-for-all way by running a system command to fix a local MySQL
 configuration or just add a script to the project. However, getting a
-MySQL instance to run server-side GitHub Actions took me far longer than
-whatever I've done locally, and so that's why I'm staying up an extra
-hour to write this quick guide so the next person doing the exact same
-thing doesn't have to go through the 50-odd failed GitHub Action runs
-I had to sit through.
+MySQL instance to run server-side GitHub Actions took me far longer
+than whatever I've done locally, and so that's why I'm staying up an
+extra hour to write this quick guide so the next person doing the
+exact same thing doesn't have to go through the 50-odd failed GitHub
+Action runs I had to sit through.
 
 So let's get into it.
 
 I know this might be skipping too far ahead, but this is my entire
 working workflow file. I'll break it down and go through each bit:
 
-* [Triggers](#triggers)
-* [Environment variables](#environment-variables)
-* [Commands](#commands)
-* [Getting MySQL to work](#getting-mysql-to-work)
+- [Triggers](#triggers)
+- [Environment variables](#environment-variables)
+- [Commands](#commands)
+- [Getting MySQL to work](#getting-mysql-to-work)
 
 <details open>
 
-<summary>Full working yaml file (this goes into
-<code>.github/workflows/cool-name.yml</code>)</summary>
+<summary>
+  Full working yaml file (this goes into
+  <code>.github/workflows/cool-name.yml</code>)
+</summary>
 
 ```yaml
 on:
@@ -52,11 +56,11 @@ env:
 jobs:
   check-database-package-json-scripts:
     runs-on: ubuntu-20.04
-      
+
     steps:
       - name: 🔥 Initialize MySQL
         run: sudo systemctl start mysql.service
-      
+
       - name: 📌 Initialize first database
         run: |
           mysql -e 'CREATE DATABASE ${{ env.MYSQL_DATABASE }};' \
@@ -126,11 +130,11 @@ env.DB_USER }}` in our later code.
 jobs:
   check-database-package-json-scripts:
     runs-on: ubuntu-20.04
-      
+
     steps:
       - name: 🔥 Initialize MySQL
         run: sudo systemctl start mysql.service
-      
+
       - name: 📌 Initialize first database
         run: |
           mysql -e 'CREATE DATABASE ${{ env.MYSQL_DATABASE }};' \
@@ -158,7 +162,7 @@ jobs:
           yarn test
 ```
 
-#### Jobs
+### Jobs
 
 Here, `jobs` is a keyword that tells the workflow handler to execute
 the following lines of code.
@@ -166,14 +170,14 @@ the following lines of code.
 `check-database-package-json-scripts` is a name that I chose, to label
 the group of `steps` that will be ran under it.
 
-#### Runs-On
+### Runs-On
 
 `runs-on` is a keyword that specifies to GitHub Actions what operating
 system you'd like to run the workflow on. Here, I've chosen to run it
 with Ubuntu 20.04 (an operating system much like MacOS and Windows,
 only more modular).
 
-#### Steps
+### Steps
 
 For each bullet point under steps, the contents of `run` will be
 executed. The `name` is arbitrarily chosen.
@@ -182,8 +186,8 @@ executed. The `name` is arbitrarily chosen.
 name. So for example the line that says
 
 ```yaml
-      - name: 🍺 Check out repository code
-        uses: actions/checkout@v3
+- name: 🍺 Check out repository code
+  uses: actions/checkout@v3
 ```
 
 will be running borrowed code from the published package [GitHub
@@ -197,8 +201,8 @@ to the root of your project, where you want to `run` a command from.
 So for the first `step`:
 
 ```yaml
-      - name: 🔥 Initialize MySQL
-        run: sudo systemctl start mysql.service
+- name: 🔥 Initialize MySQL
+  run: sudo systemctl start mysql.service
 ```
 
 I'm starting the MySQL service/daemon. You can have a look at GitHub's
@@ -206,22 +210,21 @@ own [Virtual Environment documentation][github-venv]. There, they
 record all the available operating systems and their respective
 pre-installed apps.
 
-
 On Ubuntu 20.04 (my workflow [operating system of choice](#runs-on)),
 MySQL does come pre-_installed_, but it doesn't come
 pre-_enabled_. Quoting from [GitHub's docs][github-ubuntu]:
 
 > MySQL service is disabled by default. Use the following command as a
 > part of your job to start the service: `sudo systemctl start
-> mysql.service`
+mysql.service`
 
 The next `step`:
 
 ```yaml
-      - name: 📌 Initialize first database
-        run: |
-          mysql -e 'CREATE DATABASE ${{ env.MYSQL_DATABASE }};' \
-          -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+- name: 📌 Initialize first database
+  run: |
+    mysql -e 'CREATE DATABASE ${{ env.MYSQL_DATABASE }};' \
+    -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
 ```
 
 is a measure I took in case the code I want to test is not resilient
@@ -230,14 +233,14 @@ enough to handle initializing a new database on MySQL.
 Then the last MySQL-related step:
 
 ```yaml
-      - name: 🚀 Boost user
-        run: |
-          mysql -e "ALTER USER '${{ env.DB_USER }}'@'localhost' \
-          IDENTIFIED WITH mysql_native_password BY 'root';" \
-          -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+- name: 🚀 Boost user
+  run: |
+    mysql -e "ALTER USER '${{ env.DB_USER }}'@'localhost' \
+    IDENTIFIED WITH mysql_native_password BY 'root';" \
+    -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
 ```
 
-Is to allow all following code that uses the existing  credentials to
+Is to allow all following code that uses the existing credentials to
 freely manipulate all databases within the MySQL instance.
 
 A for-instance is that if you tried to import a `.sql` file into your

@@ -23,20 +23,25 @@ const Tag = (props: { children: string; onClick: OnClick }) => (
   </span>
 )
 
-export const Tags = (props: { children: string[]; router: NextRouter }) => (
-  <div className="space-x-2">
-    {props.children.map((tag, idx) => (
-      <Tag
-        onClick={() =>
-          props.router.push({
-            pathname: '/posts',
-            query: { tag },
-          })
-        }
-        key={idx}
-      >
-        {tag}
-      </Tag>
-    ))}
-  </div>
-)
+export const Tags = (props: { children: string[]; router: NextRouter }) => {
+  if (!props || !props.children) {
+    return null
+  }
+  return (
+    <div className="space-x-2">
+      {props.children.map((tag, idx) => (
+        <Tag
+          onClick={() =>
+            props.router.push({
+              pathname: '/posts',
+              query: { tag },
+            })
+          }
+          key={idx}
+        >
+          {tag}
+        </Tag>
+      ))}
+    </div>
+  )
+}
