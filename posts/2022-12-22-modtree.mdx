@@ -70,4 +70,17 @@ The two approaches we had were:
 2. Represent the pre-requisite relationsn in a graph of nodes weighted
    by the semester intervals between modules taken.
 
+When finding min-path on a tree, finding it when the tree is
+guaranteed to not have duplicates is easy, because this property
+allows for a divide-and-conquer approach. A min-path of a subtree will
+always be part of the min-path of the entire tree.
+
+However, if there are duplicates, doing one module may complete
+muptiple child nodes of the tree, and discarding min-paths early on
+may lead to non-optimum paths chosen. For this reason, min-paths with
+duplicates must be chosen by scanning all possible paths first.
+
+One possible alternative to this is to check if the module exists
+elsewhere in the tree.
+
 [nusmods]: https://nusmods.com/
