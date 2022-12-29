@@ -1,9 +1,8 @@
-import { linkPosts } from './lib/scripts/link-posts.js'
-import { autolinkHeadings } from './lib/scripts/autolink-headings.js'
-import { parseFrontmatter } from './lib/scripts/frontmatter.js'
+import * as plugin from './lib/mdx-plugins/index.js'
+import remarkMath from 'remark-math'
 import remarkGfm from 'remark-gfm'
 
-linkPosts(process.cwd())
+plugin.linkPosts(process.cwd())
 
 export default {
   webpack: (config, options) => {
@@ -15,8 +14,8 @@ export default {
           loader: '@mdx-js/loader',
           options: {
             providerImportSource: '@mdx-js/react',
-            remarkPlugins: [parseFrontmatter, remarkGfm],
-            rehypePlugins: [autolinkHeadings],
+            remarkPlugins: [plugin.parseFrontmatter, remarkGfm, remarkMath],
+            rehypePlugins: [plugin.autolinkHeadings, plugin.rehypeMathJax],
           },
         },
       ].filter(Boolean),

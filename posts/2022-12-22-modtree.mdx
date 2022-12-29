@@ -80,7 +80,15 @@ muptiple child nodes of the tree, and discarding min-paths early on
 may lead to non-optimum paths chosen. For this reason, min-paths with
 duplicates must be chosen by scanning all possible paths first.
 
-One possible alternative to this is to check if the module exists
+One possible alternatve to this is to check if the module exists
 elsewhere in the tree.
+
+Yet another possible method is to combine all modules into one large
+pre-requisite tree with duplicates, and then apply a Dijkstra-like
+algorithm on this tree. Possible next-steps are modules that are
+eligible for.
+
+And yet another method is to plan the modules sem by sem, resolving
+modules from just that one combined prereqtree.
 
 [nusmods]: https://nusmods.com/

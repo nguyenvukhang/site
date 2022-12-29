@@ -124,3 +124,11 @@ table tr {
 table tr:nth-child(2n) {
   @apply bg-gray-100;
 }
+
+.math.math-display {
+  @apply flex justify-center;
+}
+
+.math.math-inline {
+  @apply inline-block;
+}

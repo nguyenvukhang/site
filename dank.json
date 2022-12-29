@@ -1,0 +1,96 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Math test page",
+          "position": {
+            "start": { "line": 1, "column": 3, "offset": 2 },
+            "end": { "line": 1, "column": 17, "offset": 16 }
+          }
+        }
+      ],
+      "position": {
+        "start": { "line": 1, "column": 1, "offset": 0 },
+        "end": { "line": 1, "column": 17, "offset": 16 }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "This is a math block:",
+          "position": {
+            "start": { "line": 3, "column": 1, "offset": 18 },
+            "end": { "line": 3, "column": 22, "offset": 39 }
+          }
+        }
+      ],
+      "position": {
+        "start": { "line": 3, "column": 1, "offset": 18 },
+        "end": { "line": 3, "column": 22, "offset": 39 }
+      }
+    },
+    {
+      "type": "math",
+      "meta": null,
+      "value": "math block",
+      "data": {
+        "hName": "div",
+        "hProperties": { "className": ["math", "math-display"] },
+        "hChildren": [{ "type": "text", "value": "math block" }]
+      },
+      "position": {
+        "start": { "line": 5, "column": 1, "offset": 41 },
+        "end": { "line": 7, "column": 3, "offset": 57 }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "This is some ",
+          "position": {
+            "start": { "line": 9, "column": 1, "offset": 59 },
+            "end": { "line": 9, "column": 14, "offset": 72 }
+          }
+        },
+        {
+          "type": "inlineMath",
+          "value": "inline",
+          "data": {
+            "hName": "span",
+            "hProperties": { "className": ["math", "math-inline"] },
+            "hChildren": [{ "type": "text", "value": "inline" }]
+          },
+          "position": {
+            "start": { "line": 9, "column": 14, "offset": 72 },
+            "end": { "line": 9, "column": 22, "offset": 80 }
+          }
+        },
+        {
+          "type": "text",
+          "value": " math.",
+          "position": {
+            "start": { "line": 9, "column": 22, "offset": 80 },
+            "end": { "line": 9, "column": 28, "offset": 86 }
+          }
+        }
+      ],
+      "position": {
+        "start": { "line": 9, "column": 1, "offset": 59 },
+        "end": { "line": 9, "column": 28, "offset": 86 }
+      }
+    }
+  ],
+  "position": {
+    "start": { "line": 1, "column": 1, "offset": 0 },
+    "end": { "line": 10, "column": 1, "offset": 87 }
+  }
+}
