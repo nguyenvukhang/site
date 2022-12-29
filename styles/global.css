@@ -17,7 +17,7 @@ code {
   font-size: 0.9em;
 }
 pre {
-  @apply overflow-x-auto bg-gray-100 border rounded-md my-4;
+  @apply overflow-x-auto bg-gray-100 border rounded-md mb-4;
 }
 pre > * {
   @apply mx-2 my-1 inline-block;
@@ -41,7 +41,12 @@ a {
  */
 ul,
 ol {
-  @apply list-inside marker:text-gray-300 ml-[-0.625rem];
+  @apply list-outside marker:text-gray-300 mb-4;
+}
+/** nested lists have different indent levels */
+li > ul,
+li > ol {
+  @apply ml-[-1rem];
 }
 ul {
   @apply list-disc;
@@ -49,12 +54,8 @@ ul {
 ol {
   @apply list-decimal;
 }
-li:before {
-  @apply inline-block w-2;
-  content: '';
-}
 li {
-  @apply ml-8;
+  @apply ml-8 pl-1.5; /** space out text from bullets */
 }
 
 /**
