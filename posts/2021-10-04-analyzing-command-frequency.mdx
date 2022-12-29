@@ -5,6 +5,8 @@ summary: 'making use of shell history'
 tags: [shell, zsh]
 ---
 
+import { Image } from 'components/MdxComponents'
+
 Every now and then I set a new alias or function to speed up my workflow within
 zsh.
 
@@ -50,14 +52,7 @@ Google Sheets with one cell simply containing the code
 
 and I can obtain a nice plot of what commands I use most often:
 
-<Img
-  src="/photos/command-freq.png"
-  alt="Photo"
-  width={555}
-  height={344}
-  priority
-  className="next-image"
-/>
+<Image src="/blog-assets/command-freq.png" />
 
 From here we can already see that I ran `./analyze` a lot since I started
 tracking commands, and that's because I named the tracking script `analyze`.

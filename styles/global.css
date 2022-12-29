@@ -17,10 +17,10 @@ code {
   font-size: 0.9em;
 }
 pre {
-  @apply overflow-x-auto bg-gray-100 border rounded-md mb-4;
+  @apply overflow-x-auto bg-gray-100 border rounded-md mb-4 py-4;
 }
 pre > * {
-  @apply mx-2 my-1 inline-block;
+  @apply mx-4 inline-block;
 }
 /* code in a paragraph */
 p > code {

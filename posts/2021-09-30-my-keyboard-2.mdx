@@ -5,6 +5,8 @@ summary: 'turbocharged with qmk'
 tags: [keyboard]
 ---
 
+import { Kbd, Image } from 'components/MdxComponents'
+
 A big reason why I chose to buy my keyboard is because it is compatible with the
 [qmk](https://github.com/qmk/qmk_firmware) software. With this, I can define my
 own keyboard shortcuts and attach them to really specific functions.
@@ -21,7 +23,7 @@ more keystrokes than was necessary. So I made this.
 When I hit <Kbd>Cmd + p</Kbd>, a menu which lists all the PDFs on my computer
 pops up at the center of my screen:
 
-<Img src="/photos/fzfmenu.png" width={872} height={625} />
+<Image src="/blog-assets/fzfmenu.png" />
 
 So let's say I want to open a this particular file:
 
@@ -31,7 +33,7 @@ So let's say I want to open a this particular file:
 
 I would only need to type `m1ts5` for it to be found.
 
-<Img src="/photos/fzfmenu-ts5.png" width={877} height={622} />
+<Image src="/blog-assets/fzfmenu-ts5.png" />
 
 Found and open in less than 10 keystrokes.
 
@@ -43,7 +45,7 @@ macOS's Spotlight search: it's davatorium's
 [rofi](https://github.com/davatorium/rofi). I launch it exactly how macOS
 launches Spotlight: with <Kbd>Cmd + Space</Kbd>.
 
-<Img src="/photos/rofi.png" width={873} height={626} />
+<Image src="/blog-assets/rofi.png" />
 
 It learns which apps you launch most often pretty fast. Usually I only need to
 type two letters before what's in mind is the top suggestion.

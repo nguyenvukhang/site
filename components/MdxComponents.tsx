@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import NextImage from 'next/image'
 
 export const Kbd = (props: { children: string }) => {
   const nospace = props.children.replace(/ /g, '')
@@ -24,3 +25,25 @@ export const Kbd = (props: { children: string }) => {
     </>
   )
 }
+
+export const Image = (props: { src: string; w?: number; h?: number }) => (
+  <div className="flex justify-center mb-4">
+    {props.w || props.h ? (
+      <NextImage
+        alt="image"
+        src={props.src}
+        width={props.w}
+        height={props.h ? props.h : props.w ? props.w : undefined}
+      />
+    ) : (
+      <NextImage
+        alt="image"
+        src={props.src}
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: '100%', height: 'auto' }}
+      />
+    )}
+  </div>
+)
