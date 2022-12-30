@@ -39,12 +39,14 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => ({
  * Self introduction section.
  */
 const About = (props: { time: string }) => {
-  const github = <a href="https://github.com/nguyenvukhang">GitHub</a>
-  const instagram = (
-    <a href="https://www.instagram.com/nguyenvukhang_">Instagram</a>
+  const link = (display: string, href: string) => (
+    <a target="_blank" href={'https://' + href}>
+      {display}
+    </a>
   )
   // TODO: update cv and display this
-  // const cv = () => <a href="https://read.cv/nguyenvukhang">CV</a>
+  const github = link('GitHub', 'github.com/nguyenvukhang')
+  const instagram = link('Instagram', 'www.instagram.com/nguyenvukhang_')
   const P = (props: JSX.IntrinsicElements['p']) => (
     <p className="mb-2">{props.children}</p>
   )

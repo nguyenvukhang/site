@@ -1,7 +1,10 @@
 import type { RepositoryProps } from 'lib/github'
 import Link from 'next/link'
 
-const Repo = (props: { repo: RepositoryProps }) => {
+/**
+ * One project entry in a grid/stack of Featured Projects.
+ */
+const Project = (props: { repo: RepositoryProps }) => {
   const { repo } = props
 
   return (
@@ -22,6 +25,9 @@ const Repo = (props: { repo: RepositoryProps }) => {
   )
 }
 
+/**
+ * A grid/stack display of featured projects.
+ */
 export const FeaturedProjects = (props: {
   data: Record<string, RepositoryProps>
   repoList: string[]
@@ -29,7 +35,7 @@ export const FeaturedProjects = (props: {
   return (
     <div className="grid sm:grid-cols-2 grid-cols-1 w-full gap-4">
       {props.repoList.map((repo) => (
-        <Repo repo={props.data[repo]} key={repo} />
+        <Project repo={props.data[repo]} key={repo} />
       ))}
     </div>
   )
