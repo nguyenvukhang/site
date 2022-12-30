@@ -15,6 +15,9 @@ export function getPosts(path: string, limit?: number): PostProps[] {
       frontmatter: matter(readFileSync(f, 'utf8')).data as PostProps,
       ...parseDatedFile(f),
     }))
+    .filter(
+      (f) => process.env['NODE_ENV'] !== 'production' || !f.frontmatter.draft
+    )
     .sort((a, b) => dateComp(b.date, a.date))
     .map(({ date, file, frontmatter }) => {
       const result = {

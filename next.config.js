@@ -1,7 +1,8 @@
+import { rmSync, writeFileSync } from 'fs'
 import * as plugin from './lib/mdx-plugins/index.js'
 import remarkMath from 'remark-math'
 import remarkGfm from 'remark-gfm'
-import { rmSync, writeFileSync } from 'fs'
+import rehypeHighlight from 'rehype-highlight'
 
 plugin.linkPosts(process.cwd())
 
@@ -10,7 +11,7 @@ writeFileSync(
   'module.exports={plugins:{tailwindcss:{},autoprefixer:{}}}'
 )
 
-process.on('exit', () => rmSync('postcss.config.cjs'))
+process.on('exit', () => rmSync('postcss.config.cjs', { force: true }))
 
 export default {
   webpack: (config, options) => {
@@ -23,7 +24,11 @@ export default {
           options: {
             providerImportSource: '@mdx-js/react',
             remarkPlugins: [plugin.parseFrontmatter, remarkGfm, remarkMath],
-            rehypePlugins: [plugin.autolinkHeadings, plugin.rehypeMathJax],
+            rehypePlugins: [
+              plugin.autolinkHeadings,
+              plugin.rehypeMathJax,
+              rehypeHighlight,
+            ],
           },
         },
       ].filter(Boolean),

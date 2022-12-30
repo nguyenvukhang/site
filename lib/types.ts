@@ -4,6 +4,7 @@ export type PostProps = {
   publishedAt: string
   tags: string[]
   summary: string
+  draft?: boolean
 }
 
 export type PhotoProps = {
