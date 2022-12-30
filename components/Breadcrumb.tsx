@@ -1,6 +1,7 @@
 import { NextRouter } from 'next/router'
 import NextLink from 'next/link'
 import { dirname, basename } from 'path'
+import { Fragment } from 'react'
 
 /**
  * Makes a route href path into a presentatble state
@@ -38,10 +39,10 @@ export const Breadcrumb = (props: { router: NextRouter }) => {
       <Separator right />
       {routes.map((route, i) => {
         return (
-          <>
-            <Link key={i} route={route} />
+          <Fragment key={i}>
+            <Link route={route} />
             <Separator left right />
-          </>
+          </Fragment>
         )
       })}
       <span className="text-gray-400">{prettyRoute(props.router.route)}</span>

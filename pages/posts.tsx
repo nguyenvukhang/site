@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { SearchBar } from 'components/SearchBar'
 import { useState } from 'react'
 import { TagFilterList } from 'components/Tags'
+import { EndFlair } from 'components/Separator'
 
 type StaticProps = {
   posts: PostProps[]
@@ -83,6 +84,7 @@ export default function Posts(props: StaticProps) {
         .map((post, i) => (
           <PostWithTags key={i} metadata={post} router={router} />
         ))}
+      <EndFlair />
     </div>
   )
 }
