@@ -11,22 +11,17 @@ import type { PhotoProps, PostProps } from 'lib/types'
 export function getPosts(path: string, limit?: number): PostProps[] {
   return getFiles(path)
     .filter((f) => f.endsWith('.mdx'))
-    .map((f) => ({
-      frontmatter: matter(readFileSync(f, 'utf8')).data as PostProps,
-      ...parseDatedFile(f),
-    }))
-    .filter(
-      (f) => process.env['NODE_ENV'] !== 'production' || !f.frontmatter.draft
-    )
-    .sort((a, b) => dateComp(b.date, a.date))
-    .map(({ date, file, frontmatter }) => {
-      const result = {
-        ...frontmatter,
-        filename: file,
-        publishedAt: getDate(date),
-      }
-      return result
+    .map((original) => {
+      const { date, file: linked } = parseDatedFile(original)
+      return { date, linked, original }
     })
+    .sort((a, b) => dateComp(b.date, a.date))
+    .map((f) => ({
+      ...(matter(readFileSync(f.original, 'utf8')).data as PostProps),
+      publishedAt: getDate(f.date),
+      filename: f.linked,
+    }))
+    .filter((f) => process.env['NODE_ENV'] !== 'production' || !f.draft)
     .slice(0, limit ? limit : undefined)
 }
 

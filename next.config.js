@@ -22,7 +22,6 @@ export default {
         {
           loader: '@mdx-js/loader',
           options: {
-            providerImportSource: '@mdx-js/react',
             remarkPlugins: [plugin.parseFrontmatter, remarkGfm, remarkMath],
             rehypePlugins: [
               plugin.autolinkHeadings,
