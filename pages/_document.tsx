@@ -20,30 +20,32 @@ const faviconData = [
   ['icon', '96x96', 'favicon-96x96.png', 'image/png'],
 ]
 
-export default () => (
-  <Html lang="en">
-    <Head>
-      {faviconData.map((d) => (
-        <link
-          key={d[2]}
-          rel={d[0]}
-          sizes={d[1]}
-          href={`/favicon/${d[2]}`}
-          type={d[3]}
+export default function Document() {
+  return (
+    <Html lang="en">
+      <Head>
+        {faviconData.map((d) => (
+          <link
+            key={d[2]}
+            rel={d[0]}
+            sizes={d[1]}
+            href={`/favicon/${d[2]}`}
+            type={d[3]}
+          />
+        ))}
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <link rel="manifest" href="/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta
+          name="msapplication-TileImage"
+          content="/favicon/ms-icon-144x144.png"
         />
-      ))}
-      <link rel="shortcut icon" href="/favicon/favicon.ico" />
-      <link rel="manifest" href="/favicon/manifest.json" />
-      <meta name="msapplication-TileColor" content="#ffffff" />
-      <meta
-        name="msapplication-TileImage"
-        content="/favicon/ms-icon-144x144.png"
-      />
-      <meta name="theme-color" content="#ffffff" />
-    </Head>
-    <body>
-      <Main />
-      <NextScript />
-    </body>
-  </Html>
-)
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
+}

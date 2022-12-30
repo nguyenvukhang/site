@@ -1,45 +1,41 @@
 import { GetStaticProps } from 'next'
-import { resolve, } from 'path'
+import { resolve } from 'path'
 import Image from 'next/image'
 import { getPhotos } from 'lib/loaders'
+import { getDate, parseDatedFile } from 'lib/util'
 import { PhotoProps } from 'lib/types'
 
-// get DD Mmm YYYY from a date object
-function getDate(d: Date) {
-  return d.toLocaleDateString('en-sg', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  })
+export const getStaticProps: GetStaticProps = async () => {
+  const photos = getPhotos(resolve(process.cwd(), 'public/photos'))
+  return { props: { photos } }
 }
 
-const Photo = (props: { filename: string; caption?: string }) => {
+/**
+ * One photo on the photos page.
+ */
+const Photo = (props: { filename: string; caption: string }) => {
   const { filename, caption } = props
-  const date = new Date(filename.split('-').slice(0, 3).join('-'))
+  const { date } = parseDatedFile(filename)
   return (
     <div className="w-full mb-12">
       <div className="block w-full">
         <Image
-          style={{ objectFit: 'cover', width: '100vw' }}
+          style={{ objectFit: 'cover', width: '100%' }}
           alt="photo"
           src={'/photos/' + props.filename}
-          width={700} // will be overridden by `style` prop
-          height={475} // will be overridden by `style` prop
+          sizes="100vw"
+          width={0}
+          height={0}
         />
       </div>
       <div className="flex flex-col items-center">
-        <h2 className="text-lg">{caption ? caption : 'A cool photo.'}</h2>
+        <h2 className="text-lg">{caption}</h2>
         {date ? (
           <span className="text-sm text-gray-500">{getDate(date)}</span>
         ) : null}
       </div>
     </div>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const dir = resolve(process.cwd(), 'public/photos')
-  return { props: { photos: getPhotos(dir, 100) } }
 }
 
 export default function Photos(props: { photos: PhotoProps[] }) {
