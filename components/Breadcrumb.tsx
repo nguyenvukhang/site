@@ -1,4 +1,4 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import NextLink from 'next/link'
 import { dirname, basename } from 'path'
 import { Fragment } from 'react'
@@ -8,6 +8,9 @@ import { Fragment } from 'react'
  */
 const prettyRoute = (s: string) => basename(s).replace(/-/g, ' ')
 
+/**
+ * Clickable link on the breadcrumb
+ */
 const Link = (props: { route: string }) => (
   <NextLink href={props.route} className="text-gray-600">
     {props.route === '/' ? 'home' : prettyRoute(props.route)}
@@ -30,21 +33,19 @@ const Separator = (props: { left?: boolean; right?: boolean }) => (
 )
 
 export const Breadcrumb = (props: { router: NextRouter }) => {
-  const routes: string[] = [dirname(props.router.route)]
+  const routes = [dirname(props.router.route)]
   while (routes[routes.length - 1] !== '/')
     routes.push(dirname(routes[routes.length - 1]))
   routes.reverse()
   return (
     <div>
       <Separator right />
-      {routes.map((route, i) => {
-        return (
-          <Fragment key={i}>
-            <Link route={route} />
-            <Separator left right />
-          </Fragment>
-        )
-      })}
+      {routes.map((route, i) => (
+        <Fragment key={i}>
+          <Link route={route} />
+          <Separator left right />
+        </Fragment>
+      ))}
       <span className="text-gray-400">{prettyRoute(props.router.route)}</span>
     </div>
   )

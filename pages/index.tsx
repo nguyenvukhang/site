@@ -132,7 +132,7 @@ export default function Home(props: { photos: string[]; posts: PostProps[] }) {
       <Photos router={router} photos={props.photos} />
       <Separator />
       <div className="flex flex-row items-baseline space-x-4">
-        <H1>Posts</H1>
+        <H1>Recent posts</H1>
         <a className="text-sm" onClick={() => router.push('/posts')}>
           All posts
         </a>

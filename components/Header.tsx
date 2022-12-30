@@ -1,5 +1,5 @@
 import { TelescopeIcon } from '@primer/octicons-react'
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import { Breadcrumb } from './Breadcrumb'
 
 const Name = (p: { className?: string }) => (
@@ -25,7 +25,6 @@ export const Header = (props: { router: NextRouter }) => {
   const NonRootHeader = () => (
     <div className="mt-10 mb-4 flex flex-col">
       <Breadcrumb router={router} />
-      <div className="flex-1" />
     </div>
   )
   return router.route === '/' ? <RootHeader /> : <NonRootHeader />

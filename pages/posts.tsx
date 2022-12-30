@@ -20,7 +20,7 @@ type StaticProps = {
  */
 export const getStaticProps: GetStaticProps<StaticProps> = () => {
   // get every last post
-  const posts = getPosts(resolve(process.cwd(), 'posts'), 0)
+  const posts = getPosts(resolve(process.cwd(), 'posts'))
 
   // count the occurrence of each tag
   const tags = posts.reduce(
@@ -67,7 +67,7 @@ export default function Posts(props: StaticProps) {
   }
   return (
     <div className="flex flex-col">
-      <SearchBar setQuery={setQuery} />
+      <SearchBar placeholder="Search posts" setQuery={setQuery} />
       <TagFilterList toggle={toggleTag} reset={resetTags} tags={tags} />
       {props.posts
         .filter((post) =>

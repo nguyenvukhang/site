@@ -15,8 +15,10 @@ export function parseDatedFile(v: string): DatedFile {
   return { date, file: parts.slice(3).join('-') }
 }
 
-// get DD Mmm YYYY from a date object
-export function getDate(d: Date) {
+/**
+ * get DD Mmm YYYY from a date object
+ */
+function getDate(d: Date) {
   return d.toLocaleDateString('en-sg', {
     day: 'numeric',
     month: 'short',
@@ -33,7 +35,7 @@ function dateComp(d1: Date, d2: Date) {
 /**
  * Gets the most recent `limit` posts and their metadata.
  */
-export function getPosts(path: string, limit: number): PostProps[] {
+export function getPosts(path: string, limit?: number): PostProps[] {
   return getFiles(path)
     .filter((f) => f.endsWith('.mdx'))
     .map((f) => ({
@@ -49,13 +51,13 @@ export function getPosts(path: string, limit: number): PostProps[] {
       }
       return result
     })
-    .slice(0, limit > 0 ? limit : undefined)
+    .slice(0, limit ? limit : undefined)
 }
 
 /**
  * Gets the most recent `limit` photos and their metadata.
  */
-export function getPhotos(path: string, limit: number): PhotoProps[] {
+export function getPhotos(path: string, limit?: number): PhotoProps[] {
   const meta: Record<string, string> = JSON.parse(
     readFileSync(resolve(path, 'meta.json'), 'utf8')
   )
@@ -63,8 +65,6 @@ export function getPhotos(path: string, limit: number): PhotoProps[] {
     .filter((f) => f.endsWith('.png') || f.endsWith('.jpg'))
     .map((f) => parse(f).base)
     .sort((a, b) => b.localeCompare(a))
-    .slice(0, limit)
-    .map((filename) => {
-      return { filename, caption: meta[filename] }
-    })
+    .map((f) => ({ filename: f, caption: meta[f] }))
+    .slice(0, limit ? limit : undefined)
 }

@@ -1,18 +1,18 @@
-import { NextRouter } from 'next/router'
-
-export const Title = (props: { children: string }) => {
-  return <h1 className="text-2xl font-round text-gray-700">{props.children}</h1>
-}
-
-export const PublishedAt = (props: { children: string }) => {
-  return <div className="text-gray-500 text-sm mb-1">{props.children}</div>
-}
-
-export const Summary = (props: { children: string }) => {
-  return <div className="text-sm mb-2">{props.children}</div>
-}
+import type { NextRouter } from 'next/router'
 
 type OnClick = () => void
+
+export const Title = (props: { children: string }) => (
+  <h1 className="text-2xl font-round text-gray-700">{props.children}</h1>
+)
+
+export const PublishedAt = (props: { children: string }) => (
+  <div className="text-gray-500 text-sm mb-1">{props.children}</div>
+)
+
+export const Summary = (props: { children: string }) => (
+  <div className="text-sm mb-2">{props.children}</div>
+)
 
 const Tag = (props: { children: string; onClick: OnClick }) => (
   <span
@@ -23,25 +23,18 @@ const Tag = (props: { children: string; onClick: OnClick }) => (
   </span>
 )
 
-export const Tags = (props: { children: string[]; router: NextRouter }) => {
-  if (!props || !props.children) {
-    return null
-  }
-  return (
+export const Tags = (props: { children: string[]; router: NextRouter }) =>
+  !props || !props.children ? null : (
     <div className="space-x-2">
       {props.children.map((tag, idx) => (
         <Tag
-          onClick={() =>
-            props.router.push({
-              pathname: '/posts',
-              query: { tag },
-            })
-          }
           key={idx}
+          onClick={() =>
+            props.router.push({ pathname: '/posts', query: { tag } })
+          }
         >
           {tag}
         </Tag>
       ))}
     </div>
   )
-}

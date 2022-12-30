@@ -41,5 +41,11 @@
     "tabWidth": 2,
     "semi": false,
     "singleQuote": true
+  },
+  "eslintConfig": {
+    "extends": "next/core-web-vitals",
+    "rules": {
+      "react/no-unescaped-entities": "off"
+    }
   }
 }

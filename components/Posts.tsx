@@ -29,7 +29,7 @@ export const Post = (props: { router: NextRouter; metadata: PostProps }) => {
 }
 
 /**
- * One blog post entry displayed on the home page.
+ * One blog post entry displayed on the page of all posts.
  */
 export const PostWithTags = (props: {
   router: NextRouter
