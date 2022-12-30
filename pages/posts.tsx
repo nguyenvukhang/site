@@ -8,7 +8,7 @@ import { SearchBar } from 'components/SearchBar'
 import { useState } from 'react'
 import { TagFilterList } from 'components/Tags'
 
-type StaticProps = {
+type PageProps = {
   posts: PostProps[]
   tags: Record<string, boolean>
   tagOrder: string[]
@@ -17,7 +17,7 @@ type StaticProps = {
 /**
  * Fetch all posts, tags, and order them by decreasing frequency.
  */
-export const getStaticProps: GetStaticProps<StaticProps> = () => {
+export const getStaticProps: GetStaticProps<PageProps> = () => {
   // get every last post
   const posts = getPosts(resolve(process.cwd(), 'posts'))
 
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = () => {
 const match = (query: string, hay: string) =>
   hay.toLowerCase().includes(query.toLowerCase())
 
-export default function Page(props: StaticProps) {
+export default function Page(props: PageProps) {
   const router = useRouter()
 
   // search query
@@ -81,7 +81,7 @@ export default function Page(props: StaticProps) {
             post.tags.some((t) => match(query, t))
         )
         .map((post, i) => (
-          <PostWithTags key={i} metadata={post} router={router} />
+          <PostWithTags key={i} metadata={post} />
         ))}
     </div>
   )

@@ -1,4 +1,4 @@
-import { fetchRepos, RepositoryProps } from 'lib/github'
+import { fetchRepos, RepositoryProps, repositories } from 'lib/github'
 import { GetServerSideProps } from 'next'
 import githubColors from 'lib/github-colors.json'
 import {
@@ -8,26 +8,17 @@ import {
 } from '@primer/octicons-react'
 import Gitnu from 'projects/gitnu.mdx'
 import NvimToggler from 'projects/nvim-toggler.mdx'
-import { ReactElement } from 'react'
+import Prelude from 'projects/prelude.mdx'
+import { ReactElement, useEffect } from 'react'
 import { Separator } from 'components/Separator'
 import Link from 'next/link'
 
-type ProjectPageProps = { repoData: Record<string, RepositoryProps> }
-
-/**
- * List of repositories to fetch in `getServerSideProps`
- */
-const repositories = [
-  'nguyenvukhang/uni',
-  'nguyenvukhang/site',
-  'nguyenvukhang/gitnu',
-  'nguyenvukhang/nvim-toggler',
-]
+type PageProps = { repoData: Record<string, RepositoryProps> }
 
 /**
  * fetch repository data on server side
  */
-export const getServerSideProps: GetServerSideProps<ProjectPageProps> = () =>
+export const getServerSideProps: GetServerSideProps<PageProps> = () =>
   fetchRepos(repositories).then((repoData) => ({ props: { repoData } }))
 
 /**
@@ -90,13 +81,11 @@ function RepoLink(props: { repo: RepositoryProps }) {
 function Project(props: {
   data: Record<string, RepositoryProps>
   githubRepo: string
-  title: string
   mdx: (props: any) => ReactElement
 }) {
   const Mdx = props.mdx
   const repo = props.data[props.githubRepo]
   if (!repo) throw new Error(`Data for ${props.githubRepo} is not fetched.`)
-  console.log(repo)
 
   const Github = (
     <div className="flex flex-row text-gray-600 mb-4 space-x-4">
@@ -107,27 +96,39 @@ function Project(props: {
     </div>
   )
 
-  return <Mdx github={Github} title={props.title} />
+  return <Mdx github={Github} />
 }
 
-export default function Page(props: ProjectPageProps) {
-  const project = (
-    githubRepo: string,
-    title: string,
-    mdx: (props: any) => ReactElement
-  ) => (
-    <Project
-      githubRepo={githubRepo}
-      title={title}
-      mdx={mdx}
-      data={props.repoData}
-    />
+export default function Page(props: PageProps) {
+  const project = (githubRepo: string, mdx: (props: any) => ReactElement) => (
+    <Project githubRepo={githubRepo} mdx={mdx} data={props.repoData} />
   )
+
+  /** attach the jump jumpToTarget */
+  useEffect(() => {
+    let pos = -1
+    let lastChange = performance.now()
+    /** For 5 seconds, try to send the user to the jump anchor */
+    const jumpToTarget = (target: HTMLElement) => {
+      const now = performance.now()
+      if (now - lastChange > 5000) return
+      if (target && target.offsetTop !== pos) {
+        target.scrollIntoView({ block: 'start' })
+        pos = target.offsetTop
+        lastChange = now
+      }
+      setTimeout(() => jumpToTarget(target), 300)
+    }
+    const target = document.getElementById(window.location.hash.slice(1))
+    if (target) jumpToTarget(target)
+  }, [])
+
   return (
     <div>
-      {project('nguyenvukhang/gitnu', 'Gitnu', Gitnu)}
+      <Prelude />
+      {project('nguyenvukhang/gitnu', Gitnu)}
       <Separator />
-      {project('nguyenvukhang/nvim-toggler', 'Nvim Toggler', NvimToggler)}
+      {project('nguyenvukhang/nvim-toggler', NvimToggler)}
     </div>
   )
 }

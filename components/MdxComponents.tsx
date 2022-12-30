@@ -40,7 +40,7 @@ export const Image = (props: { src: string; w?: number; h?: number }) => (
         alt="image"
         src={props.src}
         width={0}
-        height={0}
+        height={300}
         sizes="100vw"
         style={{ width: '100%', height: 'auto' }}
       />

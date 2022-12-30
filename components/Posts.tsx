@@ -1,19 +1,19 @@
 import { Tag } from 'components/Tags'
 import { PostProps } from 'lib/types'
 import { parse } from 'path'
-import { NextRouter } from 'next/router'
+import Link from 'next/link'
 
 /**
  * One blog post entry displayed on the home page.
  */
-export const Post = (props: { router: NextRouter; metadata: PostProps }) => {
+export const Post = (props: { metadata: PostProps }) => {
   const {
     metadata: { filename, publishedAt, summary },
   } = props
   return (
-    <div
+    <Link
       className="cursor-pointer py-1.5 group"
-      onClick={() => props.router.push('/posts/' + parse(filename).name)}
+      href={'/posts/' + parse(filename).name}
     >
       <div className="group-hover:underline truncate font-round font text-gray-800">
         {props.metadata.title}
@@ -24,24 +24,21 @@ export const Post = (props: { router: NextRouter; metadata: PostProps }) => {
         </span>
         <span>{summary}</span>
       </div>
-    </div>
+    </Link>
   )
 }
 
 /**
  * One blog post entry displayed on the page of all posts.
  */
-export const PostWithTags = (props: {
-  router: NextRouter
-  metadata: PostProps
-}) => {
+export const PostWithTags = (props: { metadata: PostProps }) => {
   const {
     metadata: { filename, publishedAt, summary },
   } = props
   return (
-    <div
+    <Link
       className="cursor-pointer py-1.5 group"
-      onClick={() => props.router.push('/posts/' + parse(filename).name)}
+      href={'/posts/' + parse(filename).name}
     >
       <div className="flex flex-row w-full truncate">
         <div className="group-hover:underline font-round text-gray-800 mr-4">
@@ -61,6 +58,6 @@ export const PostWithTags = (props: {
         </span>
         <span>{summary}</span>
       </div>
-    </div>
+    </Link>
   )
 }
