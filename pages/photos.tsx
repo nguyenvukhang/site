@@ -38,12 +38,12 @@ const Photo = (props: { filename: string; caption: string }) => {
   )
 }
 
-export default function Photos(props: { photos: PhotoProps[] }) {
+export default function Page(props: { photos: PhotoProps[] }) {
   return (
-    <div className="mb-24">
+    <>
       {props.photos.map((p, i) => (
         <Photo key={i} filename={p.filename} caption={p.caption} />
       ))}
-    </div>
+    </>
   )
 }

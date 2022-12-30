@@ -1,0 +1,31 @@
+import { Image } from 'components/MdxComponents'
+
+# {props.title}
+
+{props.github}
+
+A neovim plugin that toggles words. Users can define a list of
+inverses that toggle between each other, and are given access to a Lua
+function that lets them toggle word under their cursor.
+
+By default, `<leader>i` is remapped to trigger a toggle.
+
+<Image src="/project-assets/nvim-toggler.gif" />
+
+This comes in handy when there is a logic bug and the only change
+needed is inverting a single boolean, or when writing CSS and toggling
+between `vertical` and `horizontal`, `left` and `right`.
+
+This used to be written around vim's built-in `<cword>` function,
+which is the same function that decides how far to jump when `w` or
+`b` is pressed. However, this trips up toggle pairs that contain non-word
+characters such as `- [ ]` and `- [x]`.
+
+The latest version loads the whole line under the user's cursor and
+executes a surrounding scan while matching all inverses, and so spaces
+are now supported, as seen in the demo.
+
+## Features
+
+- ✅ Simulated end-to-end tests
+- ✅ Awesome [README](https://github.com/nguyenvukhang/nvim-toggler#readme)

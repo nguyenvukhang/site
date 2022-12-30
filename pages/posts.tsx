@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { SearchBar } from 'components/SearchBar'
 import { useState } from 'react'
 import { TagFilterList } from 'components/Tags'
-import { EndFlair } from 'components/Separator'
 
 type StaticProps = {
   posts: PostProps[]
@@ -48,7 +47,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = () => {
 const match = (query: string, hay: string) =>
   hay.toLowerCase().includes(query.toLowerCase())
 
-export default function Posts(props: StaticProps) {
+export default function Page(props: StaticProps) {
   const router = useRouter()
 
   // search query
@@ -84,7 +83,6 @@ export default function Posts(props: StaticProps) {
         .map((post, i) => (
           <PostWithTags key={i} metadata={post} router={router} />
         ))}
-      <EndFlair />
     </div>
   )
 }

@@ -1,0 +1,38 @@
+import { Image } from 'components/MdxComponents'
+
+# {props.title}
+
+{props.github}
+
+[![crates.io](https://img.shields.io/crates/d/gitnu?color=brightgreen)](https://crates.io/crates/gitnu)
+
+Gitnu is a `git` wrapper that enumerates the `git status` output so
+users can type numbers instead of filenames.
+
+Here is the output of `gitnu status`.
+
+<Image src="/project-assets/gitnu-status.jpg" />
+
+Notice how it's very similar to the output of the original `git
+status`. The only difference is the numbers in front of ever line that
+contains a file.
+
+After `gitnu status`, the user can then run commands such as
+
+```
+gitnu add 2
+```
+
+Where `2` is a reference to a file based on the last `gitnu status`
+output.
+
+<Image src="/project-assets/gitnu-add.jpg" />
+
+This project aims to be as light as possible and so it has only one
+external dependency that helps it decide whether or not to display
+colors.
+
+## Features
+
+- ✅ Comprehensive integration tests
+- ✅ CI builds for MacOS and Linux

@@ -7,7 +7,7 @@ import type { PostProps } from 'lib/types'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { EndFlair, Separator } from 'components/Separator'
+import { Separator } from 'components/Separator'
 import { Post } from 'components/Posts'
 
 /**
@@ -138,7 +138,6 @@ export default function Home(props: { photos: string[]; posts: PostProps[] }) {
         </a>
       </div>
       <Posts router={router} posts={props.posts} />
-      <EndFlair />
     </>
   )
 }
