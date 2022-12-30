@@ -35,5 +35,5 @@ export default {
     return config
   },
   reactStrictMode: true,
-  pageExtensions: ['tsx', 'mdx'],
+  pageExtensions: ['tsx', 'mdx', 'ts'],
 }
