@@ -1,11 +1,16 @@
 import { fetchRepos, RepositoryProps } from 'lib/github'
 import { GetServerSideProps } from 'next'
 import githubColors from 'lib/github-colors.json'
-import { RepoForkedIcon, StarIcon } from '@primer/octicons-react'
+import {
+  RepoForkedIcon,
+  StarIcon,
+  MarkGithubIcon,
+} from '@primer/octicons-react'
 import Gitnu from 'projects/gitnu.mdx'
 import NvimToggler from 'projects/nvim-toggler.mdx'
 import { ReactElement } from 'react'
 import { Separator } from 'components/Separator'
+import Link from 'next/link'
 
 type ProjectPageProps = { repoData: Record<string, RepositoryProps> }
 
@@ -68,6 +73,18 @@ function RepoStars(props: { repo: RepositoryProps }) {
 }
 
 /**
+ * Display a repository's start count
+ */
+function RepoLink(props: { repo: RepositoryProps }) {
+  return (
+    <div className="flex items-center mx-1">
+      <MarkGithubIcon className="fill-gray-600 mr-1" size={14} />
+      <Link href={props.repo.html_url}>GitHub</Link>
+    </div>
+  )
+}
+
+/**
  * One project display entry
  */
 function Project(props: {
@@ -79,12 +96,14 @@ function Project(props: {
   const Mdx = props.mdx
   const repo = props.data[props.githubRepo]
   if (!repo) throw new Error(`Data for ${props.githubRepo} is not fetched.`)
+  console.log(repo)
 
   const Github = (
     <div className="flex flex-row text-gray-600 mb-4 space-x-4">
       <RepoLanguage repo={repo} />
       <RepoForks repo={repo} />
       <RepoStars repo={repo} />
+      <RepoLink repo={repo} />
     </div>
   )
 
