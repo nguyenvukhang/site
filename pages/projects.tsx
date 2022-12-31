@@ -70,7 +70,7 @@ function RepoLink(props: { repo: RepositoryProps }) {
   return (
     <div className="flex items-center mx-1">
       <MarkGithubIcon className="fill-gray-600 mr-1" size={14} />
-      <a target="_blank" href={props.repo.html_url}>
+      <a target="_blank" rel="noreferrer" href={props.repo.html_url}>
         GitHub
       </a>
     </div>

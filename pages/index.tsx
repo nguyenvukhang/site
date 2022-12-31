@@ -14,7 +14,6 @@ type PageProps = {
   photos: string[]
   posts: PostProps[]
   repoData: Record<string, RepositoryProps>
-  time: string
 }
 
 /**
@@ -28,19 +27,15 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => ({
       .filter((x) => !x.endsWith('.json'))
       .map((x) => parse(x).base)
       .sort((a, b) => b.localeCompare(a)),
-    time: new Date().toLocaleTimeString('en-sg', {
-      hour: '2-digit',
-      minute: '2-digit',
-    }),
   },
 })
 
 /**
  * Self introduction section.
  */
-const About = (props: { time: string }) => {
+const About = () => {
   const link = (display: string, href: string) => (
-    <a target="_blank" href={'https://' + href}>
+    <a target="_blank" rel="noreferrer" href={'https://' + href}>
       {display}
     </a>
   )
@@ -55,8 +50,7 @@ const About = (props: { time: string }) => {
     <>
       <P>An efficiency junkie who also happens to write code and do sports.</P>
       <P>
-        Currently piecing together a degree at National University of Singapore,
-        where it's {props.time}.
+        Currently piecing together a degree at National University of Singapore.
       </P>
       <P>
         I also hang out on {instagram} and {github}.
@@ -125,7 +119,7 @@ const Header = (props: { href: string; children: string }) => (
 export default function Page(props: PageProps) {
   return (
     <>
-      <About time={props.time} />
+      <About />
       <Separator />
       <Header href="/projects">Projects</Header>
       <FeaturedProjects

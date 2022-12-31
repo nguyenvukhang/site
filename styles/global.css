@@ -24,7 +24,7 @@ pre > * {
 }
 /* code inside and outside of a code block */
 code {
-  @apply bg-gray-100 px-0.5 rounded-sm outline outline-1 outline-gray-200;
+  @apply bg-gray-100 px-0.5 outline outline-1 outline-gray-200 rounded-sm;
 }
 pre > code {
   @apply bg-transparent p-0 outline-none;
