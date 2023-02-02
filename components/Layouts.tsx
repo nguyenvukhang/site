@@ -27,7 +27,6 @@ export const BlogPostLayout = (props: BlogProps) => {
       <Summary>{props.summary}</Summary>
       <Tags router={router}>{props.tags}</Tags>
       <div className="overflow-x-hidden mt-4">{props.children}</div>
-      <EndFlair />
     </>
   )
 }

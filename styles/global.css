@@ -20,7 +20,7 @@ pre {
   @apply overflow-x-auto bg-gray-100 border rounded-md mb-4 py-4;
 }
 pre > * {
-  @apply mx-4 inline-block;
+  @apply mx-4 inline-block border-none;
 }
 /* code inside and outside of a code block */
 code {
