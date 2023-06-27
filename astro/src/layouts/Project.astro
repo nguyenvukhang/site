@@ -5,7 +5,15 @@ import { toAnchorId } from '../utils'
 
 type Props = CollectionEntry<'project'>['data']
 
-const { title, description, pubDate } = Astro.props
+const { title, description, pubDate, repo } = Astro.props
+
+// executed ONLY AT BUILD TIME if SSR is turned off. This is
+// intentional.
+const apiUrl = `https://api.github.com/repos/nguyenvukhang/${repo}`
+const response = await fetch(apiUrl).then((v) => v.json())
+
+// TODO: include this in the presentation
+const starCount = response.stargazers_count
 ---
 
 <article>
