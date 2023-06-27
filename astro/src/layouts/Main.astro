@@ -1,0 +1,23 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="nguyenvukhang" description="welcome to my blog" />
+    <style></style>
+  </head>
+
+  <!-- vertical stack -->
+  <body class="flex flex-col items-center w-full">
+    <div class="w-full sm:max-w-[52rem] px-8 sm:px-12 md:px-14">
+      <div class="overflow-x-auto">
+        <Header />
+        <slot />
+        <Footer />
+      </div>
+    </div>
+  </body>
+</html>

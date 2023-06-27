@@ -1,0 +1,49 @@
+---
+import { SITE_TITLE } from '../consts'
+import AllLinks from './header/AllLinks.astro'
+import { Button, Dropdown } from './header/Components.tsx'
+
+const isRoot = Astro.url.pathname === '/'
+---
+
+<div>
+  <header class="flex flex-row mt-24 py-6">
+    <!-- title -->
+    <h2 class="flex-1 m-0 text-xl font-bold">
+      <a class="text-fg hover:no-underline" href="/">{SITE_TITLE}</a>
+    </h2>
+
+    <!-- links on a large screen -->
+    <nav class="hidden sm:block space-x-8">
+      <AllLinks />
+    </nav>
+
+    <!-- button leading to dropdown-links on a small screen -->
+    <Button class="sm:hidden block" client:load />
+  </header>
+
+  <!-- dropdown-links on a small screen -->
+  <Dropdown class="block sm:hidden relative" client:load>
+    <div
+      class="absolute w-full flex flex-col py-6 space-y-8 backdrop-blur-xl bg-white/40 border"
+    >
+      <AllLinks />
+    </div>
+  </Dropdown>
+
+  {
+    !isRoot ? null : (
+      <div class="text-lg text-fg-dim mb-16">
+        is a <b>Computer Science</b> and <b>Mathematics</b> Undergrad.
+      </div>
+    )
+  }
+</div>
+
+<!-- styles -->
+<style>
+  b {
+    font-weight: normal;
+    @apply text-fg;
+  }
+</style>

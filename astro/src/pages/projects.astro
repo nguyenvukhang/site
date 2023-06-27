@@ -1,0 +1,26 @@
+---
+import ProjectLayout from '../layouts/Project.astro'
+import { getCollection } from 'astro:content'
+import MainLayout from '../layouts/Main.astro'
+
+const collection = await getCollection('projects')
+const projects = await Promise.all(
+  collection.map((v) =>
+    v.render().then((render) => {
+      v.Content = render.Content
+      delete v.render
+      return v
+    })
+  )
+)
+---
+
+<MainLayout>
+  {
+    projects.map(({ Content, data }) => (
+      <ProjectLayout {...data}>
+        <Content />
+      </ProjectLayout>
+    ))
+  }
+</MainLayout>

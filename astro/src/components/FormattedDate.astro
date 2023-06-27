@@ -1,0 +1,18 @@
+---
+export interface Props {
+	date: Date;
+}
+
+// TODO: remove this by enforcing a uniform date
+const date = Astro.props.date || new Date("1 Jan 1990");
+---
+
+<time datetime={date.toISOString()}>
+	{
+		date.toLocaleDateString('en-us', {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+		})
+	}
+</time>
