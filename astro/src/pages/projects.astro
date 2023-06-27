@@ -1,7 +1,7 @@
 ---
 import ProjectLayout from '../layouts/Project.astro'
 import { getCollection } from 'astro:content'
-import MainLayout from '../layouts/Main.astro'
+import Main from '../layouts/Main.astro'
 import Section from '../layouts/Section.astro'
 import { toAnchorId } from '../utils'
 
@@ -17,7 +17,7 @@ const projects = await Promise.all(
 )
 ---
 
-<MainLayout>
+<Main>
   <!-- Table of contents -->
   <Section outer='bg-slate-800' class='py-8'>
     <div class="grid grid-cols-2">
@@ -43,4 +43,4 @@ const projects = await Promise.all(
       ))
     }
   </Section>
-</MainLayout>
+</Main>
