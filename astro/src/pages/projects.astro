@@ -2,6 +2,7 @@
 import ProjectLayout from '../layouts/Project.astro'
 import { getCollection } from 'astro:content'
 import MainLayout from '../layouts/Main.astro'
+import Section from '../layouts/Section.astro'
 
 const collection = await getCollection('projects')
 const projects = await Promise.all(
@@ -16,11 +17,13 @@ const projects = await Promise.all(
 ---
 
 <MainLayout>
-  {
-    projects.map(({ Content, data }) => (
-      <ProjectLayout {...data}>
-        <Content />
-      </ProjectLayout>
-    ))
-  }
+  <Section class='sm:max-w-[64rem]'>
+    {
+      projects.map(({ Content, data }) => (
+        <ProjectLayout {...data}>
+          <Content />
+        </ProjectLayout>
+      ))
+    }
+  </Section>
 </MainLayout>

@@ -2,8 +2,7 @@
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-
-const { class: className } = Astro.props;
+import Section from './Section.astro'
 ---
 
 <html lang="en">
@@ -14,12 +13,12 @@ const { class: className } = Astro.props;
 
   <!-- vertical stack -->
   <body class="flex flex-col items-center w-full">
-    <div class:list={["w-full sm:max-w-[52rem] px-8 sm:px-12 md:px-14", className]}>
-      <div class="overflow-x-auto">
-        <Header />
-        <slot />
-        <Footer />
-      </div>
-    </div>
+    <Section>
+      <Header />
+    </Section>
+    <slot />
+    <Section>
+      <Footer />
+    </Section>
   </body>
 </html>
