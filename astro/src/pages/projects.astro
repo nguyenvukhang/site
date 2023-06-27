@@ -18,7 +18,8 @@ const projects = await Promise.all(
 ---
 
 <MainLayout>
-  <Section outer='bg-slate-800'>
+  <!-- Table of contents -->
+  <Section outer='bg-slate-800' class='py-8'>
     <div class="grid grid-cols-2">
       {
         projects
@@ -31,6 +32,8 @@ const projects = await Promise.all(
       }
     </div>
   </Section>
+
+  <!-- Project summaries -->
   <Section class="sm:max-w-[64rem]">
     {
       projects.map(({ Content, data }) => (
