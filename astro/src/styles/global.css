@@ -40,15 +40,26 @@ pre > code {
 }
 
 /**
- * links:
- * get them on classic blue and clickable
+ * links: clickable
  */
 a {
+  @apply cursor-pointer;
+}
+
+/** meant to be used on <a> */
+.fg-link {
   @apply underline decoration-fg-400 decoration-2
     hover:decoration-fg-600 hover:text-fg-900
-    transition ease-in-out
-    cursor-pointer;
+    transition ease-in-out;
 }
+
+/** meant to be used on <a> */
+.bg-link {
+  @apply underline decoration-bg-400 decoration-2
+    hover:decoration-bg-600 hover:text-bg-200
+    transition ease-in-out;
+}
+
 
 /**
  * Lists:

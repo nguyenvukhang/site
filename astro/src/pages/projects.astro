@@ -25,12 +25,11 @@ const projects = await Promise.all(
         projects
           .map((v) => v.data)
           .map(({ title }) => (
-            <a
-              href={toAnchorId(title, '#')}
-              class="text-bg-main underline decoration-bg-dim"
-            >
-              {title}
-            </a>
+            <div>
+              <a href={toAnchorId(title, '#')} class="bg-link text-bg-100">
+                {title}
+              </a>
+            </div>
           ))
       }
     </div>
