@@ -16,6 +16,22 @@ body {
   @apply text-base;
 }
 
+@layer utilities {
+  /** meant to be used on <a> */
+  .fg-link {
+    @apply underline decoration-fg-400 decoration-2
+    hover:decoration-fg-600 hover:text-fg-900
+    transition ease-in-out;
+  }
+
+  /** meant to be used on <a> */
+  .bg-link {
+    @apply underline decoration-bg-400 decoration-2
+    hover:decoration-bg-600 hover:text-bg-200
+    transition ease-in-out;
+  }
+}
+
 /**
  * code blocks:
  * pre {} formats the parent code block and gives it a bg/border
@@ -45,21 +61,6 @@ pre > code {
 a {
   @apply cursor-pointer;
 }
-
-/** meant to be used on <a> */
-.fg-link {
-  @apply underline decoration-fg-400 decoration-2
-    hover:decoration-fg-600 hover:text-fg-900
-    transition ease-in-out;
-}
-
-/** meant to be used on <a> */
-.bg-link {
-  @apply underline decoration-bg-400 decoration-2
-    hover:decoration-bg-600 hover:text-bg-200
-    transition ease-in-out;
-}
-
 
 /**
  * Lists:

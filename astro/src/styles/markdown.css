@@ -1,0 +1,9 @@
+/**
+ * Overrides for Markdown/MDX files
+ *
+ *
+ */
+
+a {
+  @apply underline fg-link;
+}
