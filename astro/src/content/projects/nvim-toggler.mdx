@@ -7,13 +7,10 @@ image: 'nvim-toggler.webp'
 pubDate: '20 Sep 2022'
 ---
 
-A neovim plugin that toggles words. Users define a list of inverses,
-and are given a Lua function that lets them toggle word under their
-cursor.
+A neovim plugin that toggles between pairs of words.
 
-This comes in handy when there is a logic bug and the only change
-needed is inverting a single boolean, or when writing CSS and toggling
-between `vertical` and `horizontal`, `left` and `right`.
+Uses cases include flipping a boolean, or when writing CSS and
+toggling between opposites like `vertical` and `horizontal`.
 
-This more powerful than vim's built-in `<cword>` function, and can
-support toggles between pairs with spaces such as `- [ ]` and `- [x]`.
+This more powerful than vim's built-in `<cword>`, as it can support
+toggles between pairs with spaces such as '`- [ ]`' and '`- [x]`'.

@@ -5,5 +5,7 @@
  */
 
 a {
-  @apply underline fg-link;
+  @apply underline decoration-fg-400 decoration-2
+  hover:decoration-fg-600 hover:text-fg-900
+  transition ease-in-out;
 }
