@@ -38,10 +38,13 @@ const projects = await Promise.all(
   <!-- Project summaries -->
   <Section class="sm:max-w-[64rem]">
     {
-      projects.map(({ Content, data }) => (
-        <ProjectLayout {...data}>
-          <Content />
-        </ProjectLayout>
+      projects.map(({ Content, data }, i) => (
+        <>
+          <ProjectLayout {...data}>
+            <Content />
+          </ProjectLayout>
+          {i + 1 === projects.length ? null : <hr/>}
+        </>
       ))
     }
   </Section>
