@@ -17,7 +17,12 @@ const projects = await Promise.all(
 ---
 
 <MainLayout>
-  <Section class='sm:max-w-[64rem]'>
+  <Section>
+    <div class="grid grid-cols-2">
+      {projects.map((v) => v.data).map(({ title }) => <div>{title}</div>)}
+    </div>
+  </Section>
+  <Section class="sm:max-w-[64rem]">
     {
       projects.map(({ Content, data }) => (
         <ProjectLayout {...data}>
