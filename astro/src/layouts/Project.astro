@@ -5,7 +5,8 @@ import { toAnchorId } from '../utils'
 
 type Props = CollectionEntry<'project'>['data']
 
-const { title, description, pubDate, repo } = Astro.props
+const { title, description, pubDate, repo, image } = Astro.props
+const imgSrc = `/project-assets/${image}`
 
 // executed ONLY AT BUILD TIME if SSR is turned off. This is
 // intentional.
@@ -19,5 +20,6 @@ const starCount = response.stargazers_count
 <article>
   <h1 class="title" id={toAnchorId(title)}>{title}</h1>
   <hr />
+  <img class="object-cover h-48 w-96" src={imgSrc} />
   <slot />
 </article>

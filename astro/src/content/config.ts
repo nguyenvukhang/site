@@ -19,6 +19,7 @@ const projects = defineCollection({
     description: z.string(),
     tags: z.array(z.string()),
     repo: z.string(),
+    image: z.string(),
     pubDate: z
       .string()
       .or(z.date())
