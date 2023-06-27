@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import FormattedDate from '../components/FormattedDate.astro'
+import { toAnchorId } from '../utils'
 
 type Props = CollectionEntry<'project'>['data']
 
@@ -8,7 +9,7 @@ const { title, description, pubDate } = Astro.props
 ---
 
 <article>
-  <h1 class="title">{title}</h1>
+  <h1 class="title" id={toAnchorId(title)}>{title}</h1>
   <hr />
   <slot />
 </article>

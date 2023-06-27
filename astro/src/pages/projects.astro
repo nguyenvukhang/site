@@ -3,6 +3,7 @@ import ProjectLayout from '../layouts/Project.astro'
 import { getCollection } from 'astro:content'
 import MainLayout from '../layouts/Main.astro'
 import Section from '../layouts/Section.astro'
+import { toAnchorId } from '../utils'
 
 const collection = await getCollection('projects')
 const projects = await Promise.all(
@@ -19,7 +20,15 @@ const projects = await Promise.all(
 <MainLayout>
   <Section>
     <div class="grid grid-cols-2">
-      {projects.map((v) => v.data).map(({ title }) => <div>{title}</div>)}
+      {
+        projects
+          .map((v) => v.data)
+          .map(({ title }) => (
+            <div>
+              <a href={toAnchorId(title, '#')}>{title}</a>
+            </div>
+          ))
+      }
     </div>
   </Section>
   <Section class="sm:max-w-[64rem]">
