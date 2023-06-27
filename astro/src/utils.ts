@@ -2,5 +2,5 @@
 // everywhere
 
 export function toAnchorId(text: string, prefix = ''): string {
-  return prefix +  text.toLowerCase().replace(/\s/g, '-')
+  return prefix + text.toLowerCase().replace(/\s/g, '-')
 }
