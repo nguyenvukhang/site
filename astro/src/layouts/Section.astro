@@ -10,8 +10,6 @@ const { class: className, outer } = Astro.props
   <div
     class:list={['w-full sm:max-w-[52rem] px-8 sm:px-12 md:px-14', className]}
   >
-    <div class="overflow-x-auto">
-      <slot />
-    </div>
+    <slot />
   </div>
 </div>

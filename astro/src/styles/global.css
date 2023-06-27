@@ -10,13 +10,6 @@ body {
   overflow-wrap: break-word;
   line-height: 1.5;
 
-  /** font management */
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-
   /** forces scrollbar to always appear to prevent horizontal jerk */
   overflow-y: scroll;
 
@@ -30,7 +23,7 @@ body {
  */
 pre,
 code {
-  font-size: 0.96em;
+  font-size: 95%;
 }
 pre {
   @apply overflow-x-auto bg-gray-100 border rounded-md mb-4 py-4;
@@ -40,7 +33,6 @@ pre > * {
 }
 /* code inside and outside of a code block */
 code {
-  @apply bg-gray-100 px-0.5 border outline-gray-200 rounded font-medium;
 }
 pre > code {
   @apply bg-transparent p-0 outline-none;

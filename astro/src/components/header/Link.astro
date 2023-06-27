@@ -9,7 +9,7 @@ const { pathname } = Astro.url
 const isActive = href === pathname || href === pathname.replace(/\/$/, '')
 const tw =
   'leading-7 text-center hover:text-fg hover:no-underline ' +
-  'transition ease-in-out font-medium'
+  'transition ease-in-out'
 
 const color = isActive ? 'text-fg' : 'text-fg-dim'
 ---
