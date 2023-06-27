@@ -44,7 +44,7 @@ const projects = await Promise.all(
           <ProjectLayout {...data}>
             <Content />
           </ProjectLayout>
-          {i + 1 === projects.length ? null : <hr />}
+          {i + 1 === projects.length ? null : <div class='h-4' />}
         </>
       ))
     }
