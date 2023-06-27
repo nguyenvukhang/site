@@ -25,11 +25,12 @@ const projects = await Promise.all(
         projects
           .map((v) => v.data)
           .map(({ title }) => (
-            <div>
-              <a href={toAnchorId(title, '#')} class="text-white">
-                {title}
-              </a>
-            </div>
+            <a
+              href={toAnchorId(title, '#')}
+              class="text-bg-main underline decoration-bg-dim"
+            >
+              {title}
+            </a>
           ))
       }
     </div>
@@ -43,7 +44,7 @@ const projects = await Promise.all(
           <ProjectLayout {...data}>
             <Content />
           </ProjectLayout>
-          {i + 1 === projects.length ? null : <hr/>}
+          {i + 1 === projects.length ? null : <hr />}
         </>
       ))
     }

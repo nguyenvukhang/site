@@ -22,7 +22,7 @@ export const Header = () => {
   const PageLink = (props: HTML['a']) => (
     <Link
       activeClassName="active-page-link"
-      class="leading-7 text-fg-dim text-center hover:text-fg hover:no-underline transition ease-in-out font-semibold"
+      class="leading-7 text-fg-dim text-center hover:text-fg-main hover:no-underline transition ease-in-out font-semibold"
       {...props}
     />
   )

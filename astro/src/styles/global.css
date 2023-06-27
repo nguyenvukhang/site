@@ -23,6 +23,7 @@ body {
  */
 pre,
 code {
+  font-variant-numeric: tabular-nums;
   font-size: 95%;
 }
 pre {
@@ -43,7 +44,10 @@ pre > code {
  * get them on classic blue and clickable
  */
 a {
-  @apply text-accent-500 hover:underline cursor-pointer;
+  @apply underline decoration-fg-400 decoration-2
+    hover:decoration-fg-600 hover:text-fg-900
+    transition ease-in-out
+    cursor-pointer;
 }
 
 /**

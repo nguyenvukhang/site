@@ -2,6 +2,20 @@ const colors = require('tailwindcss/colors')
 const dt = require('tailwindcss/defaultConfig')
 const df = dt.theme.fontSize
 
+colors.bg = {
+  50: '#FFFFFF',
+  100: '#FCFDFD',
+  200: '#DEE1E3',
+  300: '#C0C6C9',
+  400: '#A2ABAE',
+  500: '#849094',
+  600: '#687478',
+  700: '#4E575A',
+  800: '#343A3C',
+  900: '#1A1D1E',
+  950: '#0D0F0F',
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
@@ -23,8 +37,12 @@ module.exports = {
       },
       colors: {
         accent: colors.indigo,
-        fg: colors.slate[800],
+        fg: colors.slate,
+        'fg-main': colors.slate[800],
         'fg-dim': colors.slate[500],
+        bg: colors.bg,
+        'bg-main': colors.bg[100],
+        'bg-dim': colors.bg[500],
       },
     },
   },

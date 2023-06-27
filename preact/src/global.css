@@ -8,7 +8,7 @@
 }
 
 :root {
-  @apply text-fg;
+  @apply text-fg-main;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -156,9 +156,9 @@ table tr:nth-child(2n) {
 }
 
 .active-page-link {
-  @apply text-fg;
+  @apply text-fg-main;
 }
 
 a.quiet {
-  @apply text-fg hover:no-underline;
+  @apply text-fg-main hover:no-underline;
 }
