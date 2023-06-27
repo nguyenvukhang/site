@@ -1,0 +1,34 @@
+{
+  "name": "vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "build": "yarn meta && vite build",
+    "ts": "tsc",
+    "start": "vite preview --port 3000",
+    "meta": "node ./src/vite-plugins/compile.js"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^2.3.0",
+    "gray-matter": "^4.0.3",
+    "preact": "^10.13.2",
+    "preact-async-route": "^2.2.1",
+    "preact-router": "^4.1.1"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "@types/node": "^20.3.1",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  }
+}

@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Readex';
+  src: url('/fonts/ReadexPro-Medium.woff2') format('woff2');
+}
+
+:root {
+  @apply text-fg;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: #fcfefb;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /** forces scrollbar to always appear to prevent horizontal jerk */
+  overflow-y: scroll;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/**
+ * code blocks:
+ * pre {} formats the parent code block and gives it a bg/border
+ * pre > * {} formats its children and gives them proper padding
+ */
+pre,
+code {
+  font-size: 0.9em;
+}
+pre {
+  @apply overflow-x-auto bg-gray-100 border rounded-md mb-4 py-4;
+}
+pre > * {
+  @apply mx-4 inline-block border-none;
+}
+/* code inside and outside of a code block */
+code {
+  @apply bg-gray-100 px-0.5 border outline-gray-200 rounded font-medium;
+}
+pre > code {
+  @apply bg-transparent p-0 outline-none;
+}
+
+/**
+ * links:
+ * get them on classic blue and clickable
+ */
+a {
+  @apply text-accent-500 hover:underline cursor-pointer;
+}
+
+/**
+ * Lists:
+ * get them to work as expected
+ */
+ul,
+ol {
+  @apply list-outside marker:text-gray-300 mb-4;
+}
+/** nested lists have different indent levels */
+li > ul,
+li > ol {
+  @apply ml-[-1rem];
+}
+ul {
+  @apply list-disc;
+}
+ol {
+  @apply list-decimal;
+}
+li {
+  @apply ml-8 pl-1.5; /** space out text from bullets */
+}
+
+/**
+ * Paragraphs
+ */
+p,
+summary {
+  @apply mb-3;
+}
+
+/**
+ * Summary (disclosure blocks)
+ */
+summary {
+  @apply cursor-pointer;
+}
+
+/**
+ * Headers
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold text-gray-800;
+}
+h4,
+h5,
+h6 {
+  /** don't use these in writing */
+  @apply text-pink-500;
+}
+h1 {
+  @apply text-xl mt-6 mb-3;
+}
+h2 {
+  @apply text-lg mt-5 mb-2;
+}
+h3 {
+  @apply mt-4 mb-2;
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  @apply mb-4 border-l-4 border-l-gray-200 pl-5;
+}
+
+/**
+ * Tables
+ */
+table td,
+table th {
+  @apply px-3.5 py-1.5 border border-gray-300;
+}
+
+th {
+  @apply text-gray-800 font-semibold;
+}
+
+table tr {
+  @apply border-t border-red-300;
+}
+
+table tr:nth-child(2n) {
+  @apply bg-gray-100;
+}
+
+.active-page-link {
+  @apply text-fg;
+}
+
+a.quiet {
+  @apply text-fg hover:no-underline;
+}

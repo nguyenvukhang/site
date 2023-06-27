@@ -1,0 +1,17 @@
+---
+title: 'Nvim Toggler'
+summary: 'Toggle opposites with two keystrokes'
+tags: [lua, vim, neovim]
+repo: 'nvim-toggler'
+---
+
+A neovim plugin that toggles words. Users define a list of inverses,
+and are given a Lua function that lets them toggle word under their
+cursor.
+
+This comes in handy when there is a logic bug and the only change
+needed is inverting a single boolean, or when writing CSS and toggling
+between `vertical` and `horizontal`, `left` and `right`.
+
+This more powerful than vim's built-in `<cword>` function, and can
+support toggles between pairs with spaces such as `- [ ]` and `- [x]`.
