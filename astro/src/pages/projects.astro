@@ -18,14 +18,14 @@ const projects = await Promise.all(
 ---
 
 <MainLayout>
-  <Section>
+  <Section outer='bg-slate-800'>
     <div class="grid grid-cols-2">
       {
         projects
           .map((v) => v.data)
           .map(({ title }) => (
             <div>
-              <a href={toAnchorId(title, '#')}>{title}</a>
+              <a href={toAnchorId(title, '#')} class='text-white'>{title}</a>
             </div>
           ))
       }
