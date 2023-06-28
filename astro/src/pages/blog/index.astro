@@ -18,14 +18,14 @@ const posts = await getCollection('blog').then((v) =>
         const { pubDate, title, description } = post.data
         return (
           <a
-            class="py-1 my-1 no-underline block hover:bg-selection/50"
+            class="-mx-3 px-3 py-2 no-underline block hover:bg-selection/50"
             href={`/blog/${post.slug}/`}
           >
             <div class="flex flex-row">
               <span class="flex-1">{title}</span>
-              <FormattedDate date={pubDate} />
+              <FormattedDate class='text-fg2 text-sm' date={pubDate} />
             </div>
-            <div class="font-serif italic">{description}</div>
+            <div class="font-serif italic text-fg2 text-sm">{description}</div>
           </a>
         )
       })
