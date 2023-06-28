@@ -3,3 +3,4 @@
 
 export const SITE_TITLE = 'Khang Nguyen'
 export const SITE_DESCRIPTION = 'Welcome to my website!'
+export const GITHUB_USER = 'nguyenvukhang'

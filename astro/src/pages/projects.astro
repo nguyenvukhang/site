@@ -37,15 +37,14 @@ const projects = await Promise.all(
   </Section>
 
   <!-- Project summaries -->
-  <Section class="sm:max-w-[64rem]">
+  <Section class="sm:max-w-[64rem] my-8 space-y-10">
     {
       projects.map(({ Content, data }, i) => (
-        <>
+        <div>
           <ProjectLayout {...data}>
             <Content />
           </ProjectLayout>
-          {i + 1 === projects.length ? null : <div class='h-4' />}
-        </>
+        </div>
       ))
     }
   </Section>
