@@ -4,7 +4,7 @@ import { toAnchorId } from '../utils'
 
 type Props = CollectionEntry<'project'>['data']
 
-const { title, description, pubDate, repo, image } = Astro.props
+const { title, description, pubDate, repo, image, tags } = Astro.props
 const imgSrc = `/project-assets/${image}`
 
 // executed ONLY AT BUILD TIME if SSR is turned off. This is
@@ -26,6 +26,9 @@ const shortDate = pubDate.toLocaleDateString('en-us', {
   <span class="mr-1">{title}</span>
   <small class="text-fg-dim text-sm font-normal">{shortDate}</small>
 </h2>
+<div class="flex flex-wrap space-x-1.5">
+  {tags.map((v) => <div class="pill">{v}</div>)}
+</div>
 
 <!-- Content + Image -->
 <div
@@ -47,3 +50,10 @@ const shortDate = pubDate.toLocaleDateString('en-us', {
     <img class="object-contain w-full" src={imgSrc} />
   </div>
 </div>
+
+<!-- styles -->
+<style>
+  .pill {
+    @apply text-xs bg-bg-200/50 rounded-full text-fg-main px-2 py-[1px];
+  }
+</style>
