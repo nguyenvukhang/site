@@ -5,6 +5,7 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import FormattedDate from '../components/FormattedDate.astro'
 import Main from './Main.astro'
+import Section from './Section.astro'
 
 type Props = CollectionEntry<'blog'>['data']
 
@@ -12,10 +13,10 @@ const { title, description, pubDate } = Astro.props
 ---
 
 <Main>
-  <article>
+  <Section>
     <h1 class="title">{title}</h1>
     <FormattedDate date={pubDate} />
     <hr />
     <slot />
-  </article>
+  </Section>
 </Main>
