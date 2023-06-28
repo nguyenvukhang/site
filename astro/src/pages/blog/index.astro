@@ -4,8 +4,8 @@ import FormattedDate from '../../components/FormattedDate.astro'
 import Main from '../../layouts/Main.astro'
 import Section from '../../layouts/Section.astro'
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+const posts = await getCollection('blog').then((v) =>
+  v.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 )
 ---
 
