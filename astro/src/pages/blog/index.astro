@@ -4,22 +4,31 @@ import FormattedDate from '../../components/FormattedDate.astro'
 import Main from '../../layouts/Main.astro'
 import Section from '../../layouts/Section.astro'
 
+// get value of comparison
+const comp = (v) => v.data.pubDate.valueOf()
 const posts = await getCollection('blog').then((v) =>
-  v.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  v.sort((a, b) => comp(b) - comp(a))
 )
 ---
 
 <Main>
   <Section>
-    <ul>
-      {
-        posts.map((post) => (
-          <li>
-            <FormattedDate date={post.data.pubDate} />
-            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-          </li>
-        ))
-      }
-    </ul>
+    {
+      posts.map((post) => {
+        const { pubDate, title, description } = post.data
+        return (
+          <a
+            class="py-1 my-1 no-underline block hover:bg-selection/50"
+            href={`/blog/${post.slug}/`}
+          >
+            <div class="flex flex-row">
+              <span class="flex-1">{title}</span>
+              <FormattedDate date={pubDate} />
+            </div>
+            <div class="font-serif italic">{description}</div>
+          </a>
+        )
+      })
+    }
   </Section>
 </Main>

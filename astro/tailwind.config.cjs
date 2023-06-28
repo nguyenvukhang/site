@@ -39,12 +39,14 @@ module.exports = {
         accent: colors.indigo,
         fg: colors.slate,
 
+        selection: colors.bg[200],
+
         // 0: darker       For emphasis over default prose
         // 1: main         The default prose text
         // 2: dim
         // 3: even dimmer
-        fg0: colors.slate[800],
-        fg1: colors.slate[700],
+        fg0: colors.slate[900],
+        fg1: colors.slate[800],
         fg2: colors.slate[500],
         fg3: colors.slate[400],
 
