@@ -10,7 +10,7 @@ const Card = (props: BlogFrontmatter) => {
   return (
     <div class="cursor-pointer" onClick={() => route(props.slug || '/')}>
       <h2 class="mb-0 font-medium">{props.title}</h2>
-      <p class="text-sm text-fg-dim font-serif">{props.summary}</p>
+      <p class="text-sm text-fg2 font-serif">{props.summary}</p>
     </div>
   )
 }

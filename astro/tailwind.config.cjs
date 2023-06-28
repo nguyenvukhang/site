@@ -38,11 +38,22 @@ module.exports = {
       colors: {
         accent: colors.indigo,
         fg: colors.slate,
-        'fg-main': colors.slate[800],
-        'fg-dim': colors.slate[500],
+
+        // 0: darker       For emphasis over default prose
+        // 1: main         The default prose text
+        // 2: dim
+        // 3: even dimmer
+        fg0: colors.slate[800],
+        fg1: colors.slate[700],
+        fg2: colors.slate[500],
+        fg3: colors.slate[400],
+
+        bg0: colors.bg[50],
+        bg1: colors.bg[100],
+        bg2: colors.bg[500],
+        bg3: colors.bg[600],
+
         bg: colors.bg,
-        'bg-main': colors.bg[100],
-        'bg-dim': colors.bg[500],
       },
     },
   },

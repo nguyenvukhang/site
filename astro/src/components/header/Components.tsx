@@ -6,7 +6,7 @@ const [isOpen, setIsOpen] = createSignal(false)
 
 export const Button = (props: HTML['button']) => (
   <button class={props.class} onclick={() => setIsOpen(!isOpen())}>
-    {isOpen() ? <Cross class="text-fg-dim" /> : <Menu class="text-fg-dim" />}
+    {isOpen() ? <Cross class="text-fg2" /> : <Menu class="text-fg2" />}
   </button>
 )
 

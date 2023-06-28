@@ -15,14 +15,14 @@ export const Header = () => {
    */
   const Hamburger = () => (
     <button class="block sm:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-      {menuOpen ? <Cross class="text-fg-dim" /> : <Menu class="text-fg-dim" />}
+      {menuOpen ? <Cross class="text-fg2" /> : <Menu class="text-fg2" />}
     </button>
   )
 
   const PageLink = (props: HTML['a']) => (
     <Link
       activeClassName="active-page-link"
-      class="leading-7 text-fg-dim text-center hover:text-fg-main hover:no-underline transition ease-in-out font-semibold"
+      class="leading-7 text-fg2 text-center hover:text-fg1 hover:no-underline transition ease-in-out font-semibold"
       {...props}
     />
   )

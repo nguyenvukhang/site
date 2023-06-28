@@ -9,7 +9,7 @@ const { pathname } = Astro.url
 const isActive = href === pathname || href === pathname.replace(/\/$/, '')
 
 const tw = 'leading-7 text-center fg-link no-underline'
-const color = isActive ? 'text-fg-main' : 'text-fg-dim'
+const color = isActive ? 'text-fg1' : 'text-fg2'
 ---
 
 <a href={href} class:list={[tw, className, color]} {...props}><slot /></a>

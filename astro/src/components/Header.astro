@@ -33,7 +33,7 @@ const isRoot = Astro.url.pathname === '/'
 
   {
     !isRoot ? null : (
-      <div class="text-lg text-fg-dim mb-16">
+      <div class="text-lg text-fg2 mb-16">
         is a <b>Computer Science</b> and <b>Mathematics</b> Undergrad.
       </div>
     )
@@ -44,6 +44,6 @@ const isRoot = Astro.url.pathname === '/'
 <style>
   b {
     font-weight: normal;
-    @apply text-fg-main;
+    @apply text-fg1;
   }
 </style>
