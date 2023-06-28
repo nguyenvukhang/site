@@ -5,7 +5,6 @@
 body {
   /** global config */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #fcfefb;
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 1.5;
@@ -13,7 +12,7 @@ body {
   /** forces scrollbar to always appear to prevent horizontal jerk */
   overflow-y: scroll;
 
-  @apply text-base;
+  @apply text-base bg-bg1 text-fg1;
 }
 
 @layer utilities {
@@ -32,7 +31,6 @@ body {
  */
 pre,
 code {
-  font-variant-numeric: tabular-nums;
   font-size: 95%;
 }
 pre {
