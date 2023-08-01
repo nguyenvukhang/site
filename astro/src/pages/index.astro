@@ -1,11 +1,18 @@
 ---
 import Main from '../layouts/Main.astro'
 import Section from '../layouts/Section.astro'
+import Project from '../components/home-projects/Project.astro'
 ---
 
 <Main>
   <Section>
-    <p>I currently study at the National University of Singapore.</p>
+    <p>
+      I currently study at the National University of Singapore, where I've been
+      Teaching Assistant for Level-2 undergrad CS classes
+      <b>Data Structures &amp; Algorithms</b>
+       and
+      <b>Programming Methodology 2.</b>
+    </p>
 
     <p>
       My ambition is to make fast and reliable software that helps people enjoy
@@ -13,20 +20,59 @@ import Section from '../layouts/Section.astro'
     </p>
 
     <p>
-      Towards this goal, I've been working on coding projects while studying
-      theory at school.
+      Towards this goal, I've been honing my skills by coding in Rust, a
+      memory-safe language, with a focus on efficiency:
     </p>
 
+    <Project
+      name="Gitnu"
+      href="/projects#gitnu"
+      summary="Enumerates git status"
+      text="2300+ downloads"
+    />
+
+    <Project
+      name="Pass"
+      href="/projects#pass"
+      summary="Single-file password store"
+      text="GnuPG keyring + ChaCha20"
+    />
+
+    <Project
+      name="Statc"
+      href="/projects#statc"
+      summary="Convenience routines for statistics calculations"
+      text="500+ downloads"
+    />
+
+    <Project
+      name="Wordle"
+      href="/projects#wordle"
+      summary="A fun application of Information Theory"
+      text="Finds best first move in <2s"
+    />
+
     <p>
-      Towards this goal, I've been honing my skills by working on everyday tools
-      with a focus on efficient I use and
+      I also explore other languages to keep my perspective open. Finding out
+      about built-in features and coding styles of other languages help reaffirm
+      and complement what I'm writing in my main language:
     </p>
+
+    <ul>
+      <li>canvas-sync (C++, Qt Framework)</li>
+      <li>aquarium (swift)</li>
+      <li>semver-increment (js, github-actions yaml)</li>
+      <li>nvim-toggler (lua)</li>
+    </ul>
   </Section>
 </Main>
 
 <!-- styles -->
 <style>
   p {
-    @apply mb-6;
+    @apply mb-6 text-fg1;
+  }
+  p > b {
+    @apply text-fg2 font-semibold;
   }
 </style>
