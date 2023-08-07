@@ -62,16 +62,20 @@ ripgrep
 const is_ignored = (v) =>
   ignore.some((t) => t(v)) || ignore_names.includes(v.name)
 
+const done = ['gitnu', 'wordle', 'nvim-toggler']
+
 const r = {
   /** @type {Repo[]} */ ignored: [],
   /** @type {Repo[]} */ private: [],
-  /** @type {Repo[]} */ display: [],
+  /** @type {Repo[]} */ remain: [],
+  /** @type {Repo[]} */ done: [],
 }
 
 repos.forEach((v) => {
   if (v.visibility === 'private') r.private.push(v)
+  else if (done.includes(v.name)) r.done.push(v)
   else if (is_ignored(v)) r.ignored.push(v)
-  else r.display.push(v)
+  else r.remain.push(v)
 })
 
 // prettier-ignore
@@ -79,4 +83,5 @@ const inspect=(t,v)=>console.log(t+'\n',v.map((v)=>v.name).join(", "),v.length)
 
 inspect('PRIVATE', r.private)
 inspect('IGNORED', r.ignored)
-inspect('DISPLAY', r.display)
+inspect('DONE', r.done)
+inspect('REMAIN', r.remain)
