@@ -60,12 +60,32 @@ import Project from '../components/home-projects/Project.astro'
       and complement what I'm writing in my main language:
     </p>
 
-    <ul>
-      <li>canvas-sync (C++, Qt Framework)</li>
-      <li>aquarium (swift)</li>
-      <li>semver-increment (js, github-actions yaml)</li>
-      <li>nvim-toggler (lua)</li>
-    </ul>
+    <div class="mb-6">
+      <Project
+        name="Canvas Sync"
+        href="/projects#canvas-sync"
+        summary="Cross-platform GUI synchronization tool"
+        text="C++, Qt6 Framework, automated builds on GitHub"
+      />
+      <Project
+        name="Aquarium"
+        href="/projects#aquarium"
+        summary="Backtracking solver for the Aquarium puzzle"
+        text="Implemented in both Swift and Rust"
+      />
+      <Project
+        name="Nvim Toggler"
+        href="/projects#nvim-toggler"
+        summary="Toggle words under your cursor"
+        text="Lua plugin for Neovim, 110★ on GitHub"
+      />
+      <Project
+        name="Semver Increment"
+        href="/projects#semver-increment"
+        summary="One file, one regex version incrementer"
+        text="GitHub Action written in JS"
+      />
+    </div>
   </Section>
 </Main>
 
