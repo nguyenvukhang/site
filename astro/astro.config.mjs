@@ -13,7 +13,7 @@ function mdxDatePlugin() {
     if (file.path.includes(BLOG_CONTENT_DIR)) {
       const filenameDate = new Date(file.stem.split('-').slice(0, 3).join('-'))
       const metaDate = new Date(
-        Date.parse(`${file.data.astro.frontmatter.pubDate} 00:00:00 GMT`)
+        Date.parse(`${file.data.astro.frontmatter.pubDate} 00:00:00 GMT`),
       )
       if (!valid(filenameDate)) {
         throw new Error(`Bad date on blog file: ${file.path}`)
@@ -30,6 +30,9 @@ function mdxDatePlugin() {
 export default defineConfig({
   markdown: {
     remarkPlugins: [mdxDatePlugin],
+    shikiConfig: {
+      theme: 'github-light',
+    },
   },
   site: 'https://example.com',
   integrations: [

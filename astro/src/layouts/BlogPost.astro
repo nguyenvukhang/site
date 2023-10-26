@@ -15,8 +15,14 @@ const { title, description, pubDate } = Astro.props
 <Main>
   <Section>
     <h1 class="title">{title}</h1>
-    <FormattedDate date={pubDate} />
-    <hr />
+    <FormattedDate date={pubDate} class='text-gray-500' />
+    <hr class='mb-4' />
     <slot />
   </Section>
 </Main>
+
+<style is:global>
+  .astro-code {
+    border: 1px solid #d1d7dd
+  }
+</style>
