@@ -9,7 +9,7 @@ const {
 <div>
   <div class="font-semibold">{company.toUpperCase()}</div>
   <div class="flex flex-row">
-    <div class="flex-1">{position}</div>
+    {position ? <div class="flex-1">{position}</div> : null}
     <div class="pt-[1px] font-light text-sm">{start}—{end}</div>
   </div>
   <ul>
