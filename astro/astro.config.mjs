@@ -28,11 +28,12 @@ function mdxDatePlugin() {
 
 // https://astro.build/config
 export default defineConfig({
+  server: {
+    port: 3000,
+  },
   markdown: {
     remarkPlugins: [mdxDatePlugin],
-    shikiConfig: {
-      theme: 'github-light',
-    },
+    shikiConfig: { theme: 'github-light' },
   },
   site: 'https://example.com',
   integrations: [
