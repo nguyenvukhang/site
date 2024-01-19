@@ -1,8 +1,6 @@
 ---
 import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import Section from './Section.astro'
+import UniModule from '../components/UniModule.astro'
 ---
 
 <html lang="en">
@@ -23,12 +21,13 @@ import Section from './Section.astro'
   </head>
 
   <body>
-    <Section>
-      <Header />
-    </Section>
-    <slot />
-    <Section>
-      <Footer />
-    </Section>
+    <div>
+      <UniModule title="MA2213" color="#D9ECC0" />
+      <UniModule title="HS2913" color="#E2D0EF" />
+      <UniModule title="HS2902" color="#F6CAAE" />
+      <UniModule title="CS2106" color="#C6E0F4" />
+      <UniModule title="ST2131" color="#FBE6A8" />
+      <UniModule title="CLC1101" color="#B1ECE8" />
+    </div>
   </body>
 </html>

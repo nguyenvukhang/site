@@ -1,0 +1,11 @@
+---
+const { title, color } = Astro.props
+---
+
+<div class="py-2 block" style={{ backgroundColor: color }}>
+  <div class="flex flex-row px-3">
+    <span class="w-1/2 text-right">{title}</span>
+    <div class="w-4"></div>
+    <span class="w-1/2 text-black/25">{color}</span>
+  </div>
+</div>
