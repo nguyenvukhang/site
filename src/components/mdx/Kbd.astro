@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'kbd'>
+
+const { children, ...props } = Astro.props
+---
+
+<kbd {...props}><slot /></kbd>
+
+<!-- styles -->
+<style>
+  kbd {
+    background: rgb(220, 220, 220);
+    color: rgb(10, 10, 10);
+    font-weight: 600;
+    font-size: smaller;
+    border-radius: 4px;
+    box-shadow: 0 3px rgb(189, 189, 189);
+    padding: 1px 3px 0;
+  }
+</style>

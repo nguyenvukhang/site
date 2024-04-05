@@ -1,0 +1,18 @@
+---
+const {
+  company,
+  position,
+  range: [start, end],
+} = Astro.props
+---
+
+<div>
+  <div class="font-semibold">{company.toUpperCase()}</div>
+  <div class="flex flex-row">
+    {position ? <div class="flex-1">{position}</div> : null}
+    <div class="pt-[1px] font-light text-sm">{start}—{end}</div>
+  </div>
+  <ul>
+    <slot />
+  </ul>
+</div>

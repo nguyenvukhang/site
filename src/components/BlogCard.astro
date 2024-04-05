@@ -1,0 +1,23 @@
+---
+import { SITE_TITLE } from '../consts'
+import AllLinks from './header/AllLinks.astro'
+import { Button, Dropdown } from './header/Components.tsx'
+import FormattedDate from '../components/FormattedDate.astro'
+
+const isRoot = Astro.url.pathname === '/'
+
+type Props = CollectionEntry<'blog'>['data'] & { slug: string }
+
+const { pubDate, title, description, slug } = Astro.props
+---
+
+<a
+  class="-mx-3 px-3 py-2 no-underline block hover:bg-selection/50"
+  href={`/blog/${slug}/`}
+>
+  <div class="flex flex-row">
+    <span class="flex-1">{title}</span>
+    <FormattedDate class="text-fg2 text-sm" date={pubDate} />
+  </div>
+  <div class="font-serif italic text-fg2 text-sm">{description}</div>
+</a>

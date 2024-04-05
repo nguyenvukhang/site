@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'img'> & { w?: number; h?: number }
+
+const props = Astro.props
+---
+
+<div class="flex justify-center my-8">
+  {
+    props.w || props.h ? (
+      <img
+        alt="image"
+        src={props.src}
+        width={props.w}
+        height={props.h ? props.h : props.w ? props.w : undefined}
+      />
+    ) : (
+      <img class="w-full max-w-2xl" alt="image" src={props.src} />
+    )
+  }
+</div>

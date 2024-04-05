@@ -1,0 +1,11 @@
+/**
+ * Overrides for Markdown/MDX files
+ *
+ *
+ */
+
+a {
+  @apply underline decoration-fg-400 decoration-2
+  hover:decoration-fg-600 hover:text-fg-900
+  transition ease-in-out;
+}

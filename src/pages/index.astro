@@ -1,0 +1,100 @@
+---
+import Main from '../layouts/Main.astro'
+import Section from '../layouts/Section.astro'
+import Project from '../components/home-projects/Project.astro'
+---
+
+<Main>
+  <Section>
+    <p>
+      I currently study at the National University of Singapore, where I've been
+      Teaching Assistant for Level-2 undergrad CS classes
+      <b>Data Structures &amp; Algorithms</b>
+       and
+      <b>Programming Methodology 2.</b>
+    </p>
+
+    <p>
+      My ambition is to make fast and reliable software that helps people enjoy
+      modern software without needing modern hardware.
+    </p>
+
+    <p>
+      Towards this goal, I've been honing my skills by coding in Rust, a
+      memory-safe language, with a focus on efficiency:
+    </p>
+
+    <div class="mb-6">
+      <Project
+        name="Gitnu"
+        href="/projects#gitnu"
+        summary="Enumerates git status"
+        text="13k+ downloads"
+      />
+
+      <Project
+        name="Pass"
+        href="/projects#pass"
+        summary="Single-file password store"
+        text="GnuPG keyring + ChaCha20"
+      />
+
+      <Project
+        name="Statc"
+        href="/projects#statc"
+        summary="Convenience routines for statistics calculations"
+        text="2,000+ downloads"
+      />
+
+      <Project
+        name="Wordle"
+        href="/projects#wordle"
+        summary="A fun application of Information Theory"
+        text="Evaluates wordle algorithms in <2s"
+      />
+    </div>
+
+    <p>
+      I also explore other languages to keep my perspective open. Finding out
+      about built-in features and coding styles of other languages help reaffirm
+      and complement what I'm writing in my main language:
+    </p>
+
+    <div class="mb-6">
+      <Project
+        name="Canvas Sync"
+        href="/projects#canvas-sync"
+        summary="Cross-platform GUI synchronization tool"
+        text="C++, Qt6 Framework, automated builds on GitHub"
+      />
+      <Project
+        name="Aquarium"
+        href="/projects#aquarium"
+        summary="Backtracking solver for the Aquarium puzzle"
+        text="Implemented in both Swift and Rust"
+      />
+      <Project
+        name="Nvim Toggler"
+        href="/projects#nvim-toggler"
+        summary="Toggle words under your cursor"
+        text="Lua plugin for Neovim, 140★ on GitHub"
+      />
+      <Project
+        name="Semver Increment"
+        href="/projects#semver-increment"
+        summary="One file, one regex version incrementer"
+        text="GitHub Action written in JS"
+      />
+    </div>
+  </Section>
+</Main>
+
+<!-- styles -->
+<style>
+  p {
+    @apply mb-6 text-fg1;
+  }
+  p > b {
+    @apply text-fg2 font-semibold;
+  }
+</style>

@@ -1,0 +1,19 @@
+---
+title: 'Wordle'
+description: Fast evaluation of solving wordle with Information Theory
+tags: [Rust, Algorithms]
+repo: wordle
+image: 'wordle.webp'
+pubDate: '2 Apr 2023'
+---
+
+The function calculating expected information gain runs in O(GA) time,
+where G is the number of guesses (12,974), and A is the number of
+answers (2,309).
+
+This is calculated once per guess, and since all possible answers are
+simulated, the total runtime to find the average guesses required is
+O(A²G).
+
+Caching is hence critical, and is implemented with a tree structure
+with guesses and outcomes (🟩🟩🟩🟨🟨) as nodes.

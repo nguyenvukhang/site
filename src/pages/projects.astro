@@ -1,0 +1,59 @@
+---
+import ProjectLayout from '../layouts/Project.astro'
+import { getCollection } from 'astro:content'
+import Main from '../layouts/Main.astro'
+import Section from '../layouts/Section.astro'
+import { toAnchorId } from '../utils'
+import '../styles/markdown.css'
+
+const collection = await getCollection('projects')
+const projects = await Promise.all(
+  collection.map((v) =>
+    v.render().then((render) => {
+      v.Content = render.Content
+      delete v.render
+      return v
+    })
+  )
+)
+---
+
+<Main>
+  <Section>
+    <p>
+      Here are some projects I've worked on out of interest and to develop my
+      skills as a programmer. These are either tools I use on a daily basis, or
+      utilities that I feel the community strongly needs, but may or may not
+      know if they want it yet.
+    </p>
+  </Section>
+  <!-- Table of contents -->
+  <Section outer="bg-slate-800 mt-10" class="py-8">
+    <div class="grid grid-cols-2">
+      {
+        projects
+          .map((v) => v.data)
+          .map(({ title }) => (
+            <div>
+              <a href={toAnchorId(title, '#')} class="bg-link text-bg-100">
+                {title}
+              </a>
+            </div>
+          ))
+      }
+    </div>
+  </Section>
+
+  <!-- Project summaries -->
+  <Section class="sm:max-w-[64rem] my-8 space-y-10">
+    {
+      projects.map(({ Content, data }, i) => (
+        <div>
+          <ProjectLayout {...data}>
+            <Content />
+          </ProjectLayout>
+        </div>
+      ))
+    }
+  </Section>
+</Main>

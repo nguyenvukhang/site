@@ -1,0 +1,91 @@
+---
+import Main from '../layouts/Main.astro'
+import Section from '../layouts/Section.astro'
+import WorkExp from '../components/resume/WorkExperience.astro'
+import Heading from '../components/resume/Heading.astro'
+
+const Education = WorkExp
+---
+
+<Main>
+  <Section>
+    <Heading>Work Experience</Heading>
+
+    <WorkExp
+      company="A*STAR, Institute for Infocomm Research"
+      position="Research Intern (Machine Learning)"
+      range={['Jul 2023', 'Sep 2023']}
+    >
+      <li>
+        Fine-tune Large Language Models (LLaMA/Falcon) against domain-specific
+        Q&amp;A datasets using QLoRA and evaluate its usability as a chatbot
+        backend.
+      </li>
+    </WorkExp>
+
+    <WorkExp
+      company="School of Computing, NUS"
+      position="Teaching Assistant"
+      range={['Jan 2023', 'May 2023']}
+    >
+      <li>
+        Conduct classes in Programming Methodology II (CS2030) and Data
+        Structures &amp; Algorithms (CS2040)
+      </li>
+      <li>
+        Received feedback score of 4.8/5.0, nominated for teaching awards by 22%
+        of attending students.
+      </li>
+    </WorkExp>
+
+    <WorkExp
+      company="Singapore Armed Forces"
+      position="Infantry Officer, OPFOR Platoon Commander"
+      range={['April 2019', 'Feb 2021']}
+    >
+      <li>
+        Plan and lead platoon (30+ men) missions for 20+ advanced
+        battalion-level evaluation exercises.
+      </li>
+    </WorkExp>
+  </Section>
+  <Section>
+    <Heading>Education</Heading>
+    <Education
+      company="National University of Singapore"
+      range={['Aug 2021', 'May 2025']}
+    >
+      <li>
+        Bachelor of Science, double major in Computer Science and Mathematics.
+      </li>
+      <li>Global Merit Scholar</li>
+    </Education>
+    <Education company="Hwa Chong Institution" range={['Jan 2013', 'Dec 2018']}>
+      <li>
+        5 distinctions for GCE 'A' Levels, awarded the Hwa Chong Diploma with
+        Distinction
+      </li>
+    </Education>
+  </Section>
+  <Section>
+    <Heading>Community Activities</Heading>
+    <ul>
+      <li>
+        SunNUS 2022, App Development Lead: Published an iOS app to the Apple App
+        Store in preparation for NUS's largest beach event.
+      </li>
+      <li>
+        NUS Varsity Canoe Sprint Team, Member: K4 500m Silver Medallist, K4 200m
+        Bronze Medallist.
+      </li>
+      <li>
+        Canoe Sprint Coach: Title wins for Hwa Chong Institution's A & B
+        division teams
+      </li>
+      <li>
+        Charity drive "24HR Static Kayaking Challenge" Program Director: raising
+        over $60,000 for the Muscular Dystrophy Association, Singapore.
+      </li>
+    </ul>
+  </Section>
+</Main>

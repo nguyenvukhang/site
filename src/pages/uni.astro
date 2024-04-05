@@ -1,0 +1,33 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import UniModule from '../components/UniModule.astro'
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="nguyenvukhang" description="welcome to my blog" />
+    <!-- START: Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTSP115RKH"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-DTSP115RKH')
+    </script>
+    <!-- END: Google tag (gtag.js) -->
+  </head>
+
+  <body>
+    <div>
+      <UniModule title="MA2213" color="#D9ECC0" />
+      <UniModule title="HS2913" color="#E2D0EF" />
+      <UniModule title="HS2902" color="#F6CAAE" />
+      <UniModule title="CS2106" color="#C6E0F4" />
+      <UniModule title="ST2131" color="#FBE6A8" />
+      <UniModule title="CLC1101" color="#B1ECE8" />
+    </div>
+  </body>
+</html>
