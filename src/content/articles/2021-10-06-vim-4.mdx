@@ -1,0 +1,74 @@
+---
+title: My vim journey - part 4
+description: Moving around within the buffer
+pubDate: '6 Oct 2021'
+tags: [vim]
+---
+
+The first movements you should already know if you're using vim are
+the <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, and <kbd>l</kbd> keys.
+
+It's key to first get comfortable with these before progressing to faster
+moves, but if you're ready, do read on. I will be splitting this article into
+three parts:
+
+- [Vertical movements](#vertical-movements), to get you to the line you want
+- [Horizontal movements](#horizontal-movements), to get you to the character you want
+- [Precise movements](#precise-movements), to get straight there
+
+Also, I will be using vimscript to describe the keys to press, so `u` simply
+press <kbd>u</kbd> but `<C-u>` means press <kbd>Ctrl+u</kbd>.
+`<CR>` means <kbd>Enter</kbd>.
+
+## Vertical Movements
+
+Vertical movements get your cursor to the right general area. The first of its
+kind is to simply bring you to the ends of the buffer:
+
+- `gg` puts you at the first line
+- `G` puts you at the last line
+
+For half-page jumps, use `<C-d>` and `<C-u>`, with the length of one page being
+the number of lines visible in that vim window.
+
+- `<C-d>` moves your cursor half a page down
+- `<C-u>` moves your cursor half a page up
+
+To jump an exact number of lines, type the number of lines first, then press `j`
+or `k` depending on the direction in which you wish to jump.
+
+- `12j` puts your cursor 12 lines below its previous position
+- `7k` puts your cursor 7 lines above its previous position
+
+## Horizontal Movements
+
+These movements are within the line you're on. The point of moving faster
+horizontally is to get to the exact character you want.
+
+- `w` puts your cursor at the first character of the next word.
+- `b` puts your cursor at the first character of the current/previous word.
+
+For more precise movements, make use of `f` and `t`. These searches for the key
+you press next.
+
+- `fr` puts your cursor exactly on the next "r" on that line. If there are no
+  "r"s to the right of your cursor, it will not move.
+- `td` puts your cursor one character before the next "d" on that line.
+
+`F` and `T` function similarly, but in reverse.
+
+- `Fr` puts your cursor exactly on the previous "r" on that line. If there are
+  no "r"s to the left of your cursor, it will not move.
+- `Td` puts your cursor one character to the **right** of the previous "d" on
+  that line.
+
+## Precise Movements
+
+To get to exactly where you want immediately, use `/` or `?` and start typing your
+search query.
+
+- `/print<CR>` will bring you to the next instance of "print" in the buffer.
+- `?echo<CR>` will bring you to the previous instance of "echo" in the buffer.
+
+This is definitely the fastest way to move if you already know a word near where
+you want to go.

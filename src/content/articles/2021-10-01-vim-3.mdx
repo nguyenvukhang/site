@@ -1,0 +1,77 @@
+---
+title: My vim journey - part 3
+description: Slipping in and out of insert mode
+pubDate: '1 Oct 2021'
+tags: [vim]
+---
+
+There are two main modes in which you will be in vim: Normal and Insert. Most of
+your movement will be done in Normal mode, and your editing in Insert. In this
+post I will be talking about different ways of entering and exiting Insert mode.
+
+# Entering Insert Mode
+
+First off: your standard ways of entering Insert mode: <kbd>i</kbd> (insert)
+and <kbd>a</kbd> (append). <kbd>i</kbd> lets you start inserting text to the
+left of the character you were previously on, while <kbd>a</kbd> puts you on the
+right of the character you were on. <kbd>a</kbd> is useful when you want to
+append text to the end of the line.
+
+The following methods will allow you to slip into Insert mode so fast you
+won't even realise it. Get used to these, and you're in for some real speed.
+
+### o
+
+So next, we have <kbd>o</kbd>. This key alone is a big reason why I find it so hard
+to go back to a point-and-click text editor. With your cursor anywhere on a line
+in Normal mode, pressing <kbd>o</kbd> will create a new line under that,
+properly indented, and put you in Insert mode. From anywhere in the line! You
+no longer have to go to the end and press enter. Just go to the line,
+press <kbd>o</kbd>, and you're good to go.
+
+### Upper case
+
+Now all of these keys have their upper case versions. <kbd>I</kbd> puts you in
+Insert mode to the left of the first character of that line, and <kbd>A</kbd>
+puts you in Insert mode to the right of the last character of that line. This is
+useful when you want to pre-pend or append things to the whole line.
+
+And <kbd>O</kbd> does the same thing as <kbd>o</kbd>, except it's on the line
+above.
+
+### c is for change
+
+The next big thing is <kbd>c</kbd>. Let's say you want to change a word with
+another word. You would first go to the front of the word, press `dw` to delete
+the word, then press `i` and type in the new word. With <kbd>c</kbd>, you can
+press `cw` and accomplish the same task as `dwi`. I remember `cw` as "change
+word." The neat thing is: you can pair <kbd>c</kbd> with any verbs!
+
+- `ciw` will change the word your cursor is on (doesn't need to be at the front)
+- `ci'` will delete the text inside single quotes and put you in Insert mode.
+- `ca(` will delete the text inside the parentheses, including the parentheses,
+  and put you in Insert mode.
+
+(you can think of `ci` as "change in something" and `ca` as "change around
+something")
+
+# Exiting Insert Mode
+
+The first way is to simply press <kbd>Esc</kbd>. It's rather far off the home
+row so I remapped my caps lock key to send escape instead, so exiting Insert
+mode for me is a well within reach of my left little finger.
+
+Another way is to remap a specific combination of keystrokes to exit Insert
+mode. A common choice is `jk` because it's right on the home row. This can be
+done by adding this to your vimrc or init.vim:
+
+```
+inoremap jk <Esc>
+```
+
+This method saves the trouble of having to remap the caps lock key, or having to
+reach to the top-left of the board to exit Insert mode. It is also safe to press
+in Normal mode because it brings the cursor down then up, landing you back where
+you started.
+
+`jk`

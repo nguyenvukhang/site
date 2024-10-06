@@ -1,0 +1,15 @@
+---
+const { name, href, summary, text } = Astro.props
+---
+
+<div class="-mx-3 px-3 py-2 flex sm:flex-row flex-col w-full">
+  <div class="sm:w-28 mr-4">
+    <a href={href} class="no-underline">{name}</a>
+  </div>
+  <div>
+    <div>{summary}</div>
+    <div class="text-sm text-fg1">
+      <slot/>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content'
+import FormattedDate from '../../components/FormattedDate.astro'
+import ArticleCard from '../../components/ArticleCard.astro'
+import Main from '../../layouts/Main.astro'
+import Section from '../../layouts/Section.astro'
+
+// get value of comparison
+const cmp = (v) => v.data.pubDate.valueOf()
+const posts = await getCollection('articles').then((v) =>
+  v
+    .sort((a, b) => cmp(b) - cmp(a))
+    .map((v) => {
+      v.data.slug = v.slug
+      return v.data
+    })
+)
+---
+
+<Main>
+  <Section>
+    {posts.map((post) => <ArticleCard {...post} />)}
+  </Section>
+</Main>

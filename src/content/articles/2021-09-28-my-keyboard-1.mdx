@@ -1,0 +1,69 @@
+---
+title: My Keyboard - part 1
+description: about keeb.io's iris split keyboard
+pubDate: '28 Sep 2021'
+tags: [uses, keyboard]
+---
+
+import Image from '../../components/mdx/Image.astro'
+
+I grew up learning how to type on the standard QWERTY layout, which
+looked something like this:
+
+<Image src="/article-assets/60-percent-keyboard.png" />
+
+But I realised that typing on such a keyboard forces your hands to be
+very close to each other. This in turn makes you tend to hunch over
+your keyboard or roll your shoulders inwards when you type.
+
+So in pursuit of ergonomics and also largely due to the cool factor, I
+bought myself a split keyboard. A split keyboard is a two-piece
+keyboard, so you can place the two halves as far away from each other
+as you want. This way, you can have each hand at their natural resting
+position of shoulder-width apart.
+
+In particular, I got the [Iris
+model](https://keeb.io/products/iris-keyboard-split-ergonomic-keyboard).
+Apart from being a split keyboard, it also slightly realigned the keys
+such that they were in-line vertically while staggered horizontally
+such that the home row follows the natural curve of your fingers.
+
+<Image src="/article-assets/keeb.jpg" />
+
+I had to relearn a lot of finger movements in this new layout. For
+one, I used to hit <kbd>B</kbd> with my right hand, but now I'm forced
+to use my left hand. I also used to hit <kbd>C</kbd> with by left
+index, but now I have to mentally remap that to my left middle finger.
+
+Not to mention it has less keys than a normal keyboard, so symbols
+like <kbd>[</kbd>, <kbd>]</kbd>, <kbd>{'{'}</kbd>, and <kbd>}</kbd>
+had to be binded to chords (with my custom modifier at the right
+thumb: <kbd>↑</kbd>).
+
+So to type braces on my keyboard, I needed to do these:
+
+- to get <kbd>[</kbd>, I press <kbd>↑ + o</kbd>.
+- to get <kbd>]</kbd>, I press <kbd>↑ + p</kbd>.
+- to get <kbd>{'{'}</kbd>, I press <kbd>↑ + Shift + o</kbd>.
+- to get <kbd>}</kbd>, I press <kbd>↑ + Shift + p</kbd>.
+
+To program the keyboard, I use
+[qmk](https://github.com/qmk/qmk_firmware). It grants me full control
+over the keyboard, so I can do my own cool stuff like press a special
+key combination to play some epic music track or something.
+
+Notice how I don't have an enter key where it is commonly placed. I
+mapped the <kbd>Pg Dn</kbd> key at my left thumb to enter. This has
+given my formerly useless left thumb a new purpose, and I've found
+this one of the most pleasing changes. My keyboard layout is
+[open-source][keymap], so feel free to check it out and make it your
+own.
+
+I really enjoy the reduced hand movement as a result of the keys all
+being closer to the home row, coupled with the greater engagement of
+the thumbs. While it took some time to get used to, learning this new
+layout has been a rewarding experience. I got more familiar with where
+each key is, thanks to the more organized layout, and I can type
+faster on this than on a standard keyboard now.
+
+[keymap]: https://github.com/qmk/qmk_firmware/blob/6a045e93f7f0240cacaf35a3f84102ec85920ec3/keyboards/keebio/iris/keymaps/khang/keymap.c

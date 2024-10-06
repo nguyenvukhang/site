@@ -1,0 +1,25 @@
+---
+import FormattedDate from '../components/FormattedDate.astro'
+
+type Props = CollectionEntry<'articles'>['data'] & { slug: string }
+
+const { pubDate, title, description, slug } = Astro.props
+const dateCss = 'text-sm text-fg1 font-mono whitespace-nowrap'
+---
+
+<div class="flex flex-row">
+  <FormattedDate
+    class:list={['mt-1 w-28 sm:block hidden', dateCss]}
+    date={pubDate}
+  />
+  <div class="mb-8">
+    <div>
+      <a href={`/articles/${slug}/`} class="no-underline text-fg0">{title}</a>
+      <FormattedDate
+        class:list={['inline sm:hidden', dateCss]}
+        date={pubDate}
+      />
+    </div>
+    <div class="italic text-sm text-fg1">{description}</div>
+  </div>
+</div>

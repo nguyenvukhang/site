@@ -1,0 +1,63 @@
+---
+title: Analyzing command frequency in shell
+description: making use of shell history
+pubDate: '4 Oct 2021'
+tags: [shell, zsh]
+---
+
+import Image from '../../components/mdx/Image.astro'
+
+Every now and then I set a new alias or function to speed up my workflow within
+zsh.
+
+But sometimes when I look back at old aliases, I realise that I don't use
+those anymore, and so I remove them, and at the same time I keep feeling that
+there are opportunities for more aliases that I didn't know I needed.
+
+And so I decided to track my command usage. I wanted to see which commands I was
+repeating often, and create new aliases based on those.
+
+At first, I started off writing a zsh script to run every time I ran a command,
+but I remembered that zsh keeps history. All I need to do was to tap in to what
+was already being logged.
+
+So with a few extra settings in my .zshrc:
+
+```bash
+# for details, look up the man page of `zshparam`
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
+# for details, look up the man page of `zshoptions`.
+setopt APPEND_HISTORY  # adds to instead of overwriting history
+setopt SHARE_HISTORY  # takes commands from other instances of zsh
+setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+setopt EXTENDED_HISTORY  # record command start time
+```
+
+I now have a file `~/.zsh_history` that contains all the information I need:
+
+- time of command execution (to the second)
+- command
+
+I then format it into a .csv file which I push to my [zsh
+repository](https://github.com/nguyenvukhang/zsh). To view the data, I use
+Google Sheets with one cell simply containing the code
+
+```
+=IMPORTDATA("https://raw.githubusercontent.com/nguyenvukhang/zsh/master/commands.csv")
+```
+
+and I can obtain a nice plot of what commands I use most often:
+
+<Image src="/article-assets/command-freq.png" />
+
+From here we can already see that I ran `./analyze` a lot since I started
+tracking commands, and that's because I named the tracking script `analyze`.
+`exit` and `gs` (alias for `git status`) are next most frequent, which makes
+sense.
+
+It will be interesting to revisit this Google Sheet in a week or month, when I
+get to capture a large portion of my daily workflow.

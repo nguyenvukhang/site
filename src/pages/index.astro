@@ -1,0 +1,121 @@
+---
+import Main from '../layouts/Main.astro'
+import Section from '../layouts/Section.astro'
+import Project from '../components/Project.astro'
+import * as c from '../consts.ts'
+---
+
+<Main>
+  <Section>
+    <p>
+      I currently study at NUS &#127480;&#127468;, where I've been Teaching
+      Assistant for Level-2 undergrad CS classes
+      <b>Data Structures &amp; Algorithms</b>
+      and
+      <b>Programming Methodology 2.</b>
+    </p>
+
+    <p>
+      My ambition is to make fast and reliable software that helps people enjoy
+      modern software without needing modern hardware.
+    </p>
+
+    <p>
+      Towards this goal, I've been honing my skills by coding in Rust, a
+      memory-safe language, with a focus on efficiency:
+    </p>
+
+    <div class="mb-6">
+      <Project
+        name="Gitnu"
+        href="https://www.github.com/nguyenvukhang/gitnu"
+        summary="Enumerates git status"
+      >
+        {c.GITNU_DOWNLOADS} downloads on <a
+          href="https://crates.io/crates/gitnu">crates.io</a
+        >
+      </Project>
+
+      <Project
+        name="Pass"
+        href="https://www.github.com/nguyenvukhang/pass"
+        summary="Single-file password store"
+      >
+        GnuPG keyring + ChaCha20
+      </Project>
+
+      <Project
+        name="Statc"
+        href="https://www.github.com/nguyenvukhang/statc"
+        summary="Convenience routines for statistics calculations"
+      >
+        {c.STATC_DOWNLOADS} downloads on <a
+          href="https://crates.io/crates/statc">crates.io</a
+        >
+      </Project>
+
+      <Project
+        name="Wordle"
+        href="https://www.github.com/nguyenvukhang/wordle"
+        summary="A fun application of Information Theory"
+      >
+        Evaluates wordle algorithms in &lt;2s
+      </Project>
+    </div>
+
+    <p>
+      I also explore other languages to keep my perspective open. Finding out
+      about built-in features and coding styles of other languages help reaffirm
+      and complement what I'm writing in my main language:
+    </p>
+
+    <div class="mb-6">
+      <Project
+        name="Helium"
+        href="https://www.github.com/nguyenvukhang/helium"
+        summary="Wacom Tablet Driver extension for Precision Mode"
+      >
+        Swift, XCode, macOS UI Application; also in daemon form
+      </Project>
+      <Project
+        name="Canvas Sync"
+        href="https://www.github.com/nguyenvukhang/canvas-sync"
+        summary="Cross-platform GUI synchronization tool"
+      >
+        C++, Qt6 Framework, automated builds on GitHub
+      </Project>
+      <Project
+        name="Aquarium"
+        href="https://www.github.com/nguyenvukhang/aquarium"
+        summary="Backtracking solver for the Aquarium puzzle"
+      >
+        Implemented in both Swift and Rust
+      </Project>
+      <Project
+        name="Nvim Toggler"
+        href="https://www.github.com/nguyenvukhang/nvim-toggler"
+        summary="Toggle words under your cursor"
+      >
+        Lua plugin for Neovim, 150★ on GH, featured in <a
+          href="https://github.com/coffebar/dotfiles">coffeebar/dotfiles</a
+        >
+      </Project>
+    </div>
+    <p>
+      Find me on <a href="https://www.github.com/nguyenvukhang/">GitHub</a>,
+      <a href="http://www.linkedin.com/in/nguyenvukhang/">LinkedIn</a>, and <a
+        href="https://www.instagram.com/chalk.hang/">Instagram</a
+      >.
+    </p>
+  </Section>
+</Main>
+
+<!-- styles -->
+<style>
+  p {
+    @apply mb-6;
+  }
+  p > b {
+    @apply font-semibold;
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+title: Representing university module relations in a graph
+description: The side project that gave me more than I bargained for.
+pubDate: '22 Dec 2022'
+tags: [algo]
+draft: true
+---
+
+The National University of Singapore has a very well set-up website
+that lists all current and past university modules called
+[NUSMods][nusmods]. Each module is listed with lots of information,
+but among all that information one bit captures my attention the most:
+the Pre-requisite Tree.
+
+A module's Pre-requisite Tree determines what preceeding modules are
+required to be taken and cleared before being eligible for that module
+itself.
+
+The chosen data structure of NUSMods' API is recursive and strikingly
+simple:
+
+```js
+type PrereqTree = string | { and: PrereqTree[] } | { or: PrereqTree[] }
+```
+
+A very simple tree would look like this:
+
+```js
+const CS2040: PrereqTree = 'CS1010'
+```
+
+Meaning that the module `CS2040` requires only one module to be done
+first: `CS1010`.
+
+The recursive structure easily allows for more complex module
+requirements, such as CS3244:
+
+```js
+const CS3244: PrereqTree = {
+  and: [
+    { or: ['CS2010', 'CS2020', 'CS2040'] },
+    { or: ['MA1101R', 'MA1311', 'MA1508E', 'MA1513'] },
+    { or: ['MA1102R', 'MA1521', { or: ['MA1511', 'MA1512'] }] },
+    { or: ['EE2012', 'EE2012A', 'MA2216', 'ST2131', 'ST2334'] },
+  ],
+}
+```
+
+Seems easy enough to work with. And so the idea of my side project is
+this: to make use of the pre-requisite relations between modules to
+derive optimal choices for the students. More precisely, one of our
+goals is to let the user specify 3-4 high-level modules they want to
+take before graduation, and the software will trace back what's an
+ideal study plan to become eligible for all those modules in as short
+a time frame as possible.
+
+And so I started work. Pulling data from NUSMods was actually very
+doable since the API is well-established, so minimal data-cleaning was
+required.
+
+Basic methods such as finding the minimum path to complete a single
+Pre-requisite tree was easy enough too, and in fact it was very
+concise. However, things started to get complicated when we tried to
+find global minimum paths to complete a high-level module when
+starting out with nothing done.
+
+The two approaches we had were:
+
+1. Merge all PrereqTrees into one large one containing all the modules
+   we are concerned with, and then traverse it to find the shortest
+   path from having nothing done
+2. Represent the pre-requisite relationsn in a graph of nodes weighted
+   by the semester intervals between modules taken.
+
+When finding min-path on a tree, finding it when the tree is
+guaranteed to not have duplicates is easy, because this property
+allows for a divide-and-conquer approach. A min-path of a subtree will
+always be part of the min-path of the entire tree.
+
+However, if there are duplicates, doing one module may complete
+muptiple child nodes of the tree, and discarding min-paths early on
+may lead to non-optimum paths chosen. For this reason, min-paths with
+duplicates must be chosen by scanning all possible paths first.
+
+One possible alternatve to this is to check if the module exists
+elsewhere in the tree.
+
+Yet another possible method is to combine all modules into one large
+pre-requisite tree with duplicates, and then apply a Dijkstra-like
+algorithm on this tree. Possible next-steps are modules that are
+eligible for.
+
+And yet another method is to plan the modules sem by sem, resolving
+modules from just that one combined prereqtree.
+
+[nusmods]: https://nusmods.com/

@@ -1,0 +1,69 @@
+---
+title: After installing Arch Linux
+description: Setting up a desktop in Arch
+pubDate: '27 Sep 2021'
+tags: [linux, arch]
+---
+
+When I was done installing Arch, all I had was a terminal. No desktop, no
+wallpaper, no icons, nothing. It wasn't even a single window with a terminal.
+The computer was the terminal. That's what I logged in to.
+
+Turns out, there's a lot to install just to get close to how things were back on
+macOS. But first, I was tired to googling for solutions on my phone, so I wanted
+to get an internet browser up and running on my desktop.
+
+Installing firefox wasn't enough. I also had to install a display server and a
+window manager—already two things I didn't know I needed to have installed. I
+still don't know what a display server does exactly. I think of it as the bridge
+between the terminal and graphical user interface (GUI). Apps like vim and emacs
+run in the terminal just fine, but to view photos or play videos, you would need
+a display manager. A window manager then manages how windows are places
+on-screen.
+
+The actual installation process is very quick and easy, and I think that's one
+of Arch's best features. All you have to do is type
+
+```
+sudo pacman -S firefox xorg xorg-xinit awesome
+```
+
+into the terminal and hit enter. This installs
+
+- firefox,
+- xorg (the display server, along with its initializer `xorg-xinit`),
+- and awesome window manager.
+
+I actually unknowingly made the more difficult choice of xmonad as my first
+window manager, but that's a story for another day. Let's stick with Awesome for
+now.
+
+Also, since I had an Intel CPU, I also added Intel's video driver package:
+
+```
+sudo pacman -S xf86-video-intel
+```
+
+With that, I can now fire up my window manager atop a display server by first
+creating a file `~/.xinitrc` which contains a single line:
+
+```
+exec /usr/bin/awesome  # launches awesome
+```
+
+and then running the command
+
+```
+startx
+```
+
+At this point, I have now progressed on to an actual desktop complete with a
+wallpaper, and by default I can press <kbd>Cmd+p</kbd> (<kbd>Win+p</kbd> for
+other PCs) to open Awesome's built-in app launcher, from which I can type
+"firefox" and press enter to finally launch Firefox.
+
+And that's just Firefox. In this process, I already got to know that operating
+systems can be broken down to finer components than I previously thought
+possible. On one hand it's daunting to have to install everything down to even
+the driver, but with it came a sense of peace—that nothing is installed on my
+device unless I want it to be.

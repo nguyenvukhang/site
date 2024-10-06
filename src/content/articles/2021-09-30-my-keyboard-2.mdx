@@ -1,0 +1,51 @@
+---
+title: My Keyboard - part 2
+description: turbocharged with qmk
+pubDate: '30 Sep 2021'
+tags: [keyboard]
+---
+
+import Image from '../../components/mdx/Image.astro'
+
+A big reason why I chose to buy my keyboard is because it is compatible with the
+[qmk](https://github.com/qmk/qmk_firmware) software. With this, I can define my
+own keyboard shortcuts and attach them to really specific functions.
+
+- [Fuzzy PDF Finder](#fuzzy-pdf-finder)
+- [App Launcher](#app-launcher)
+
+## Fuzzy PDF Finder
+
+Mostly, my university assignments are given to me in PDF form. While I try my
+best to organize them well, I always felt that finding and opening them took
+more keystrokes than was necessary. So I made this.
+
+When I hit <kbd>Cmd + p</kbd>, a menu which lists all the PDFs on my computer
+pops up at the center of my screen:
+
+<Image src="/article-assets/fzfmenu.png" />
+
+So let's say I want to open a this particular file:
+
+```
+.../modules/MA1100/pdfs/tutorial-sets/ts-5.pdf
+```
+
+I would only need to type `m1ts5` for it to be found.
+
+<Image src="/article-assets/fzfmenu-ts5.png" />
+
+Found and open in less than 10 keystrokes.
+
+## App Launcher
+
+Launching apps fast is always important, since that's the main purpose of a
+computer. What I have here you can think of this as a lighter, faster version of
+macOS's Spotlight search: it's davatorium's
+[rofi](https://github.com/davatorium/rofi). I launch it exactly how macOS
+launches Spotlight: with <kbd>Cmd + Space</kbd>.
+
+<Image src="/article-assets/rofi.png" />
+
+It learns which apps you launch most often pretty fast. Usually I only need to
+type two letters before what's in mind is the top suggestion.

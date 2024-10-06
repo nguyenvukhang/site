@@ -1,0 +1,36 @@
+h1,
+h2,
+h3 {
+  @apply mt-8 mb-2 font-semibold;
+}
+
+h1 {
+  @apply text-xl;
+}
+
+h2 {
+  @apply text-lg;
+}
+
+h3 {
+  @apply text-base;
+}
+
+/* add vertical space after lists */
+div > ul > li:last-child {
+  @apply mb-6;
+}
+
+kbd {
+  background: rgb(220, 220, 220);
+  color: rgb(10, 10, 10);
+  font-weight: 600;
+  font-size: smaller;
+  border-radius: 4px;
+  box-shadow: 0 3px rgb(189, 189, 189);
+  padding: 1px 3px 0;
+}
+
+hr {
+  @apply text-fg0/20 my-7;
+}

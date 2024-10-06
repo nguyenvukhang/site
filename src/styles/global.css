@@ -1,0 +1,78 @@
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* global config */
+  font-family: system-ui, Helvetica, sans-serif;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  /* forces scrollbar to always appear to prevent horizontal jerk */
+  overflow-y: scroll;
+
+  @apply text-base text-fg0 leading-7;
+}
+
+/**
+ * code blocks
+ */
+pre,
+code {
+  font-size: 90%;
+  letter-spacing: -0.35px;
+}
+pre {
+  line-height: 1.3em;
+  @apply rounded-md py-3 px-4 border border-solid border-neutral-200;
+}
+
+/* Fix the parsing bug in Astro. */
+pre.astro-code > code > span:last-child {
+  @apply hidden;
+}
+
+/* links: clickable */
+a {
+  @apply text-ac0 decoration-ac1 decoration-2 hover:underline;
+}
+
+/**
+ * Lists:
+ * get them to work as expected
+ */
+ul,
+ol {
+  @apply list-outside marker:text-ac1 mb-4;
+}
+ul {
+  @apply list-disc; /* so that all the discs will be the same */
+  /* without this, there will be hollow circles and squares in nested lists */
+}
+ul > li,
+ol > li {
+  @apply pl-2;
+}
+
+/* Paragraphs */
+p,
+summary {
+  @apply mb-3;
+}
+
+/* Summary (disclosure blocks) */
+summary {
+  cursor: pointer;
+}
+
+/* Blockquotes */
+blockquote {
+  @apply mb-4 border-l-4 border-l-neutral-200 pl-5;
+}
+
+/* Custom selection colors */
+::selection {
+  @apply bg-selection; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  @apply bg-selection; /* Gecko Browsers */
+}
