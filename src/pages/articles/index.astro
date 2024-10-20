@@ -6,14 +6,21 @@ import Main from '../../layouts/Main.astro'
 import Section from '../../layouts/Section.astro'
 
 // get value of comparison
-const cmp = (v) => v.data.pubDate.valueOf()
+function cmp(a, b) {
+  const a_date = a.data.pubDate.valueOf()
+  const b_date = b.data.pubDate.valueOf()
+  // sort by most recent first.
+  if (a_date != b_date) return b_date - a_date
+  // // sort by title in alphabetical order.
+  return a.data.title.localeCompare(b.data.title)
+}
 const posts = await getCollection('articles').then((v) =>
   v
-    .sort((a, b) => cmp(b) - cmp(a))
+    .sort((a, b) => cmp(a, b))
     .map((v) => {
       v.data.slug = v.slug
       return v.data
-    })
+    }),
 )
 ---
 

@@ -1,0 +1,456 @@
+---
+title: 'Minimath: the accumulation of my math knowledge'
+description: Adventures writing a textbook, part 2
+pubDate: '19 Oct 2024'
+tags: [math]
+---
+
+[cword]: https://vimhelp.org/cmdline.txt.html#%3Ccword%3E
+[telescope]: https://github.com/nvim-telescope/telescope.nvim
+[xu-cheng-la]: https://github.com/xu-cheng/latex-action
+[xu-cheng-ta]: https://github.com/xu-cheng/texlive-action
+[gh-runners]: https://github.com/actions/runner-images#available-images
+[latexindent]: https://github.com/cmhughes/latexindent.pl
+[ghcr-img]: https://ghcr.io/libmath/texlive-small
+[mathjax]: https://www.mathjax.org
+[ripgrep]: https://github.com/BurntSushi/ripgrep
+[minimath]: /articles/2024-10-19-minimath/
+[pdflatex-doc]: https://linux.die.net/man/1/pdflatex
+[Command]: https://doc.rust-lang.org/std/process/struct.Command.html
+[Hash]: https://doc.rust-lang.org/std/hash/trait.Hash.html
+[hyperref]: https://wikibooks.org/wiki/LaTeX/Hyperlinks#Usage
+[git-docs-hash]: https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
+
+I've always felt the need to journal my progress in the vast field of
+mathematics. When I started out in middle/high school I could still vaguely
+remember which theorems I've proved and how, and that helped me navigate
+homework problems with confidence. But as I move on to university, new proofs
+appear all day every day and each result feels less and less memorable. Yet, I
+had to somehow remember all of them, lest I'll start doubting claims and spiral
+into a string of googles trying to figure out why it is true.
+
+I had a few key criteria in mind as I chose the medium to write my textbook:
+
+1. <span id="navigatable">**Navigatable**</span>. I like it when a set of notes
+   directs you easily to where you need to find information. It mildly annoys me
+   when the author says things like "Clearly, &lt;statement&gt;" but it's not
+   clear to me why "&lt;statement&gt;" is true and I have to search every
+   preceding page for a justification.
+2. **Scalable**. As I write, the deployed size of the notes should scale
+   reasonably with the content. I've tried writing with
+   Markdown+[MathJax][mathjax] deployed to a static site before, but MathJax
+   scales terribly with content. Not to mention it eats compute just rendering
+   on client-side.
+3. **Math type support**. I want to be able to write anything and everything
+   that math can express without a worry about typesetting support. Clearly, the
+   best choice on this particular metric is to write LaTeX directly, but it
+   (used to) fly directly against the next point.
+4. **Easy to write more**. I want to be able to easily add content to whatever
+   current state the notes is in. It helps that the content is in a simple
+   markup language, such as Markdown.
+5. <span id="reproducible">**Reproducible**</span>. I want to open-source this
+   set of notes eventually, and so I want them to be as future-proof as
+   possible. Deploying on a static site with any modern JavaScript framework is
+   a little too risky to me in this regard. Moreover, if someone wants to
+   download a local copy of the notes, they'd have to run their own server and
+   browse the notes on that.
+
+And so I present, after many failed iterations of the same idea, the math
+textbook I proudly call &#10024;minimath&#10024;.
+
+# minimath
+
+After no deliberation at all, I've decided to title this project "minimath"
+after no one in particular. Here are its main components:
+
+- The `minimath` binary (written in [Rust](https://www.rust-lang.org)).
+  - CLI interface by [clap](https://github.com/clap-rs/clap).
+  - Configured with [YAML](https://yaml.org).
+  - Development server (live-preview PDF builds).
+  - Automatic label generation.
+  - Pretty-prints `pdflatex` output.
+- `texlive-small`: a [Docker](https://www.docker.com/) image (built on GitHub
+  Actions and hosted on [GHCR][ghcr-img])
+- `minimath-rg`: a [ripgrep][ripgrep]-inspired indexer.
+- Build + Test + Compile PDF + Publish on GitHub Actions.
+- Formatting supported with [latexindent][latexindent].
+
+<h2 id="compile-flow">Core Compilation Flow</h2>
+
+1. The user selects a
+   [preset](https://www.notion.so/minimath-11319d3c85f680ada091f0f32620547b?pvs=21)
+   to compile. If none is specified, `minimath` compiles everything.
+2. Spawn a child process of `pdflatex` and keep the handle on its stdin.
+3. Traverse the `*.tex` files based on the preset and write content directly to
+   `pdflatex`'s stdin.
+4. Write build artifacts to the `.build` directory and move the generated PDF
+   file to the current working directory.
+
+The machinery that orchestrates all of this is the `minimath` binary.
+
+# Interacting with pdfTeX
+
+After installing a copy/distribution of LaTeX, the simplest way to compile a PDF
+from plain-source TeX is to write all your TeX into one file, say
+`one-shot-job.tex`:
+
+```tex
+\documentclass{article}
+\begin{document}
+Khang was here.
+\end{document}
+```
+
+and then run the command
+
+```sh
+pdflatex one-shot-job.tex
+```
+
+to produce a `one-shot-job.pdf` file (That example above actually works).
+
+Now, when `pdflatex` is ran without a path as argument, it will interpret all
+remaining commands as TeX input. To see how this works, try running just
+
+```sh
+pdflatex
+```
+
+It will enter a [REPL](https://wikipedia.org/wiki/read-eval-print_loop)
+
+```
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+**
+```
+
+where you can start typing in what would have been the contents of
+`one-shot-job.tex`. After you've done all that, the screen should look something
+like this:
+
+{/* prettier-ignore */}
+<pre class='text-neutral-300'>
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex)
+{' '}restricted \write18 enabled.
+**<span class='text-fg0'>\documentclass\{article}</span>
+entering extended mode
+LaTeX2e &lt;2023-11-01> patch level 1
+L3 programming layer &lt;2024-02-20>
+
+*<span class='text-fg0'>\begin\{document}</span>
+(/usr/local/texlive/2024basic/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2024basic/texmf-dist/tex/latex/base/size10.clo))
+(/usr/local/texlive/2024basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.d
+ef)
+No file texput.aux.
+
+*<span class='text-fg0'>Khang was here</span>
+
+*<span class='text-fg0'>\end\{document}</span>
+[1\{/usr/local/texlive/2024basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./texput.aux)&lt;/usr/local/texlive/2024basic/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb>
+Output written on texput.pdf (1 page, 13532 bytes).
+Transcript written on texput.log.
+</pre>
+
+and you'd find a `texput.pdf` existing in the current directory that should
+match the previously generated `one-shot-job.pdf` exactly. The [core compilation
+flow](#compile-flow) of `minimath` exploits this behavior of `pdflatex`.
+
+We use Rust standard library's [Command][Command] to spawn a `pdflatex`
+subprocess and keep it open as we write to its stdin. Then, instead of us typing
+the contents of the `.tex` document line-by-line, we can now programmatically
+send characters to the subprocess. It is through this and a strategic traversal
+of all the `*.tex` files in the repository that we build the final PDF.
+
+There's just one more thing: in the spirit of [reproducibility](#reproducible),
+we've downloaded a minimal set of packages and committed them to this repository
+at `.github/tex/*.sty`. But how will `pdflatex` know to look in there for TeX
+packages? In the [linux documentation][pdflatex-doc], we just need to set the
+`TEXINPUTS` environment variable to `.github/tex:` and we're all set.
+
+```sh
+TEXINPUTS=.github/tex: pdflatex ...
+```
+
+# `texlive-small` Docker image
+
+As a key feature of this project is [reproducibility](#reproducible), the entire
+book's PDF is built on GitHub Actions. For this, we need LaTeX. Now, none of
+GitHub Action's [runner images][gh-runners] offer LaTeX pre-installed, so we
+need a way to get LaTeX up and running on the CI container. _Installing_ LaTeX
+every CI run not only takes significant time but also adds a layer of
+uncertainty.
+
+The initial solution was to use [`xu-cheng/latex-action`][xu-cheng-la]. It pulls
+a lightweight Docker image with LaTeX installed and uses that to build the PDF.
+While it's an awesome GitHub Action in its own right, the inconvenience with
+this implementation is that we can only tell it to run `pdflatex` on specific
+`*.tex` files. That is, we need to specifically export a `main.tex` that
+contains _everything_ in the book, and then process that with `pdflatex`. This
+breaks the core [compile flow](#compile-flow), and requires us to implement a
+secondary one that will only run on CI. Having an extra compile flow creates a
+separation between the PDF that's built while writing locally and the PDF that
+is exported on CI runs. So while this solution works (and was _the_ solution)
+for a long time, I knew that I had to continue searching for a better one.
+
+The next solution I considered was to use the more general
+[`xu-cheng/texlive-action`][xu-cheng-ta]. Instead of specifying the `*.tex`
+files to compile, this now allows users to run arbitrary commands on the
+container. However, that means running the `minimath` binary natively on the
+container, which requires setting up Rust and _then_ building the binary there.
+That's too much complexity to be running on an auxiliary container so I quickly
+abandoned this direction.
+
+Fast-forward to today's solution: _open a subprocess to the Docker container and
+pipe to its stdin_. Honestly, I didn't know this was possible and I was pretty
+stoked when I first got it to work.
+
+By creating an executable file called `pdflatex.sh` with the contents
+
+```sh
+#!/bin/sh
+
+docker run \
+  --interactive \
+  -v $PWD:/tmp \
+  --workdir /tmp \
+  --env TEXINPUTS \
+  ghcr.io/libmath/texlive-small \
+  pdflatex $@
+```
+
+we can actually use `pdflatex` _as if it were installed_ on the local machine,
+by running `./pdflatex.sh` with all the arguments we would normally pass into
+`pdflatex`. The idea here being that we link the current working directory,
+captured by `$PWD`, to the `/tmp` directory in the container using the `-v`
+flag; the `--env` flag sends environment variables defined in the host machine
+into the container; and finally we spawn the `pdflatex` command and pass on all
+the arguments with `$@`.
+
+This is the current method of operation on GitHub Actions. Interestingly, based
+on the 0-1s pull time of the GHCR image, it seems like GHCR-hosted images are
+cached. Either way, cached or not, `pdflatex` is now made available on every CI
+run in effectively no time at all. So now we have a way to get LaTeX installed
+both quickly _and_ predictably. We rebuild the `texlive-small` image only once a
+month to pull latest updates for LaTeX itself, but otherwise every build in that
+month uses the exact same copy of LaTeX, it coming from the image we built for
+that month.
+
+# Content organization
+
+The goal of [navigatability](#navigatable) demands for a careful choice in
+content organization. Here's the hierarchy of content that minimath works with:
+
+- A **Preset** is _named_ a list of **Chapters**.
+- A **Chapter** is a _named_ list of **Sections**.
+- A **Section** is an _unnamed_ list of **Subsections**.
+- A **Subsection** corresponds (one-to-one) to a single `.tex` file, and is a
+- <span id="mark" /> A **Mark** is a Theorem/Lemma/Remark/etc.
+
+Presets are specified in `config.yml`. These allow us to choose specific subsets
+of the entire book to compile, so we can enjoy faster real-time preview builds.
+
+As for why Sections are nameless: it's hard to always think of 3 layers of names
+(chapter, section, subsection) while the book is still constantly evolving and
+always subject to change. I've hence decided to go with just naming the Chapter
+and the Subsection. The role of the Section is thus reduced to just _grouping_
+similar Subsections together.
+
+The `*.tex` files (recall that a single `*.tex` file corresponds to one
+Subsection) are stored at a specific path: `<CATEGORY>/<TOPIC>/<SUBSECTION>.tex`
+
+Hence, _every_ `*.tex` file is nested exactly 2 directories from root. This is
+enforced in the tests.
+
+The Chapter name is then hard-set as `<CATEGORY>/<TOPIC>`. Here are the
+categories so far:
+
+- **`defs`** Definitions.
+- **`core`** Core stuff. One level up from definitions. Think along the lines of
+  `std::` in `C`.
+- **`lib`** Library stuff. Things that people might start to find useful in
+  daily life, but still rigorous and general.
+
+Putting this all together in an example, consider the file
+`defs/linear_algebra/vector_spaces.tex`. It corresponds to exactly on
+Subsection: `vector_spaces`, within the Chapter `defs/linear_algebra`. It will
+contain definitions, it being in `defs`, and it is of the topic
+`linear_algebra`.
+
+## Organizing Marks
+
+Every [mark](#mark) has a unique 7-character hash, much like a (shortened) `git`
+commit hash. Naming this entity was a tough decision, but I've decided to call
+it a **SHA** (backstory [here](#why-sha)).
+
+```tex
+\Theorem{Taylor's Theorem, k=2}\label{b90111f}
+```
+
+With this, we can refer to marks by their SHA, which makes the code much cleaner
+than if we were to use some serialized form of the theorem's name (e.g.
+`taylors-theorem`), or an index number (e.g. `T1024` or even `T1.2.4`):
+
+{/* prettier-ignore */}
+<pre>
+{'...'} By \href\{<span class='text-ac0'>b90111f</span>}\{Taylor's Theorem}, for $t>0$ there exists {'...'}
+</pre>
+
+Here's some benefits of using a SHA to look for references/definition of a mark in the codebase:
+
+- `vim` recognizes it as a word (see: [cword][cword]) so we can search for it
+  with `*` or pass it into a search function when the cursor is on any part of
+  the SHA.
+- It's not a real word so there will be no collisions with other text.
+
+Now, while the index number method may look shorter at first, consider the
+consequences when we want to move one particular [mark](#mark) from one chapter
+to another. That's gonna be _O(n)_, ladies and gents. Instead, we stick to using
+SHAs so we can refactor in _O(1)_, and sit back and let the LaTeX engine handle
+the numbering at PDF build-time.
+
+> Index-numbering moves are _O(n)_ because if we move Theorem 4.1.5, we would
+> have to manually rename all the marks numbered 4.1.6, 4.1.7, and so on. We
+> have to repeat with the receiving end too.
+
+Also, we can use tools like [ripgrep][ripgrep] to search the codebase for
+[marks](#mark), and then fuzzy search over this catalogue. For example:
+
+```bash
+rg --type tex '^\\(Theorem|Lemma|Result).*\\label\{[a-f0-9]{7}\}'
+```
+
+This leads us into `minimath-rg`.
+
+<h2 id="using-minimath-rg">Using minimath-rg to search for marks</h2>
+
+`minimath-rg` exists as a standalone C binary because the project's organization
+level renders [ripgrep][ripgrep]'s capabilities overkill. With just under 150
+lines of C, we can traverse all `*.tex` files to look for marks.
+
+This binary will look for lines such as this (ignore the comment, that's just
+the filename):
+
+```latex
+% lib/complex_analysis/basics.tex
+\Theorem{Liouville's Theorem}\label{cf6d8a9}
+```
+
+and convert this to a plain-text line
+
+```
+lib/complex_analysis/basics.tex:783:Theorem:Liouville's Theorem:cf6d8a9
+```
+
+which can now be read by [telescope][telescope] for fuzzy search, which then can
+be used for navigation or obtaining the label ID quickly.
+
+{/* prettier-ignore */}
+<div>
+<pre class='text-neutral-500'>
+╭────────────────────────────── Results ───────────────────────────────╮
+│                                                                      │
+│                                                                      │
+│  [l/NOU] Proposition: Acceptance of full step-size in glo<span class='underline text-ac0'>b</span>ali<span class='underline text-ac0'>z</span>ed Newt│
+│  [l/NMA] Theorem: Conditions for inverti<span class='underline text-ac0'>b</span>le R in QR factori<span class='underline text-ac0'>z</span>ation    │
+│  [l/NOU] Algorithm: Glo<span class='underline text-ac0'>b</span>ali<span class='underline text-ac0'>z</span>ed Newton's method for unconstrained opti│
+│  [l/CAL] Theorem: Lei<span class='underline text-ac0'>b</span>ni<span class='underline text-ac0'>z</span> integral rule                              │
+│  [l/REA] Theorem: Sequence converging a<span class='underline text-ac0'>b</span>solutely to <span class='underline text-ac0'>z</span>ero also converg│
+│  [l/STC] Proposition: Proba<span class='underline text-ac0'>b</span>ility of nothing is <span class='underline text-ac0'>z</span>ero                 │
+│  [l/LNA] Theorem: Uniqueness of <span class='underline text-ac0'>b</span>asis si<span class='underline text-ac0'>z</span>e                           │
+│  [l/REA] Theorem: <span class='underline text-ac0'>B</span>ol<span class='underline text-ac0'>z</span>ano-Weierstrass Theorem                        │
+│  [l/LNA] Lemma: Gram-Schmidt on a <span class='underline text-ac0'>b</span>asis does not produce <span class='underline text-ac0'>z</span>eros       │
+│  [l/FUN] Lemma: <span class='underline text-ac0'>B</span>ilinear forms send <span class='underline text-ac0'>z</span>eros to zeros                   │
+╰──────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────── Theorems ──────────────────────────────╮
+│> <span class='text-ac0'>bz</span>                                                         10 / 1166│
+╰──────────────────────────────────────────────────────────────────────╯
+</pre>
+<div class='text-center text-neutral-400' style='font-size: smaller;'>
+Searching "<span class='text-ac0'>bz</span>" in telescope. Notice the fuzzy matches!
+</div>
+</div>
+
+This makes writing more of the book much quicker because linking theorems can be
+done with a simple plugin.
+
+# Randoms
+
+## Why SHA?
+
+The 7-character hashes used to uniquely identify [marks](#mark) in the project
+will be called **SHAs**. They used to be randomly generated but now we're just
+hashing the timestamp at which they are created, so they are rightfully hashes.
+
+```rust
+use std::hash::{Hash, Hasher, DefaultHasher};
+use std::time::{SystemTime, UNIX_EPOCH};
+
+const CHARSET: &[u8; 16] = b"abcdef0123456789";
+
+fn random() -> [u8; 7] {
+    let mut s = DefaultHasher::new();
+    SystemTime::now().duration_since(UNIX_EPOCH).unwrap().hash(&mut s);
+    let mut u: u64 = s.finish();
+    std::array::from_fn(|_| CHARSET[((u % 16) as usize, u /= 16).0])
+}
+```
+
+These are modelled after git's 40-character [SHA-1 hashes][git-docs-hash] to
+uniquely identify commits. "40-character SHA-1 hash" is a mouthful, so the
+community often call it something shorter in online discussions, often referring
+to it as a hash, or more specifically, the hash of a commit. Given enough time,
+some even started calling it a SHA.
+
+- GitHub documentation refers to it as a SHA
+  ([source](https://docs.github.com/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits)).
+- GitHub Action's environment variable referring to this entity is named
+  `GITHUB_SHA`
+  ([source](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#default-environment-variables)).
+- StackOverflow discussions refer to them as SHA
+  ([s1](https://stackoverflow.com/questions/18134627),
+  [s2](https://stackoverflow.com/questions/18134627),
+  [s3](https://stackoverflow.com/a/1552353/25049714))
+
+I've considered calling it a `Hash` but I've decided against that because `Hash`
+is already a [Rust trait][Hash]. I've rejected the idea of `Tag` because the
+repository also deals with `git` tags, so there might be some confusion. `Token`
+technically works, but that brings in too many external ideas tied to
+authentication or even machine learning.
+
+And so these are called SHAs in the project. Now if you see a line of Rust that
+goes
+
+```rust
+struct SHA([u8; 7]);
+```
+
+You'd know why.
+
+## Automatic label generation
+
+Running `minimath label` will automatically append `\label{...}` to every
+unlabeled [mark](#mark) line.
+
+## GitHub Actions
+
+- Run unit tests and integration tests (written in Rust).
+- Install `pdflatex` by downloading the `texlive-small` docker image then
+  linking to it. `texlive-small` exists because there are no GitHub Action
+  runner images that come with LaTeX pre-installed, and installing even the
+  minimum LaTeX configuration takes unrealistically long for CI/CD runs.
+- Build the entire book's PDF.
+- Check that all files are formatted, using `latexindent`.
+- Upload build assets to the `pdf` branch, and if it's a SemVer tag, then upload
+  the assets to the release assets.
+
+## Development Server
+
+1. User specifies a preset to build and watch.
+2. Any time a `*.tex` file changes, the server re-runs the build.
+
+This requires the external crate `notify`, and also a (locally written)
+debouncer.

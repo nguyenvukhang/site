@@ -18,7 +18,7 @@ body {
  */
 pre,
 code {
-  font-size: 90%;
+  font-size: 0.9rem;
   letter-spacing: -0.35px;
 }
 pre {
@@ -36,13 +36,15 @@ a {
   @apply text-ac0 decoration-ac1 decoration-2 hover:underline;
 }
 
-/**
- * Lists:
- * get them to work as expected
- */
+/* First-layer lists. Those that interact with other paragraphs. */
+div > ul,
+div > ol {
+  @apply list-outside marker:text-ac1 mb-4;
+}
+/* Nested lists. */
 ul,
 ol {
-  @apply list-outside marker:text-ac1 mb-4;
+  @apply mb-1;
 }
 ul {
   @apply list-disc; /* so that all the discs will be the same */
@@ -62,11 +64,6 @@ summary {
 /* Summary (disclosure blocks) */
 summary {
   cursor: pointer;
-}
-
-/* Blockquotes */
-blockquote {
-  @apply mb-4 border-l-4 border-l-neutral-200 pl-5;
 }
 
 /* Custom selection colors */
