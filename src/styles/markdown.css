@@ -70,3 +70,7 @@ ul.toc {
 ul.toc > li > a {
   @apply text-fg1 decoration-neutral-400 decoration-1;
 }
+
+pre > p {
+  @apply my-0;
+}

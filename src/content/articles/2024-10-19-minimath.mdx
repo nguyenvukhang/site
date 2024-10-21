@@ -153,18 +153,19 @@ pdflatex
 
 It will enter a [REPL][repl] that looks like this,
 
-```
+{/* prettier-ignore */}
+<pre class='overflow-x-hidden'>
 This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex)
  restricted \write18 enabled.
 **
-```
+</pre>
 
 where you can start typing in what would have been the contents of
 `one-shot-job.tex`. After you've done all that, the screen should look something
 like this:
 
 {/* prettier-ignore */}
-<pre class='text-neutral-300'>
+<pre class='text-neutral-300 overflow-x-hidden'>
 This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex)
 {' '}restricted \write18 enabled.
 **<span class='text-fg0'>\documentclass\{article}</span>
@@ -340,7 +341,7 @@ were to use some serialized form of the theorem's name (e.g. `taylors-theorem`),
 or an index number (e.g. `T1024` or even `T1.2.4`):
 
 {/* prettier-ignore */}
-<pre>
+<pre class='overflow-x-hidden'>
 {'...'} By \href\{<span class='text-ac0'>b90111f</span>}\{Taylor's Theorem}, for $t>0$ there exists {'...'}
 </pre>
 
@@ -395,20 +396,20 @@ be used for navigation or obtaining the label ID quickly.
 
 {/* prettier-ignore */}
 <div>
-<pre class='text-neutral-500'>
+<pre class='text-neutral-500 overflow-x-scroll'>
 ╭────────────────────────────── Results ───────────────────────────────╮
 │                                                                      │
 │                                                                      │
-│  [l/NOU] Proposition: Acceptance of full step-size in glo<span class='underline text-ac0'>b</span>ali<span class='underline text-ac0'>z</span>ed Newt│
-│  [l/NMA] Theorem: Conditions for inverti<span class='underline text-ac0'>b</span>le R in QR factori<span class='underline text-ac0'>z</span>ation    │
-│  [l/NOU] Algorithm: Glo<span class='underline text-ac0'>b</span>ali<span class='underline text-ac0'>z</span>ed Newton's method for unconstrained opti│
-│  [l/CAL] Theorem: Lei<span class='underline text-ac0'>b</span>ni<span class='underline text-ac0'>z</span> integral rule                              │
-│  [l/REA] Theorem: Sequence converging a<span class='underline text-ac0'>b</span>solutely to <span class='underline text-ac0'>z</span>ero also converg│
-│  [l/STC] Proposition: Proba<span class='underline text-ac0'>b</span>ility of nothing is <span class='underline text-ac0'>z</span>ero                 │
-│  [l/LNA] Theorem: Uniqueness of <span class='underline text-ac0'>b</span>asis si<span class='underline text-ac0'>z</span>e                           │
-│  [l/REA] Theorem: <span class='underline text-ac0'>B</span>ol<span class='underline text-ac0'>z</span>ano-Weierstrass Theorem                        │
-│  [l/LNA] Lemma: Gram-Schmidt on a <span class='underline text-ac0'>b</span>asis does not produce <span class='underline text-ac0'>z</span>eros       │
-│  [l/FUN] Lemma: <span class='underline text-ac0'>B</span>ilinear forms send <span class='underline text-ac0'>z</span>eros to zeros                   │
+│  [l/NOU] Proposition: Acceptance of full step-size in glo<span class='underline text-ac0'>b</span>ali<span class='underline text-ac0'>z</span>ed Newt│{' '}
+│  [l/NMA] Theorem: Conditions for inverti<span class='underline text-ac0'>b</span>le R in QR factori<span class='underline text-ac0'>z</span>ation    │{' '}
+│  [l/NOU] Algorithm: Glo<span class='underline text-ac0'>b</span>ali<span class='underline text-ac0'>z</span>ed Newton's method for unconstrained opti│{' '}
+│  [l/CAL] Theorem: Lei<span class='underline text-ac0'>b</span>ni<span class='underline text-ac0'>z</span> integral rule                              │{' '}
+│  [l/REA] Theorem: Sequence converging a<span class='underline text-ac0'>b</span>solutely to <span class='underline text-ac0'>z</span>ero also converg│{' '}
+│  [l/STC] Proposition: Proba<span class='underline text-ac0'>b</span>ility of nothing is <span class='underline text-ac0'>z</span>ero                 │{' '}
+│  [l/LNA] Theorem: Uniqueness of <span class='underline text-ac0'>b</span>asis si<span class='underline text-ac0'>z</span>e                           │{' '}
+│  [l/REA] Theorem: <span class='underline text-ac0'>B</span>ol<span class='underline text-ac0'>z</span>ano-Weierstrass Theorem                        │{' '}
+│  [l/LNA] Lemma: Gram-Schmidt on a <span class='underline text-ac0'>b</span>asis does not produce <span class='underline text-ac0'>z</span>eros       │{' '}
+│  [l/FUN] Lemma: <span class='underline text-ac0'>B</span>ilinear forms send <span class='underline text-ac0'>z</span>eros to zeros                   │{' '}
 ╰──────────────────────────────────────────────────────────────────────╯
 ╭────────────────────────────── Theorems ──────────────────────────────╮
 │> <span class='text-ac0'>bz</span>                                                         10 / 1166│
