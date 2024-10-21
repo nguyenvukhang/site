@@ -58,3 +58,19 @@ blockquote {
   m-0 px-4
   text-fg1;
 }
+
+li > p {
+  @apply p-0 m-0;
+}
+
+/* Table of contents */
+ul.toc {
+  @apply text-sm marker:text-neutral-300;
+}
+ul.toc > li > a {
+  @apply text-fg1 decoration-neutral-400 decoration-1;
+}
+
+pre > p {
+  @apply my-0;
+}

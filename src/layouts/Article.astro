@@ -15,7 +15,7 @@ const { title, description, pubDate } = Astro.props
 <Main>
   <Section>
     <div class='mb-8'>
-      <div class="mt-8 font-semibold text-2xl mb-2">{title}</div>
+      <div id='article-title' class="mt-8 font-semibold text-2xl mb-2">{title}</div>
       <FormattedDate date={pubDate} class='font-mono text-fg1' />
     </div>
     <slot />
