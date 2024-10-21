@@ -39,12 +39,12 @@ a {
 /* First-layer lists. Those that interact with other paragraphs. */
 div > ul,
 div > ol {
-  @apply list-outside marker:text-ac1 mb-4;
+  @apply list-outside mb-4;
 }
 /* Nested lists. */
 ul,
 ol {
-  @apply mb-1;
+  @apply mb-1 marker:text-ac1;
 }
 ul {
   @apply list-disc; /* so that all the discs will be the same */
