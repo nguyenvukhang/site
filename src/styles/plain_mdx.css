@@ -1,0 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-ac0
+}
