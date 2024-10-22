@@ -1,5 +1,5 @@
 import '../styles/plain_mdx.css'
-import Section from '../layouts/Section.astro'
+import Wiki from '../layouts/Wiki.astro'
 
 # hii wha tis up
 
@@ -7,6 +7,10 @@ this is aol lasdjkf
 
 This is pretty cool
 
-export default function Layout({ children }) {
-  return <Section>{children}</Section>
+export default function Layout(props) {
+  const toc = [
+    ['The Vision', '#the-vision'],
+    ['The Implementation', '#the-implementation'],
+  ]
+  return <Wiki toc={toc}>{props.children}</Wiki>
 }
