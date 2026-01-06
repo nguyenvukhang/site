@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import solid from '@astrojs/solid-js'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 
 const ARTICLES_CONTENT_DIR = 'content/articles'
 
@@ -35,12 +35,13 @@ export default defineConfig({
     remarkPlugins: [mdxDatePlugin],
     shikiConfig: { theme: 'github-light' },
   },
+  vite: {
+    plugins: [
+      tailwindcss({
+        config: { applyAstroPreset: false, applyBaseStyles: true },
+      }),
+    ],
+  },
   site: 'https://example.com',
-  integrations: [
-    solid(),
-    mdx(),
-    tailwind({
-      config: { applyAstroPreset: false, applyBaseStyles: true },
-    }),
-  ],
+  integrations: [solid(), mdx()],
 })

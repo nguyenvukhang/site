@@ -1,76 +1,79 @@
-h1,
-h2,
-h3 {
-  @apply mt-8 mb-2 font-semibold;
-}
+@reference "./global.css"
+@layer utility {
+  h1,
+  h2,
+  h3 {
+    @apply mt-8 mb-2 font-semibold;
+  }
 
-h1 {
-  @apply text-xl;
-}
+  h1 {
+    @apply text-xl;
+  }
 
-h2 {
-  @apply text-lg;
-}
+  h2 {
+    @apply text-lg;
+  }
 
-h3 {
-  @apply text-base;
-}
+  h3 {
+    @apply text-base;
+  }
 
-/* add vertical space after lists */
-div > ul > li:last-child {
-  @apply mb-6;
-}
+  /* add vertical space after lists */
+  div > ul > li:last-child {
+    @apply mb-6;
+  }
 
-kbd {
-  background: rgb(220, 220, 220);
-  color: rgb(10, 10, 10);
-  font-weight: 600;
-  font-size: smaller;
-  border-radius: 4px;
-  box-shadow: 0 3px rgb(189, 189, 189);
-  padding: 1px 3px 0;
-}
+  kbd {
+    background: rgb(220, 220, 220);
+    color: rgb(10, 10, 10);
+    font-weight: 600;
+    font-size: smaller;
+    border-radius: 4px;
+    box-shadow: 0 3px rgb(189, 189, 189);
+    padding: 1px 3px 0;
+  }
 
-hr {
-  @apply text-fg0/20 my-7;
-}
+  hr {
+    @apply text-fg0/20 my-7;
+  }
 
-p > code,
-li > code {
-  @apply bg-neutral-200/70 rounded-sm px-0.5;
-}
+  p > code,
+  li > code {
+    @apply bg-neutral-200/70 rounded-sm px-0.5;
+  }
 
-h1::before {
-  content: '#';
-  @apply text-ac1 pr-1.5 text-base;
-}
-h2::before {
-  content: '##';
-  @apply text-ac1 pr-1.5 text-base;
-}
-h3::before {
-  content: '###';
-  @apply text-ac1 pr-1.5 text-base;
-}
+  h1::before {
+    content: '#';
+    @apply text-ac1 pr-1.5 text-base;
+  }
+  h2::before {
+    content: '##';
+    @apply text-ac1 pr-1.5 text-base;
+  }
+  h3::before {
+    content: '###';
+    @apply text-ac1 pr-1.5 text-base;
+  }
 
-blockquote {
-  @apply border-solid border-0 border-l-[3px] border-ac1
+  blockquote {
+    @apply border-solid border-0 border-l-[3px] border-ac1
   m-0 px-4
   text-fg1;
-}
+  }
 
-li > p {
-  @apply p-0 m-0;
-}
+  li > p {
+    @apply p-0 m-0;
+  }
 
-/* Table of contents */
-ul.toc {
-  @apply text-sm marker:text-neutral-300;
-}
-ul.toc > li > a {
-  @apply text-fg1 decoration-neutral-400 decoration-1;
-}
+  /* Table of contents */
+  ul.toc {
+    @apply text-sm marker:text-neutral-300;
+  }
+  ul.toc > li > a {
+    @apply text-fg1 decoration-neutral-400 decoration-1;
+  }
 
-pre > p {
-  @apply my-0;
+  pre > p {
+    @apply my-0;
+  }
 }

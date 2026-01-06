@@ -1,75 +1,77 @@
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config "../../tailwind.config.cjs";
 
-body {
-  /* global config */
-  font-family: system-ui, Helvetica, sans-serif;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+@layer utilities {
+  body {
+    /* global config */
+    font-family: system-ui, Helvetica, sans-serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 
-  /* forces scrollbar to always appear to prevent horizontal jerk */
-  overflow-y: scroll;
+    /* forces scrollbar to always appear to prevent horizontal jerk */
+    overflow-y: scroll;
 
-  @apply text-base text-fg0 leading-7;
-}
+    @apply text-base text-fg0 leading-7;
+  }
 
-/**
- * code blocks
- */
-pre,
-code {
-  font-size: 0.9rem;
-  letter-spacing: -0.35px;
-}
-pre {
-  line-height: 1.3em;
-  @apply rounded-md py-3 px-4 border border-solid border-neutral-200;
-}
+  /**
+   * code blocks
+   */
+  pre,
+  code {
+    font-size: 0.9rem;
+    letter-spacing: -0.35px;
+  }
+  pre {
+    line-height: 1.3em;
+    @apply rounded-md py-3 px-4 border border-solid border-neutral-200;
+  }
 
-/* Fix the parsing bug in Astro. */
-pre.astro-code > code > span:last-child {
-  @apply hidden;
-}
+  /* Fix the parsing bug in Astro. */
+  pre.astro-code > code > span:last-child {
+    @apply hidden;
+  }
 
-/* links: clickable */
-a {
-  @apply text-ac0 decoration-ac1 decoration-2 hover:underline;
-}
+  /* links: clickable */
+  a {
+    @apply text-ac0 decoration-ac1 decoration-2 hover:underline;
+  }
 
-/* First-layer lists. Those that interact with other paragraphs. */
-div > ul,
-div > ol {
-  @apply list-outside mb-4;
-}
-/* Nested lists. */
-ul,
-ol {
-  @apply mb-1 marker:text-ac1;
-}
-ul {
-  @apply list-disc; /* so that all the discs will be the same */
-  /* without this, there will be hollow circles and squares in nested lists */
-}
-ul > li,
-ol > li {
-  @apply pl-2;
-}
+  /* First-layer lists. Those that interact with other paragraphs. */
+  div > ul,
+  div > ol {
+    @apply list-outside mb-4;
+  }
+  /* Nested lists. */
+  ul,
+  ol {
+    @apply mb-1 marker:text-ac1;
+  }
+  ul {
+    @apply list-disc; /* so that all the discs will be the same */
+    /* without this, there will be hollow circles and squares in nested lists */
+  }
+  ul > li,
+  ol > li {
+    @apply pl-2;
+  }
 
-/* Paragraphs */
-p,
-summary {
-  @apply mb-3;
-}
+  /* Paragraphs */
+  p,
+  summary {
+    @apply mb-3;
+  }
 
-/* Summary (disclosure blocks) */
-summary {
-  cursor: pointer;
-}
+  /* Summary (disclosure blocks) */
+  summary {
+    cursor: pointer;
+  }
 
-/* Custom selection colors */
-::selection {
-  @apply bg-selection; /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-  @apply bg-selection; /* Gecko Browsers */
+  /* Custom selection colors */
+  ::selection {
+    @apply bg-selection; /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    @apply bg-selection; /* Gecko Browsers */
+  }
 }
