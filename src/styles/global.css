@@ -28,9 +28,9 @@
   }
 
   /* Fix the parsing bug in Astro. */
-  pre.astro-code > code > span:last-child {
-    @apply hidden;
-  }
+  /* pre.astro-code > code > span:last-child { */
+  /*   @apply hidden; */
+  /* } */
 
   /* links: clickable */
   a {
