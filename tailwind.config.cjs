@@ -18,7 +18,6 @@ function midpoint(x, y) {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{astro,js,jsx,md,mdx,ts,tsx}'],
   theme: {
     colors: {
       fg0: MAIN,
@@ -29,6 +28,5 @@ module.exports = {
       neutral: colors.neutral,
     },
   },
-  plugins: [],
   corePlugins: { preflight: false },
 }
