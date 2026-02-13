@@ -26,6 +26,7 @@ const posts = await getCollection('articles').then((v) =>
 
 <Main>
   <Section>
+    <p class='mb-8'>Articles by me. Thank you for stopping by!</p>
     {posts.map((post) => <ArticleCard {...post} />)}
   </Section>
 </Main>

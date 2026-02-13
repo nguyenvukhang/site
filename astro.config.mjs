@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import solid from '@astrojs/solid-js'
 import tailwindcss from '@tailwindcss/vite'
+import icon from 'astro-icon'
 
 const ARTICLES_CONTENT_DIR = 'content/articles'
 
@@ -10,9 +11,10 @@ function mdxDatePlugin() {
     /** @param {Date} d */
     const valid = (d) => d instanceof Date && !isNaN(d)
 
-    console.log(file.path)
+    /** @type string */
+    const path = file.path
 
-    if (file.path.includes(ARTICLES_CONTENT_DIR)) {
+    if (path.includes(ARTICLES_CONTENT_DIR)) {
       const filenameDate = new Date(file.stem.split('-').slice(0, 3).join('-'))
       const metaDate = new Date(
         Date.parse(`${file.data.astro.frontmatter.pubDate} 00:00:00 GMT`),
@@ -45,5 +47,5 @@ export default defineConfig({
     ],
   },
   site: 'https://example.com',
-  integrations: [solid(), mdx()],
+  integrations: [solid(), mdx(), icon()],
 })
