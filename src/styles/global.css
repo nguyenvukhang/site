@@ -1,9 +1,6 @@
 @import 'tailwindcss';
 @config "../../tailwind.config.cjs";
 
-@import './IBMPlexSans-Text.css';
-@import './IBMPlexSans-Light.css';
-
 @font-face {
   font-family: 'JetBrains';
   src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
@@ -11,27 +8,27 @@
   font-style: normal;
 }
 
-/*
- *
-    Arial (sans-serif)
-    Verdana (sans-serif)
-    Tahoma (sans-serif)
-    Trebuchet MS (sans-serif)
-    Times New Roman (serif)
-    Georgia (serif)
-    Garamond (serif)
-    Courier New (monospace)
-    Brush Script MT (cursive)
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/fonts/IBMPlexSans-VariableFont_wdth,wght.ttf') format('woff2');
+  font-style: normal;
+}
 
- */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/fonts/IBMPlexSans-Italic-VariableFont_wdth,wght.ttf')
+    format('woff2');
+  font-style: italic;
+}
+
 @layer components {
   body {
     /* global config */
-    font-family: 'JetBrains';
+    font-family: 'IBM Plex Sans';
     /* font-family: sans-serif; */
 
     /* font-family: 'IBM Plex Sans'; */
-    font-weight: 300;
+    font-weight: 375;
     word-wrap: break-word;
     overflow-wrap: break-word;
 
