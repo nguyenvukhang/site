@@ -48,7 +48,7 @@
 
   /* links: clickable */
   a {
-    @apply text-ac0 decoration-ac1 decoration-2 hover:underline focus:underline;
+    @apply text-ac0 decoration-ac1 decoration-2 hover:underline active:underline;
   }
 
   /* First-layer lists. Those that interact with other paragraphs. */
