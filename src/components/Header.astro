@@ -16,10 +16,6 @@ const subtitle = () => {
   return ''
 }
 const IS_ROOT = Astro.url.pathname === '/'
-
-const a_class = ['leading-7 no-underline hover:underline active:underline mx-6']
-const s_class = ['select-none text-fg0/10 pb-0.5']
-// class:list={['flex items-start mt-16 py-6 mb-0', 'flex-col', 'sm:flex-row']}
 ---
 
 <div class:list={['mt-12 mb-8 p-0', 'flex flex-row items-center space-x-4']}>
@@ -48,5 +44,5 @@ const s_class = ['select-none text-fg0/10 pb-0.5']
       </>
     )
   }
-  <h1 class="text-[19px] font-light">{SITE_TITLE}</h1>
+  <div class="text-[19px] font-light">{SITE_TITLE}</div>
 </div>

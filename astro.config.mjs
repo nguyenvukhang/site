@@ -2,7 +2,6 @@ import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import solid from '@astrojs/solid-js'
 import tailwindcss from '@tailwindcss/vite'
-import icon from 'astro-icon'
 
 const ARTICLES_CONTENT_DIR = 'content/articles'
 
@@ -47,5 +46,5 @@ export default defineConfig({
     ],
   },
   site: 'https://example.com',
-  integrations: [solid(), mdx(), icon()],
+  integrations: [solid(), mdx()],
 })
