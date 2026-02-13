@@ -10,6 +10,8 @@ function mdxDatePlugin() {
     /** @param {Date} d */
     const valid = (d) => d instanceof Date && !isNaN(d)
 
+    console.log(file.path)
+
     if (file.path.includes(ARTICLES_CONTENT_DIR)) {
       const filenameDate = new Date(file.stem.split('-').slice(0, 3).join('-'))
       const metaDate = new Date(
