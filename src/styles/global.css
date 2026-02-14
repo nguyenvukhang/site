@@ -55,6 +55,10 @@
     margin-left: -0.2em;
   }
 
+  a[href^='http']:not([href^='https://nguyenvukhang.com/'], .hidden-link) {
+    padding-right: 0.7ch;
+  }
+
   /* First-layer lists. Those that interact with other paragraphs. */
   div > ul,
   div > ol {
