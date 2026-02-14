@@ -1,20 +1,10 @@
 @import 'tailwindcss';
 @config "../../tailwind.config.cjs";
 
-@import './IBMPlexSansVar-Italic.css';
-@import './IBMPlexSansVar-Roman.css';
-
-@font-face {
-  font-family: 'JetBrains';
-  font-style: normal;
-  font-weight: normal;
-  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-}
-
 @layer components {
   body {
     /* global config */
-    font-family: 'IBM Plex Sans Var';
+    font-family: 'IBM Plex Sans', sans-serif;
     /* font-family: sans-serif; */
 
     /* font-family: 'IBM Plex Sans'; */
@@ -33,6 +23,7 @@
    */
   pre,
   code {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     letter-spacing: -0.35px;
   }
