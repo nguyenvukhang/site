@@ -44,6 +44,17 @@
       active:sm:bg-transparent active:sm:rounded-none;
   }
 
+  a[href^='http']:not(
+      [href^='https://nguyenvukhang.com/'],
+      .hidden-link
+    )::after {
+    position: absolute;
+    text-decoration: none;
+    content: '⌝' / ', external';
+    margin-top: -0.1em;
+    margin-left: -0.2em;
+  }
+
   /* First-layer lists. Those that interact with other paragraphs. */
   div > ul,
   div > ol {
