@@ -41,14 +41,16 @@
     @apply rounded-md py-3 px-4 border border-solid border-neutral-200;
   }
 
-  /* Fix the parsing bug in Astro. */
-  /* pre.astro-code > code > span:last-child { */
-  /*   @apply hidden; */
-  /* } */
-
   /* links: clickable */
   a {
-    @apply text-ac0 decoration-ac1 decoration-2 hover:underline active:underline;
+    @apply text-ac0
+      /* Underline styles. */
+      decoration-ac2 decoration-2
+      /* Modes. */
+      hover:underline active:underline
+      /* On smaller screens, show a gray box when the link is clicked. */
+      active:bg-fg2 active:rounded-xs
+      active:sm:bg-transparent active:sm:rounded-none;
   }
 
   /* First-layer lists. Those that interact with other paragraphs. */
