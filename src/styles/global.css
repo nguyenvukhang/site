@@ -6,9 +6,9 @@
 
 @font-face {
   font-family: 'JetBrains';
-  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
 }
 
 @layer components {
@@ -74,11 +74,11 @@
   ul > li,
   ol > li {
     @apply pl-2;
+    /* Adds spacing between the bullet point and the first word of the bullet list entry. */
   }
 
   /* Paragraphs */
-  p,
-  summary {
+  p {
     @apply mb-3;
   }
 
