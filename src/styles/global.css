@@ -1,9 +1,9 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @config "../../tailwind.config.cjs";
 
 @theme {
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "IBM Plex Sans", sans-serif;
 }
 
 @layer components {
@@ -23,18 +23,15 @@
    */
   pre,
   code {
-    font-size: 0.9rem;
-    letter-spacing: -0.35px;
-  }
-  pre {
-    line-height: 1.3em;
-    @apply rounded-md py-3 px-4 border border-solid border-neutral-200;
+    /* (IBM Plex Sans × JetBrains)-specific mods */
+    font-size: 0.9em;
+    letter-spacing: -0.01em;
   }
 
   /* links: clickable */
   a {
     /* On some devices, show a gray box when the link is clicked. */
-    -webkit-tap-highlight-color: theme('colors.fg2');
+    -webkit-tap-highlight-color: theme("colors.fg2");
 
     @apply text-ac0
       /* Underline styles. */
@@ -43,18 +40,18 @@
       hover:underline;
   }
 
-  a[href^='http']:not(
-      [href^='https://nguyenvukhang.com/'],
+  a[href^="http"]:not(
+      [href^="https://nguyenvukhang.com/"],
       .hidden-link
     )::after {
     position: absolute;
     text-decoration: none;
-    content: '⌝' / ', external';
+    content: "⌝" / ", external";
     margin-top: -0.1em;
     margin-left: -0.2em;
   }
 
-  a[href^='http']:not([href^='https://nguyenvukhang.com/'], .hidden-link) {
+  a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link) {
     padding-right: 0.7ch;
   }
 
