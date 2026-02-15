@@ -57,8 +57,8 @@
 
   blockquote {
     @apply border-solid border-0 border-l-[3px] border-ac1
-  m-0 px-4
-  text-fg1;
+    m-0 px-4
+    text-fg1;
   }
 
   li > p {
@@ -79,8 +79,8 @@
 
   pre {
     line-height: 1.3em;
-    @apply rounded-md py-3 px-4
+    @apply rounded-md py-3 px-4;
       /* background. */
-      bg-fg4;
+      /* bg-fg4; */
   }
 }

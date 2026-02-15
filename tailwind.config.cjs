@@ -16,22 +16,27 @@ function midpoint(x, y, r = 0.5) {
   return `#${m(R)}${m(G)}${m(B)}`
 }
 
+const myColors = {
+  // Foreground colors.
+  fg0: MAIN,
+  fg1: midpoint(MAIN, WHITE, 0.5),
+  fg2: midpoint(MAIN, WHITE, 0.2),
+  fg3: midpoint(MAIN, WHITE, 0.075),
+  fg4: midpoint(MAIN, WHITE, 0.03),
+
+  // Accent colors.
+  ac0: ACCENT,
+  ac1: midpoint(ACCENT, WHITE, 0.5),
+  ac2: midpoint(ACCENT, WHITE, 0.2),
+  ac3: midpoint(ACCENT, WHITE, 0.075),
+  selection: colors.amber[200],
+  // neutral: colors.neutral,
+}
+
+console.log(myColors)
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  theme: {
-    colors: {
-      fg0: MAIN,
-      fg1: midpoint(MAIN, WHITE, 0.5),
-      fg2: midpoint(MAIN, WHITE, 0.2),
-      fg3: midpoint(MAIN, WHITE, 0.075),
-      fg4: midpoint(MAIN, WHITE, 0.03),
-      ac0: ACCENT,
-      ac1: midpoint(ACCENT, WHITE, 0.5),
-      ac2: midpoint(ACCENT, WHITE, 0.2),
-      ac3: midpoint(ACCENT, WHITE, 0.075),
-      selection: colors.amber[200],
-      // neutral: colors.neutral,
-    },
-  },
+  theme: { colors: myColors },
   corePlugins: { preflight: false },
 }
