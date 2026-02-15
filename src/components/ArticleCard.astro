@@ -1,5 +1,5 @@
 ---
-type Props = CollectionEntry<'articles'>['data'] & { slug: string }
+type Props = CollectionEntry<"articles">["data"] & { slug: string }
 
 const { pubDate, title, description, slug } = Astro.props
 ---
@@ -7,9 +7,9 @@ const { pubDate, title, description, slug } = Astro.props
 <!-- <div class:list={['grid grid-cols-2 grid-cols-[144px_1fr]', '']}> -->
 <div
   class:list={[
-    'grid grid-cols-2 items-baseline',
-    'grid-cols-[100px_1fr]',
-    'sm:grid-cols-[120px_1fr]',
+    "grid grid-cols-2 items-baseline",
+    "grid-cols-[100px_1fr]",
+    "sm:grid-cols-[120px_1fr]",
   ]}
 >
   <div class="text-sm text-fg1 font-mono whitespace-nowrap">
@@ -17,7 +17,7 @@ const { pubDate, title, description, slug } = Astro.props
   </div>
   <a
     href={`/articles/${slug}/`}
-    class:list={['text-fg0', 'leading-5', 'sm:leading-7']}>{title}</a
+    class:list={["text-fg0", "leading-5", "sm:leading-7"]}>{title}</a
   >
   <div></div>
   <div class="italic text-sm text-fg1">{description}</div>

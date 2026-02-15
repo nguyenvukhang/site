@@ -1,23 +1,23 @@
 ---
-import { SITE_TITLE } from '../consts'
-import Navigation from './Navigation.astro'
-import { Logo } from './icons.tsx'
+import { SITE_TITLE } from "../consts"
+import Navigation from "./Navigation.astro"
+import { Logo } from "./icons.tsx"
 
 const sw = (x) => Astro.url.pathname.startsWith(x)
 const subtitles = {
-  '/articles': 'is a writer.',
-  '/resume': 'is hard at work.',
-  '/links': 'finds cool stuff.',
-  '': '',
+  "/articles": "is a writer.",
+  "/resume": "is hard at work.",
+  "/links": "finds cool stuff.",
+  "": "",
 }
 const subtitle = () => {
   for (let [k, v] of Object.entries(subtitles)) if (sw(k)) return v
-  return ''
+  return ""
 }
-const IS_ROOT = Astro.url.pathname === '/'
+const IS_ROOT = Astro.url.pathname === "/"
 ---
 
-<div class:list={['mt-12 mb-8 p-0', 'flex flex-row items-center space-x-4']}>
+<div class:list={["mt-12 mb-8 p-0", "flex flex-row items-center space-x-4"]}>
   {
     IS_ROOT ? (
       <Logo height="42" class="stroke-fg2 mb-2" />

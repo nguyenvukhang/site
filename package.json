@@ -8,6 +8,7 @@
     "build": "astro build",
     "start": "astro preview",
     "astro": "astro",
+    "format": "prettier -w **/*.{astro,mdx,js,ts,jsx,tsx,json}",
     "update": "ncu -u"
   },
   "dependencies": {
@@ -26,7 +27,7 @@
   "prettier": {
     "tabWidth": 2,
     "semi": false,
-    "singleQuote": true,
+    "singleQuote": false,
     "plugins": [
       "prettier-plugin-astro"
     ],

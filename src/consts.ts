@@ -1,5 +1,5 @@
-export const SITE_TITLE = 'Khang Nguyen'
-export const GITHUB_USER = 'nguyenvukhang'
-export const GITNU_DOWNLOADS = '67+'
-export const STATC_DOWNLOADS = '9.7k+'
-export const NVIM_TOGGLER_STARS = '190'
+export const SITE_TITLE = "Khang Nguyen"
+export const GITHUB_USER = "nguyenvukhang"
+export const GITNU_DOWNLOADS = "67+"
+export const STATC_DOWNLOADS = "9.7k+"
+export const NVIM_TOGGLER_STARS = "190"

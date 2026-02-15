@@ -1,9 +1,9 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import Main from './Main.astro'
-import Section from './Section.astro'
+import type { CollectionEntry } from "astro:content"
+import Main from "./Main.astro"
+import Section from "./Section.astro"
 
-type Props = CollectionEntry<'articles'>['data']
+type Props = CollectionEntry<"articles">["data"]
 
 const { title, description, pubDate } = Astro.props
 ---

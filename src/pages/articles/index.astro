@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content'
-import ArticleCard from '../../components/ArticleCard.astro'
-import Main from '../../layouts/Main.astro'
-import Section from '../../layouts/Section.astro'
+import { getCollection } from "astro:content"
+import ArticleCard from "../../components/ArticleCard.astro"
+import Main from "../../layouts/Main.astro"
+import Section from "../../layouts/Section.astro"
 
 // get value of comparison
 function cmp(a, b) {
@@ -13,7 +13,7 @@ function cmp(a, b) {
   // sort by title in alphabetical order.
   return a.data.title.localeCompare(b.data.title)
 }
-const posts = await getCollection('articles').then((v) =>
+const posts = await getCollection("articles").then((v) =>
   v.sort(cmp).map((v) => {
     v.data.slug = v.slug
     return v.data
@@ -24,7 +24,7 @@ const posts = await getCollection('articles').then((v) =>
 <Main>
   <Section>
     <p class="mb-8">Articles by me. Thank you for stopping by!</p>
-    <div class:list={['space-y-7', 'sm:space-y-6']}>
+    <div class:list={["space-y-7", "sm:space-y-6"]}>
       {posts.map((post) => <ArticleCard {...post} />)}
     </div>
   </Section>
