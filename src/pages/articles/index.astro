@@ -1,32 +1,29 @@
 ---
 import { getCollection } from 'astro:content'
-import FormattedDate from '../../components/FormattedDate.astro'
 import ArticleCard from '../../components/ArticleCard.astro'
 import Main from '../../layouts/Main.astro'
 import Section from '../../layouts/Section.astro'
 
 // get value of comparison
 function cmp(a, b) {
-  const a_date = a.data.pubDate.valueOf()
-  const b_date = b.data.pubDate.valueOf()
+  const a_date = a.data.pubDate
+  const b_date = b.data.pubDate
   // sort by most recent first.
-  if (a_date != b_date) return b_date - a_date
-  // // sort by title in alphabetical order.
+  if (a_date != b_date) return b_date.localeCompare(a_date)
+  // sort by title in alphabetical order.
   return a.data.title.localeCompare(b.data.title)
 }
 const posts = await getCollection('articles').then((v) =>
-  v
-    .sort((a, b) => cmp(a, b))
-    .map((v) => {
-      v.data.slug = v.slug
-      return v.data
-    }),
+  v.sort(cmp).map((v) => {
+    v.data.slug = v.slug
+    return v.data
+  }),
 )
 ---
 
 <Main>
   <Section>
-    <p class='mb-8'>Articles by me. Thank you for stopping by!</p>
+    <p class="mb-8">Articles by me. Thank you for stopping by!</p>
     {posts.map((post) => <ArticleCard {...post} />)}
   </Section>
 </Main>

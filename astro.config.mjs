@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 const ARTICLES_CONTENT_DIR = 'content/articles'
 
-function mdxDatePlugin() {
+function mdxCheckFilenameDate() {
   return function (_, file) {
     /** @type string */
     if (file.path.includes(ARTICLES_CONTENT_DIR)) {
@@ -24,7 +24,7 @@ export default defineConfig({
     port: 3000,
   },
   markdown: {
-    remarkPlugins: [mdxDatePlugin],
+    remarkPlugins: [mdxCheckFilenameDate],
     shikiConfig: { theme: 'github-light' },
   },
   vite: {
