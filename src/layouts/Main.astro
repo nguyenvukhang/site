@@ -24,7 +24,7 @@ import Section from './Section.astro'
 
   <body ontouchstart="">
     <Section>
-      <Header />
+      <Header prevpage={Astro.props.prevpage || '/'} />
     </Section>
     <slot />
     <Section>

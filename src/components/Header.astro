@@ -26,7 +26,7 @@ const IS_ROOT = Astro.url.pathname === '/'
         <a
           style="height:28px;width:28px;min-height:28px;min-width:28px"
           class="flex justify-center items-center bg-fg3 hover:bg-fg2 hover:cursor-pointer rounded-full"
-          href="/"
+          href={Astro.props.prevpage}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
