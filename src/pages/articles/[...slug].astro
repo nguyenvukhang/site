@@ -1,7 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content'
 import Article from '../../layouts/Article.astro'
-import '../../styles/markdown.css'
 
 export async function getStaticPaths() {
   const posts = await getCollection('articles')
