@@ -6,10 +6,9 @@ const articles = defineCollection({
     title: z.string(),
     description: z.string(),
     tags: z.array(z.string()).optional(),
-    pubDate: z
-      .string()
-      .or(z.date())
-      .transform((val) => new Date(val ? val : '')),
+    // Parses with YYYY-MM-DD format.
+    // https://v3.zod.dev/?id=dates
+    pubDate: z.string().date(),
   }),
 })
 
