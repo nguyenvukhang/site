@@ -1,26 +1,48 @@
 ---
-import Main from '../layouts/Main.astro'
-import Section from '../layouts/Section.astro'
-import Project from '../components/Project.astro'
-import * as c from '../consts.ts'
+import Main from "../layouts/Main.astro"
+import Section from "../layouts/Section.astro"
+import Project from "../components/Project.astro"
+import * as c from "../consts.ts"
+
+// The exact time of my last final.
+//const graduate = new Date('2025-12-03T11:00:00.000+08:00')
+//const today = new Date()
+//const monthsSinceGraudate =
+//  (today.getFullYear() - graduate.getFullYear()) * 12 -
+//  graduate.getMonth() +
+//  today.getMonth()
 ---
 
 <Main>
   <Section>
     <p>
-      I graduated from at NUS &#127480;&#127468;, where I was Teaching Assistant
-      for Level-2 undergrad CS classes <b>Data Structures &amp; Algorithms</b> and
-      <b>Programming Methodology 2.</b>
+      Graduated <a
+        href="https://wikipedia.org/wiki/National_University_of_Singapore"
+        >NUS</a
+      > in Dec 2025. Now holds a math degree (2<sup>nd</sup> Major CS btw), and is
+      looking for a job (cf. <a
+        href="https://github.com/nguyenvukhang/site/releases/download/v1/resume.pdf"
+        >resume</a
+      >). Helped TA for <a href="https://nusmods.com/courses/CS2030/">CS2030</a> and
+      <a href="https://nusmods.com/courses/CS2040/">CS2040</a>.
+    </p>
+
+    <p>Sleeps, codes, climbs, runs, learns cryptography.</p>
+
+    <p>
+      Life goal is to make fast, reliable, and secure software so that people
+      can enjoy modern software without needing modern hardware.
     </p>
 
     <p>
-      My ambition is to make fast and reliable software that helps people enjoy
-      modern software without needing modern hardware.
+      Keeps a <a href="/articles">small blog</a>, and a <a href="/links"
+        >list of cool websites</a
+      >.
     </p>
 
     <p>
-      Towards this goal, I've been honing my skills by coding in Rust, a
-      memory-safe language, with a focus on efficiency:
+      Does projects to solve daily-life problems and learn code in an applied
+      setting:
     </p>
 
     <div class="mb-6 space-y-4">
@@ -61,11 +83,7 @@ import * as c from '../consts.ts'
       </Project>
     </div>
 
-    <p>
-      I also explore other languages to keep my perspective open. Finding out
-      about built-in features and coding styles of other languages help reaffirm
-      and complement what I'm writing in my main language:
-    </p>
+    <p>Explores other languages to keep an open perspective:</p>
 
     <div class="mb-6 space-y-4">
       <Project

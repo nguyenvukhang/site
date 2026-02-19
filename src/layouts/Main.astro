@@ -1,13 +1,13 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import Section from './Section.astro'
+import BaseHead from "../components/BaseHead.astro"
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+import Section from "./Section.astro"
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title="nguyenvukhang" description="welcome to my blog" />
+    <BaseHead title="nguyenvukhang" description="Welcome to Khang's blog!" />
     <!-- START: Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTSP115RKH"
     ></script>
@@ -16,15 +16,15 @@ import Section from './Section.astro'
       function gtag() {
         dataLayer.push(arguments)
       }
-      gtag('js', new Date())
-      gtag('config', 'G-DTSP115RKH')
+      gtag("js", new Date())
+      gtag("config", "G-DTSP115RKH")
     </script>
     <!-- END: Google tag (gtag.js) -->
   </head>
 
   <body ontouchstart="">
     <Section>
-      <Header />
+      <Header prevpage={Astro.props.prevpage || "/"} />
     </Section>
     <slot />
     <Section>

@@ -1,4 +1,4 @@
-@import './global.css';
+@import "./global.css";
 
 @layer components {
   h1,
@@ -6,7 +6,6 @@
   h3 {
     @apply mt-8 mb-2 font-semibold;
   }
-
   h1 {
     @apply text-xl;
   }
@@ -40,26 +39,26 @@
 
   p > code,
   li > code {
-    @apply bg-neutral-200/70 rounded-sm px-0.5;
+    @apply bg-fg3 rounded-sm px-0.5;
   }
 
   h1::before {
-    content: '#';
+    content: "#";
     @apply text-ac1 pr-1.5 text-base;
   }
   h2::before {
-    content: '##';
+    content: "##";
     @apply text-ac1 pr-1.5 text-base;
   }
   h3::before {
-    content: '###';
+    content: "###";
     @apply text-ac1 pr-1.5 text-base;
   }
 
   blockquote {
     @apply border-solid border-0 border-l-[3px] border-ac1
-  m-0 px-4
-  text-fg1;
+    m-0 px-4
+    text-fg1;
   }
 
   li > p {
@@ -68,13 +67,20 @@
 
   /* Table of contents */
   ul.toc {
-    @apply text-sm marker:text-neutral-300;
+    @apply text-sm marker:text-fg2;
   }
   ul.toc > li > a {
-    @apply text-fg1 decoration-neutral-400 decoration-1;
+    @apply text-fg1 decoration-fg2 decoration-1;
   }
 
   pre > p {
     @apply my-0;
+  }
+
+  pre {
+    line-height: 1.3em;
+    @apply rounded-md py-3 px-4;
+      /* background. */
+      /* bg-fg4; */
   }
 }

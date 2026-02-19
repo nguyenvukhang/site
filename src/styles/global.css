@@ -1,13 +1,13 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @config "../../tailwind.config.cjs";
+
+@theme {
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "IBM Plex Sans", sans-serif;
+}
 
 @layer components {
   body {
-    /* global config */
-    font-family: 'IBM Plex Sans', sans-serif;
-    /* font-family: sans-serif; */
-
-    /* font-family: 'IBM Plex Sans'; */
     font-weight: 380;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -15,7 +15,7 @@
     /* forces scrollbar to always appear to prevent horizontal jerk */
     overflow-y: scroll;
 
-    @apply text-base text-fg0 leading-7;
+    @apply text-fg0 leading-7;
   }
 
   /**
@@ -23,25 +23,36 @@
    */
   pre,
   code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
-    letter-spacing: -0.35px;
-  }
-  pre {
-    line-height: 1.3em;
-    @apply rounded-md py-3 px-4 border border-solid border-neutral-200;
+    /* (IBM Plex Sans × JetBrains)-specific mods */
+    font-size: 0.9em;
+    letter-spacing: -0.01em;
   }
 
   /* links: clickable */
   a {
+    /* On some devices, show a gray box when the link is clicked. */
+    -webkit-tap-highlight-color: theme("colors.fg2");
+
     @apply text-ac0
       /* Underline styles. */
       decoration-ac2 decoration-2
       /* Modes. */
-      hover:underline active:underline
-      /* On smaller screens, show a gray box when the link is clicked. */
-      active:bg-fg2 active:rounded-xs
-      active:sm:bg-transparent active:sm:rounded-none;
+      hover:underline;
+  }
+
+  a[href^="http"]:not(
+      [href^="https://nguyenvukhang.com/"],
+      .hidden-link
+    )::after {
+    position: absolute;
+    text-decoration: none;
+    content: "⌝" / ", external";
+    margin-top: -0.1em;
+    margin-left: -0.2em;
+  }
+
+  a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link) {
+    padding-right: 0.7ch;
   }
 
   /* First-layer lists. Those that interact with other paragraphs. */
