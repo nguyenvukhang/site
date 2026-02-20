@@ -12,7 +12,7 @@ tags: [math]
 [gh-runners]: https://github.com/actions/runner-images#available-images
 [latexindent]: https://github.com/cmhughes/latexindent.pl
 [ghcr-img]: https://ghcr.io/libmath/texlive-small
-[mathjax]: https://www.mathjax.org
+[mathjax]: https://mathjax.org
 [katex]: https://katex.org
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [minimath]: /articles/2024-10-19-minimath/
@@ -97,13 +97,13 @@ that point you to where you need to go.
 After no deliberation at all, I've decided to title this project "minimath"
 after no one in particular. It's main components are:
 
-- The `minimath` binary (written in [Rust](https://www.rust-lang.org)).
+- The `minimath` binary (written in [Rust](https://rust-lang.org)).
   - CLI interface by [clap](https://github.com/clap-rs/clap).
   - Configured with [YAML](https://yaml.org).
   - Development server (live-preview PDF builds).
   - Automatic label generation.
   - Pretty-prints `pdflatex` output.
-- `texlive-small`: a [Docker](https://www.docker.com/) image (built on GitHub
+- `texlive-small`: a [Docker](https://docker.com/) image (built on GitHub
   Actions and hosted on [GHCR][ghcr-img])
 - `minimath-rg`: a [ripgrep][ripgrep]-inspired indexer.
 - Build + Test + Compile PDF + Publish on GitHub Actions.

@@ -14,7 +14,7 @@ import * as c from "../consts"
 ---
 
 <Main>
-  <Section class='space-y-text'>
+  <Section class="space-y-text">
     <p>
       Graduated <a
         href="https://wikipedia.org/wiki/National_University_of_Singapore"
@@ -46,81 +46,84 @@ import * as c from "../consts"
     </p>
 
     <div class="mb-6 space-y-text">
-      <Project
-        name="Gitnu"
-        href="https://www.github.com/nguyenvukhang/gitnu"
-        summary="Enumerates git status"
-      >
-        {c.GITNU_DOWNLOADS} downloads on <a
-          href="https://crates.io/crates/gitnu">crates.io</a
-        >
+      <Project name="Gitnu" href="https://github.com/nguyenvukhang/gitnu/">
+        <div slot="summary">Enumerates git status</div>
+        <div slot="description">
+          {c.GITNU_DOWNLOADS} downloads on <a
+            href="https://crates.io/crates/gitnu">crates.io</a
+          >
+        </div>
       </Project>
 
-      <Project
-        name="Pass"
-        href="https://www.github.com/nguyenvukhang/pass"
-        summary="Single-file password store"
-      >
-        GnuPG keyring + ChaCha20
+      <Project name="Pass" href="https://github.com/nguyenvukhang/pass/">
+        <div slot="summary">Single-file password store</div>
+        <div slot="description">GnuPG keyring + ChaCha20</div>
       </Project>
 
-      <Project
-        name="Statc"
-        href="https://www.github.com/nguyenvukhang/statc"
-        summary="Convenience routines for statistics calculations"
-      >
-        {c.STATC_DOWNLOADS} downloads on <a
-          href="https://crates.io/crates/statc">crates.io</a
-        >
+      <Project name="Statc" href="https://github.com/nguyenvukhang/statc/">
+        <div slot="summary">
+          Convenience routines for statistics calculations
+        </div>
+        <div slot="description">
+          {c.STATC_DOWNLOADS} downloads on <a
+            href="https://crates.io/crates/statc">crates.io</a
+          >
+        </div>
       </Project>
 
-      <Project
-        name="Wordle"
-        href="https://www.github.com/nguyenvukhang/wordle"
-        summary="A fun application of Information Theory"
-      >
-        Evaluates wordle algorithms in &lt;2s
+      <Project name="Wordle" href="https://github.com/nguyenvukhang/wordle/">
+        <div slot="summary">A fun application of Information Theory</div>
+        <div slot="description">Evaluates wordle algorithms in &lt;2s</div>
       </Project>
     </div>
 
     <p>Explores other languages to keep an open perspective:</p>
 
     <div class="mb-6 space-y-text">
-      <Project
-        name="Helium"
-        href="https://www.github.com/nguyenvukhang/helium"
-        summary="Wacom Tablet Driver extension for Precision Mode"
-      >
-        Swift, XCode, macOS UI Application; also in daemon form
+      <Project name="Helium" href="https://github.com/nguyenvukhang/helium/">
+        <div slot="summary">
+          Wacom Tablet Driver extension for Precision Mode
+        </div>
+        <div slot="description">
+          Swift, XCode, macOS UI Application; also in daemon form
+        </div>
       </Project>
       <Project
         name="Canvas Sync"
-        href="https://www.github.com/nguyenvukhang/canvas-sync"
-        summary="Cross-platform GUI synchronization tool"
+        href="https://github.com/nguyenvukhang/canvas-sync/"
       >
-        C++, Qt6 Framework, automated builds on GitHub
+        <div slot="summary">Cross-platform GUI synchronization tool</div>
+        <div slot="description">
+          C++, Qt6 Framework, automated builds on GitHub
+        </div>
       </Project>
       <Project
         name="Aquarium"
-        href="https://www.github.com/nguyenvukhang/aquarium"
-        summary="Backtracking solver for the Aquarium puzzle"
+        href="https://github.com/nguyenvukhang/aquarium/"
       >
-        Implemented in both Swift and Rust
+        <div slot="summary">
+          Backtracking solver for the <a href="https://puzzle-aquarium.com/"
+            >Aquarium</a
+          > puzzle
+        </div>
+        <div slot="description">Implemented in both Swift and Rust</div>
       </Project>
       <Project
         name="Nvim Toggler"
-        href="https://www.github.com/nguyenvukhang/nvim-toggler"
-        summary="Toggle words under your cursor"
+        href="https://github.com/nguyenvukhang/nvim-toggler/"
       >
-        Lua plugin for Neovim, {c.NVIM_TOGGLER_STARS}★ on GH, featured in <a
-          href="https://github.com/coffebar/dotfiles">coffeebar/dotfiles</a
-        >
+        <div slot="summary">Toggle words under your cursor</div>
+        <div slot="description">
+          Lua plugin for Neovim, {c.NVIM_TOGGLER_STARS}★ on GH, featured in <a
+            href="https://github.com/coffebar/dotfiles">coffeebar/dotfiles</a
+          >
+        </div>
       </Project>
     </div>
     <p>
-      Find me on <a href="https://www.github.com/nguyenvukhang/">GitHub</a>,
-      <a href="http://www.linkedin.com/in/nguyenvukhang/">LinkedIn</a>, and <a
-        href="https://www.instagram.com/chalk.hang/">Instagram</a
+      Find me on <a href="https://github.com/nguyenvukhang/">GitHub</a>,
+      <a href="http://linkedin.com/in/nguyenvukhang/">LinkedIn</a>, and <a
+        href="https://instagram.com/chalk.hang/">Instagram</a
       >. And if you're hiring, here's <a
         href="https://github.com/nguyenvukhang/site/releases/download/v1/resume.pdf"
         >my resume</a
