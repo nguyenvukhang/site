@@ -59,7 +59,7 @@
 
   /* The horizontal rule. */
   hr {
-    @apply text-fg0/20 my-7;
+    @apply text-fg4 my-7;
   }
 
   code {

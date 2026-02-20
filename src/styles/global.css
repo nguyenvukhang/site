@@ -1,51 +1,15 @@
-@import "tailwindcss";
-
-@theme {
-  --font-mono: "JetBrains Mono", monospace;
-  --font-sans: "IBM Plex Sans", sans-serif;
-
-  --color-*: initial;
-
-  --color-fg0: oklch(0 0 0);
-  --color-fg1: oklch(0.6 0 0);
-  --color-fg2: oklch(0.875 0 0);
-  --color-fg3: oklch(0.95 0 0);
-  /* For code backgrounds */
-  --color-fg4: oklch(0.98 0 0);
-
-  --color-ac0: oklch(0.605 0.1837 264.93);
-  --color-ac1: oklch(0.691 0.139 264.934);
-  --color-ac2: oklch(0.778 0.097 264.934);
-  --color-ac3: oklch(0.864 0.057 264.934);
-  --color-ac4: oklch(0.95 0.02 264.934);
-
-  --color-selection: oklch(94.8% 0.09 95.67);
-}
+@import "./themeo.css";
+@import "./vanilla.css";
 
 @layer components {
   .space-y-text {
-    @apply space-y-3;
+    @apply space-y-4;
   }
-}
 
-/* Fix what Tailwind CSS broke. */
-ol {
-  list-style-type: decimal;
-}
-ul {
-  list-style-type: disc;
-}
-
-/* Indicate which links are external */
-a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link)::after {
-  position: absolute;
-  text-decoration: none;
-  content: "⌝" / ", external";
-  margin-top: -0.1em;
-  margin-left: -0.2em;
-}
-a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link) {
-  padding-right: 0.7ch;
+  .md-pre {
+    overflow-x: hidden;
+    @apply bg-fg4;
+  }
 }
 
 @layer components {
@@ -61,55 +25,15 @@ a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link) {
     @apply text-fg0 leading-7;
   }
 
-  /** code blocks */
-  pre,
-  code,
-  kbd {
-    /* (IBM Plex Sans × JetBrains)-specific mods */
-    font-size: 0.9em;
-    letter-spacing: -0.01em;
-  }
-
-  /* links: clickable */
   a {
     /* On some devices, show a gray box when the link is clicked. */
     -webkit-tap-highlight-color: theme("colors.fg2");
 
-    @apply text-ac0
-      /* Underline styles. */
-      decoration-ac3 decoration-2
-      /* Modes. */
-      hover:underline;
+    @apply text-ac0 decoration-ac3;
   }
 
-  /* Nested lists. */
   ul,
   ol {
-    /* Distance of the bullet list indent. */
-    /* padding-left: 24px; */
-    /* So that each newline wrapped in the list is consistent. */
-    list-style-position: outside;
-
     @apply marker:text-ac1;
-  }
-  ul > li,
-  ol > li {
-    /* Spacing between bullet point and 1st word of the <li>. */
-    padding-left: 6px;
-    /* Each incremental indent distance. */
-    margin-left: 24px;
-  }
-
-  /* Summary (disclosure blocks) */
-  summary {
-    cursor: pointer;
-  }
-
-  /* Custom selection colors */
-  ::selection {
-    @apply bg-selection; /* WebKit/Blink Browsers */
-  }
-  ::-moz-selection {
-    @apply bg-selection; /* Gecko Browsers */
   }
 }
