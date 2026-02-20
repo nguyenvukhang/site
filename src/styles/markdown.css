@@ -80,7 +80,7 @@
   pre {
     line-height: 1.3em;
     @apply rounded-md py-3 px-4;
-      /* background. */
-      /* bg-fg4; */
+    /* background. */
+    /* bg-fg4; */
   }
 }
