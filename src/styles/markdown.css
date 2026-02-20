@@ -1,68 +1,75 @@
 @import "./global.css";
 
+/* Headings. */
 @layer components {
   h1,
   h2,
   h3 {
-    @apply mt-8 mb-2 font-semibold;
+    @apply font-semibold;
   }
   h1 {
-    @apply text-xl;
+    @apply pt-4 text-xl;
   }
 
   h2 {
-    @apply text-lg;
+    @apply pt-3 text-lg;
   }
 
   h3 {
-    @apply text-base;
+    @apply pt-3 text-base;
   }
 
-  /* add vertical space after lists */
-  div > ul > li:last-child {
-    @apply mb-6;
-  }
-
-  kbd {
-    background: rgb(220, 220, 220);
-    color: rgb(10, 10, 10);
-    font-weight: 600;
-    font-size: smaller;
-    border-radius: 4px;
-    box-shadow: 0 3px rgb(189, 189, 189);
-    padding: 1px 3px 0;
-  }
-
-  hr {
-    @apply text-fg0/20 my-7;
-  }
-
-  p > code,
-  li > code {
-    @apply bg-fg3 rounded-sm px-0.5;
+  h1::before,
+  h2::before,
+  h3::before {
+    font-weight: 100;
+    letter-spacing: -2px;
+    margin-right: 6px;
+    @apply text-ac1 text-base;
   }
 
   h1::before {
     content: "#";
-    @apply text-ac1 pr-1.5 text-base;
   }
   h2::before {
     content: "##";
-    @apply text-ac1 pr-1.5 text-base;
   }
   h3::before {
     content: "###";
-    @apply text-ac1 pr-1.5 text-base;
+  }
+}
+
+/* Lists. */
+@layer components {
+  /* add vertical space after lists */
+  li > * {
+    @apply p-0 m-0;
+  }
+}
+
+@layer components {
+  kbd {
+    color: var(--color-fg0);
+    background: var(--color-fg3);
+    box-shadow: 0 3px var(--color-fg2);
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 1px 3px 0;
+  }
+
+  /* The horizontal rule. */
+  hr {
+    @apply text-fg0/20 my-7;
+  }
+
+  code {
+    @apply bg-fg3 rounded-sm px-0.5;
   }
 
   blockquote {
-    @apply border-solid border-0 border-l-[3px] border-ac1
+    @apply border-solid border-0 border-l-[3px] border-ac3
     m-0 px-4
     text-fg1;
-  }
-
-  li > p {
-    @apply p-0 m-0;
   }
 
   /* Table of contents */
@@ -73,14 +80,13 @@
     @apply text-fg1 decoration-fg2 decoration-1;
   }
 
-  pre > p {
-    @apply my-0;
-  }
-
   pre {
     line-height: 1.3em;
-    @apply rounded-md py-3 px-4;
-    /* background. */
-    /* bg-fg4; */
+    @apply rounded-md py-3 px-4 border border-fg3;
+  }
+
+  pre * {
+    padding: 0;
+    background-color: transparent;
   }
 }

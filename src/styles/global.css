@@ -1,13 +1,56 @@
 @import "tailwindcss";
-@config "../../tailwind.config";
 
 @theme {
   --font-mono: "JetBrains Mono", monospace;
   --font-sans: "IBM Plex Sans", sans-serif;
+
+  --color-*: initial;
+
+  --color-fg0: oklch(0 0 0);
+  --color-fg1: oklch(0.6 0 0);
+  --color-fg2: oklch(0.875 0 0);
+  --color-fg3: oklch(0.95 0 0);
+  /* For code backgrounds */
+  --color-fg4: oklch(0.98 0 0);
+
+  --color-ac0: oklch(0.605 0.1837 264.93);
+  --color-ac1: oklch(0.691 0.139 264.934);
+  --color-ac2: oklch(0.778 0.097 264.934);
+  --color-ac3: oklch(0.864 0.057 264.934);
+  --color-ac4: oklch(0.95 0.02 264.934);
+
+  --color-selection: oklch(94.8% 0.09 95.67);
+}
+
+@layer components {
+  .space-y-text {
+    @apply space-y-3;
+  }
+}
+
+/* Fix what Tailwind CSS broke. */
+ol {
+  list-style-type: decimal;
+}
+ul {
+  list-style-type: disc;
+}
+
+/* Indicate which links are external */
+a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link)::after {
+  position: absolute;
+  text-decoration: none;
+  content: "⌝" / ", external";
+  margin-top: -0.1em;
+  margin-left: -0.2em;
+}
+a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link) {
+  padding-right: 0.7ch;
 }
 
 @layer components {
   body {
+    font-variant-ligatures: none;
     font-weight: 380;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -18,11 +61,10 @@
     @apply text-fg0 leading-7;
   }
 
-  /**
-   * code blocks
-   */
+  /** code blocks */
   pre,
-  code {
+  code,
+  kbd {
     /* (IBM Plex Sans × JetBrains)-specific mods */
     font-size: 0.9em;
     letter-spacing: -0.01em;
@@ -35,53 +77,27 @@
 
     @apply text-ac0
       /* Underline styles. */
-      decoration-ac2 decoration-2
+      decoration-ac3 decoration-2
       /* Modes. */
       hover:underline;
   }
 
-  a[href^="http"]:not(
-      [href^="https://nguyenvukhang.com/"],
-      .hidden-link
-    )::after {
-    position: absolute;
-    text-decoration: none;
-    content: "⌝" / ", external";
-    margin-top: -0.1em;
-    margin-left: -0.2em;
-  }
-
-  a[href^="http"]:not([href^="https://nguyenvukhang.com/"], .hidden-link) {
-    padding-right: 0.7ch;
-  }
-
-  /* First-layer lists. Those that interact with other paragraphs. */
-  div > ul,
-  div > ol {
-    @apply list-outside mb-4;
-  }
   /* Nested lists. */
   ul,
   ol {
-    @apply mb-1 marker:text-ac1;
-    padding-left: 32px;
-  }
-  ol {
-    @apply list-decimal;
-  }
-  ul {
-    @apply list-disc; /* so that all the discs will be the same */
-    /* without this, there will be hollow circles and squares in nested lists */
+    /* Distance of the bullet list indent. */
+    /* padding-left: 24px; */
+    /* So that each newline wrapped in the list is consistent. */
+    list-style-position: outside;
+
+    @apply marker:text-ac1;
   }
   ul > li,
   ol > li {
-    @apply pl-2;
-    /* Adds spacing between the bullet point and the first word of the bullet list entry. */
-  }
-
-  /* Paragraphs */
-  p {
-    @apply mb-3;
+    /* Spacing between bullet point and 1st word of the <li>. */
+    padding-left: 6px;
+    /* Each incremental indent distance. */
+    margin-left: 24px;
   }
 
   /* Summary (disclosure blocks) */
