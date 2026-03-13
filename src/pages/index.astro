@@ -3,14 +3,6 @@ import Main from "../layouts/Main.astro"
 import Section from "../layouts/Section.astro"
 import Project from "../components/Project.astro"
 import * as c from "../consts"
-
-// The exact time of my last final.
-//const graduate = new Date('2025-12-03T11:00:00.000+08:00')
-//const today = new Date()
-//const monthsSinceGraudate =
-//  (today.getFullYear() - graduate.getFullYear()) * 12 -
-//  graduate.getMonth() +
-//  today.getMonth()
 ---
 
 <Main>
@@ -50,13 +42,13 @@ import * as c from "../consts"
         <div slot="description">
           {c.GITNU_DOWNLOADS} downloads on <a
             href="https://crates.io/crates/gitnu">crates.io</a
-          >
+          >.
         </div>
       </Project>
 
       <Project name="Wordle" href="https://github.com/nguyenvukhang/wordle/">
         <div slot="summary">A fun application of Information Theory</div>
-        <div slot="description">Evaluates wordle algorithms in &lt;2s</div>
+        <div slot="description">Evaluates wordle algorithms in &lt;2s.</div>
       </Project>
     </div>
 
@@ -68,7 +60,7 @@ import * as c from "../consts"
           Wacom Tablet Driver extension for Precision Mode
         </div>
         <div slot="description">
-          Swift, XCode, macOS UI Application; also in daemon form
+          Swift, XCode, macOS UI Application; also in daemon form.
         </div>
       </Project>
       <Project
@@ -77,7 +69,7 @@ import * as c from "../consts"
       >
         <div slot="summary">Cross-platform GUI synchronization tool</div>
         <div slot="description">
-          C++, Qt6 Framework, automated builds on GitHub
+          C++, Qt6 Framework, automated builds on GitHub.
         </div>
       </Project>
       <Project
@@ -89,7 +81,7 @@ import * as c from "../consts"
             >Aquarium</a
           > puzzle
         </div>
-        <div slot="description">Implemented in both Swift and Rust</div>
+        <div slot="description">Implemented in both Swift and Rust.</div>
       </Project>
       <Project
         name="Nvim Toggler"
@@ -97,9 +89,7 @@ import * as c from "../consts"
       >
         <div slot="summary">Toggle words under your cursor</div>
         <div slot="description">
-          Lua plugin for Neovim, {c.NVIM_TOGGLER_STARS}★ on GH, featured in <a
-            href="https://github.com/coffebar/dotfiles">coffeebar/dotfiles</a
-          >
+          Lua plugin for Neovim, {c.NVIM_TOGGLER_STARS}★ on GH.
         </div>
       </Project>
     </div>
@@ -111,14 +101,3 @@ import * as c from "../consts"
     </p>
   </Section>
 </Main>
-
-<!-- styles -->
-<style>
-  @reference "../styles/global.css"
-  p {
-    @apply mb-6;
-  }
-  p > b {
-    @apply font-semibold;
-  }
-</style>
