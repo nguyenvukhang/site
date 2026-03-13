@@ -8,19 +8,19 @@
     "start": "astro preview",
     "astro": "astro",
     "format": "prettier -w **/*.{astro,mdx,js,ts,jsx,tsx,json}",
-    "update": "ncu -u"
+    "update": "ncu --target semver --upgrade"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/mdx": "^4.3.14",
     "@astrojs/solid-js": "^5.1.3",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.17.2",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "5.x",
     "solid-js": "^1.9.11"
   },
   "devDependencies": {
-    "npm-check-updates": "^19.3.2",
+    "npm-check-updates": "^19.6.3",
     "prettier-plugin-astro": "^0.14.1",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   },
   "prettier": {
