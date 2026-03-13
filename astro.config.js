@@ -20,8 +20,8 @@ function mdxCheckFilenameDate() {
   }
 }
 
-// tailwind's "bg-fg4".
-githubLight.colors["editor.background"] = "#f7f7f7"
+// has to match tailwind's "bg-fg4".
+githubLight.colors["editor.background"] = "var(--color-fg4)"
 
 // https://astro.build/config
 export default defineConfig({

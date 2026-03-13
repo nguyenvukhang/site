@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "IBM Plex Sans", sans-serif;
+
+  /* Remove all of Tailwind's colors. */
+  --color-*: initial;
+
+  /* Foregound colors. Different shades of neutral. */
+  --color-fg0: oklch(0 0 0);
+  --color-fg1: oklch(0.6 0 0);
+  --color-fg2: oklch(0.875 0 0);
+  --color-fg3: oklch(0.95 0 0);
+  --color-fg4: oklch(0.98 0 0); /* For code backgrounds */
+
+  /* Accent colors. */
+  --color-ac0: oklch(0.605 0.1837 264.93);
+  --color-ac1: oklch(0.691 0.139 264.934);
+  --color-ac2: oklch(0.778 0.097 264.934);
+  --color-ac3: oklch(0.864 0.057 264.934);
+  --color-ac4: oklch(0.95 0.02 264.934);
+
+  /* Selection color. */
+  --color-selection: oklch(94.8% 0.09 95.67);
+}
+
+/* Custom selection colors */
+::selection {
+  @apply bg-selection; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  @apply bg-selection; /* Gecko Browsers */
+}

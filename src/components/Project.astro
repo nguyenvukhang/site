@@ -7,9 +7,9 @@ const { name, href, summary, text } = Astro.props
     <a href={href}>{name}</a>
   </div>
   <div>
-    <div>{summary}</div>
+    <div><slot name="summary" /></div>
     <div class="text-sm text-fg1">
-      <slot />
+      <slot name="description" />
     </div>
   </div>
 </div>
