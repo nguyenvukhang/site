@@ -3,19 +3,20 @@ import mdx from "@astrojs/mdx"
 import solid from "@astrojs/solid-js"
 import tailwindcss from "@tailwindcss/vite"
 import githubLight from "./src/styles/github-light.json"
-// import githubLight from "./src/styles/gruvbox-dark-hard.json"
-
-const ARTICLES_CONTENT_DIR = "content/articles"
 
 function mdxCheckFilenameDate() {
-  return function (_, file) {
-    /** @type string */
-    if (file.path.includes(ARTICLES_CONTENT_DIR)) {
-      const filenameDate = file.stem.split("-").slice(0, 3).join("-")
-      const metaDate = file.data.astro.frontmatter.pubDate
-      if (filenameDate !== metaDate) {
-        throw new Error(`Filename doesn't match frontmatter date: ${file.path}`)
-      }
+  /**
+   * @import {Root} from "mdast"
+   * @import { VFile } from "vfile"
+   * @param {Root} _tree
+   * @param {VFile} file
+   */
+  return function (_tree, file) {
+    const pubDate = file.data?.astro?.frontmatter?.pubDate
+    if (pubDate === undefined || pubDate === null) return
+
+    if (!file.basename.startsWith(pubDate)) {
+      throw new Error(`Filename doesn't match frontmatter date: ${file.path}`)
     }
   }
 }
