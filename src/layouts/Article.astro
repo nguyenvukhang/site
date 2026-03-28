@@ -9,12 +9,15 @@ const { title, description, pubDate } = Astro.props
 
 <Main prevpage="/articles">
   <Section>
-    <div class="mt-2 mb-8">
-      <div class="font-semibold text-2xl mb-1">{title}</div>
-      <div class="font-mono text-fg1">{pubDate}</div>
-    </div>
-    <div class="space-y-text">
-      <slot />
+    <div class="space-y-6">
+      <div>
+        <div class="font-semibold text-2xl mb-1">{title}</div>
+        <div class="font-mono text-fg1">{pubDate}</div>
+      </div>
+      <div class="text-fg1 text-sm">{description}</div>
+      <div class="space-y-text">
+        <slot />
+      </div>
     </div>
   </Section>
 </Main>
